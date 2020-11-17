@@ -80,7 +80,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClassName = 'com.kambr.sync.Main'
+    mainClassName = 'com.kambr.sync.GeniusSyncParser'
 }
 
 test {

@@ -10,10 +10,10 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.List;
 
-public class TestMain {
+public class TestGeniusSyncParser {
 
     static String FILE_PATH = "src/test/resources/test-file.txt";
-    static public Logger logger = new Logger(Main.class);
+    static public Logger logger = new Logger(GeniusSyncParser.class);
 
     @Test
     public void test_main() {
@@ -26,7 +26,7 @@ public class TestMain {
             logger.error(e.getLocalizedMessage());
         }
 
-        List<GeniusFlight> geniusFlights = Main.parse(charStream);
+        List<GeniusFlight> geniusFlights = GeniusSyncParser.parse(charStream);
 
         // Flight 1 (Line in file: 1)
         GeniusFlight flight1 = geniusFlights.get(0);

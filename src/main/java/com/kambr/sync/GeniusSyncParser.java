@@ -10,10 +10,10 @@ import com.kambr.kambrlogger.Logger;
 import java.io.IOException;
 import java.util.List;
 
-public class Main {
+public class GeniusSyncParser {
 
     static String FILE_PATH = "";
-    static public Logger logger = new Logger(Main.class);
+    static public Logger logger = new Logger(GeniusSyncParser.class);
 
     public static List<GeniusFlight> parse(CharStream charStream) {
 
