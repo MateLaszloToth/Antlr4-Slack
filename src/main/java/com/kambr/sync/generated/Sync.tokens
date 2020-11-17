@@ -1,0 +1,16 @@
+T__0=1
+T__1=2
+T__2=3
+T__3=4
+T__4=5
+WORD=6
+INTEGER=7
+NEW_LINE=8
+WHITE_SPACE_SKIP=9
+SEPARATOR_SKIP=10
+'F'=1
+'S;'=2
+'.'=3
+'-'=4
+':'=5
+';'=10
