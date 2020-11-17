@@ -1,20 +1,32 @@
 package com.kambr.sync;
 
-import com.kambr.sync.Main;
+import com.kambr.kambrlogger.Logger;
 import com.kambr.sync.dataClasses.GeniusFlight;
 import com.ibm.icu.impl.Assert;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.List;
 
 public class TestMain {
 
     static String FILE_PATH = "src/test/resources/test-file.txt";
+    static public Logger logger = new Logger(Main.class);
 
     @Test
     public void test_main() {
 
-        List<GeniusFlight> geniusFlights = Main.parse(FILE_PATH);
+        CharStream charStream = null;
+
+        try {
+            charStream = CharStreams.fromFileName(FILE_PATH);
+        } catch (IOException e) {
+            logger.error(e.getLocalizedMessage());
+        }
+
+        List<GeniusFlight> geniusFlights = Main.parse(charStream);
 
         // Flight 1 (Line in file: 1)
         GeniusFlight flight1 = geniusFlights.get(0);
@@ -152,5 +164,4 @@ public class TestMain {
         Assert.assrt(flight5.specialPriceOffers.get(1).fromSeats.toString().equals("3"));
         Assert.assrt(flight5.specialPriceOffers.get(1).price.toString().equals("146.00"));
     }
-
 }
