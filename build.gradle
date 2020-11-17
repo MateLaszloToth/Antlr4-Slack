@@ -21,6 +21,9 @@ configurations {
 }
 
 java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
     withJavadocJar()
     withSourcesJar()
 }
@@ -61,8 +64,8 @@ repositories {
 
 dependencies {
 
-    implementation "org.antlr:antlr4:4.8-1"
-    implementation "org.antlr:antlr4-runtime:4.8-1"
+    implementation 'org.antlr:antlr4:4.8-1'
+    implementation 'org.antlr:antlr4-runtime:4.8-1'
     implementation 'com.google.guava:guava:28.1-jre'
     implementation 'com.kambr:kambr-logger:0.7.3'
 
