@@ -1,0 +1,64 @@
+# Gradle
+# Build your Java project and run tests with Gradle using a Gradle wrapper script.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+
+trigger:
+  branches:
+    include:
+      - 'master'
+
+  tags:
+    include:
+      - '*'
+pr:
+  branches:
+    include:
+      - '*'
+
+variables:
+  # https://docs.microsoft.com/en-us/azure/devops/pipelines/caching/?view=azure-devops#gradle
+  # https://docs.gradle.org/current/userguide/build_cache.html
+  GRADLE_USER_HOME: $(Pipeline.Workspace)/.gradle
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: CacheBeta@0
+    inputs:
+      key: 'gradle | api | $(Agent.OS)'
+      path: '$(GRADLE_USER_HOME)'
+    displayName: Configure build cache
+
+  - script: |
+      mkdir -p $(GRADLE_USER_HOME)
+      cat << EOF > $(GRADLE_USER_HOME)/gradle.properties
+      mavenUser=$(mvn.username)
+      mavenPassword=$(mvn.password)
+      EOF
+    displayName: Configure artifact repository credentials
+
+  - task: Gradle@2
+    displayName: Build
+    inputs:
+      workingDirectory: ''
+      gradleWrapperFile: 'gradlew'
+      gradleOptions: '-Xmx3072m'
+      javaHomeOption: 'JDKVersion'
+      jdkVersionOption: '1.8'
+      jdkArchitectureOption: 'x64'
+      publishJUnitResults: true
+      testResultsFiles: '**/TEST-*.xml'
+      tasks: 'build'
+
+  - task: Gradle@2
+    displayName: Release
+    condition: startsWith(variables['Build.SourceBranch'], 'refs/tags')
+    inputs:
+      gradleWrapperFile: 'gradlew'
+      gradleOptions: '-Xmx3072m'
+      javaHomeOption: 'JDKVersion'
+      jdkVersionOption: '1.8'
+      jdkArchitectureOption: 'x64'
+      tasks: 'publish'
