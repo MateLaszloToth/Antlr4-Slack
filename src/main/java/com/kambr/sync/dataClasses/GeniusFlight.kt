@@ -23,7 +23,7 @@ data class GeniusFlight (
     val restBooked: Short,
     val departureTime: LocalTime,
     val arrivalTime: LocalTime,
-    val updateIndentifier: UpdateIdentifierEnum,
+    val updateIdentifier: UpdateIdentifierEnum,
     val specialPriceOffers: List<SpecialPriceOffer>,
     var isHiddenFlight: Boolean = false
 )

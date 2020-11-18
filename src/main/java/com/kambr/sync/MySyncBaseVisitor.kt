@@ -71,7 +71,7 @@ class MySyncBaseVisitor : SyncBaseVisitor<Any>() {
         var restBooked: Short? = null
         var departureTime: LocalTime? = null
         var arrivalTime: LocalTime? = null
-        var updateIndentifier: UpdateIdentifierEnum? = null
+        var updateIdentifier: UpdateIdentifierEnum? = null
         val specialPriceOffers: MutableList<SpecialPriceOffer> = ArrayList()
 
         for (i in 0 until ctx.childCount) {
@@ -99,7 +99,7 @@ class MySyncBaseVisitor : SyncBaseVisitor<Any>() {
                 is RestBookedContext -> restBooked = visitRestBooked(ctx.restBooked())
                 is DepartureTimeContext -> departureTime = visitDepartureTime(ctx.departureTime())
                 is ArrivalTimeContext -> arrivalTime = visitArrivalTime(ctx.arrivalTime())
-                is UpdateIndentifierContext -> updateIndentifier = visitUpdateIndentifier(ctx.updateIndentifier())
+                is UpdateIndentifierContext -> updateIdentifier = visitUpdateIndentifier(ctx.updateIndentifier())
                 is SpecialPriceOffersContext -> specialPriceOffers.add(visitSpecialPriceOffers(child))
                 !is TerminalNode -> {
                     throw RuntimeException(
@@ -128,7 +128,7 @@ class MySyncBaseVisitor : SyncBaseVisitor<Any>() {
             restBooked!!,
             departureTime!!,
             arrivalTime!!,
-            updateIndentifier!!,
+            updateIdentifier!!,
             specialPriceOffers
         )
     }

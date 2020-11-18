@@ -27,6 +27,6 @@ $ `alias grun='java org.antlr.v4.gui.TestRig'`
 I advise you to put the last three commands into your `.zshrc` or `.bashrc` file and don't forget to source it, because if you close the terminal, you will have to rerun these commands.  
 
 Generate the files from the `grammar` folder with this command:  
-$ `antlr4 Sync.g4 -o ../src/main/java/antlr/generated -no-listener -visitor`  
+$ `antlr4 Sync.g4 -o ../src/main/java/com/kambr/sync/generated -no-listener -visitor`  
 
 Well done you just generated a new parser!
