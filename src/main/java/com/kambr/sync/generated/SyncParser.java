@@ -1,12 +1,15 @@
-// Generated from /Users/matetoth/Documents/Kambr/Antlr-corendon/grammar/Sync.g4 by ANTLR 4.8
+// Generated from Sync.g4 by ANTLR 4.8
 
 package com.kambr.sync.generated;
 
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.misc.*;
 import org.antlr.v4.runtime.tree.*;
 import java.util.List;
+import java.util.Iterator;
+import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class SyncParser extends Parser {
@@ -41,7 +44,7 @@ public class SyncParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'F'", "'S;'", "'.'", "'-'", "':'", null, null, null, null, "';'"
+			null, "'F;'", "'S;'", "'.'", "'-'", "':'", null, null, null, null, "';'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();

@@ -1,4 +1,4 @@
-// Generated from /Users/matetoth/Documents/Kambr/Antlr-corendon/grammar/Sync.g4 by ANTLR 4.8
+// Generated from Sync.g4 by ANTLR 4.8
 
 package com.kambr.sync.generated;
 

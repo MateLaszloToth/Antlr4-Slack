@@ -1,7 +1,7 @@
 grammar Sync;
 
 @header {
-package antlr.generated;
+package com.kambr.sync.generated;
 }
 
 flightRecords
