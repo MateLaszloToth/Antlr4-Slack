@@ -35,7 +35,7 @@ stages:
               mavenUser=$(mvn.username)
               mavenPassword=$(mvn.password)
               EOF
-              displayName: Configure artifact repository credentials
+            displayName: Configure artifact repository credentials
 
           - task: Gradle@2
             inputs:
