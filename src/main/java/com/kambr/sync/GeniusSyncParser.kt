@@ -1,42 +1,34 @@
-package com.kambr.sync;
+package com.kambr.sync
 
-import com.kambr.sync.dataClasses.GeniusFlight;
-import com.kambr.sync.generated.SyncLexer;
-import com.kambr.sync.generated.SyncParser;
-import org.antlr.v4.runtime.CharStream;
-import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CommonTokenStream;
-import com.kambr.kambrlogger.Logger;
-import java.io.IOException;
-import java.util.List;
+import com.kambr.kambrlogger.Logger
+import com.kambr.sync.dataClasses.GeniusFlight
+import com.kambr.sync.generated.SyncLexer
+import com.kambr.sync.generated.SyncParser
+import org.antlr.v4.runtime.CharStream
+import org.antlr.v4.runtime.CharStreams
+import org.antlr.v4.runtime.CommonTokenStream
+import java.io.IOException
 
-public class GeniusSyncParser {
-
-    static String FILE_PATH = "";
-    static public Logger logger = new Logger(GeniusSyncParser.class);
-
-    public static List<GeniusFlight> parse(CharStream charStream) {
-
-        SyncLexer lexer = new SyncLexer(charStream);
-        CommonTokenStream tokenStream = new CommonTokenStream(lexer);
-        SyncParser parser = new SyncParser(tokenStream);
-        SyncParser.FlightRecordsContext flightRecordsContext = parser.flightRecords();
-        MySyncBaseVisitor visitor = new MySyncBaseVisitor();
-
-        return (List<GeniusFlight>) visitor.visit(flightRecordsContext);
+object GeniusSyncParser {
+    var logger = Logger(GeniusSyncParser::class.java)
+    @JvmStatic
+    fun parse(charStream: CharStream?): List<GeniusFlight> {
+        val lexer = SyncLexer(charStream)
+        val tokenStream = CommonTokenStream(lexer)
+        val parser = SyncParser(tokenStream)
+        val flightRecordsContext = parser.flightRecords()
+        val visitor = MySyncBaseVisitor()
+        return visitor.visit(flightRecordsContext) as List<GeniusFlight>
     }
 
-    public static void main(String[] args) {
-
-        CharStream charStream = null;
-
+    @JvmStatic
+    fun main(args: Array<String>) {
+        var charStream: CharStream? = null
         try {
-            charStream = CharStreams.fromFileName(FILE_PATH);
-        } catch (IOException e) {
-            logger.error(e.getLocalizedMessage());
+            charStream = CharStreams.fromFileName("") // Add filepath if you want to run main
+        } catch (e: IOException) {
+            logger.error(e.localizedMessage)
         }
-
-        List<GeniusFlight> geniusFlights = parse(charStream);
-
+        val geniusFlights = parse(charStream)
     }
 }

@@ -1,283 +1,254 @@
-package com.kambr.sync;
+package com.kambr.sync
 
-import com.kambr.sync.dataClasses.GeniusFlight;
-import com.kambr.sync.dataClasses.SpecialPriceOffer;
-import com.kambr.sync.dataClasses.UpdateIdentifierEnum;
-import com.kambr.sync.generated.SyncBaseVisitor;
-import com.kambr.sync.generated.SyncParser;
-import com.kambr.sync.generated.SyncParser.GeniusFlightContext;
-import org.antlr.v4.runtime.tree.ParseTree;
-import org.antlr.v4.runtime.tree.TerminalNode;
+import com.kambr.sync.dataClasses.GeniusFlight
+import com.kambr.sync.dataClasses.SpecialPriceOffer
+import com.kambr.sync.dataClasses.UpdateIdentifierEnum
+import com.kambr.sync.generated.SyncBaseVisitor
+import com.kambr.sync.generated.SyncParser.AirlineCodeContext
+import com.kambr.sync.generated.SyncParser.ArrivalTimeContext
+import com.kambr.sync.generated.SyncParser.CabinBookingContext
+import com.kambr.sync.generated.SyncParser.CabinCapacityContext
+import com.kambr.sync.generated.SyncParser.CabinContext
+import com.kambr.sync.generated.SyncParser.ChainIDContext
+import com.kambr.sync.generated.SyncParser.DateContext
+import com.kambr.sync.generated.SyncParser.DepartureDateContext
+import com.kambr.sync.generated.SyncParser.DepartureTimeContext
+import com.kambr.sync.generated.SyncParser.DestinationContext
+import com.kambr.sync.generated.SyncParser.FlightIDContext
+import com.kambr.sync.generated.SyncParser.FlightNumberContext
+import com.kambr.sync.generated.SyncParser.FlightRecordsContext
+import com.kambr.sync.generated.SyncParser.FromSeatContext
+import com.kambr.sync.generated.SyncParser.GeniusFlightContext
+import com.kambr.sync.generated.SyncParser.OriginContext
+import com.kambr.sync.generated.SyncParser.PoolBookedContext
+import com.kambr.sync.generated.SyncParser.PoolCapacityContext
+import com.kambr.sync.generated.SyncParser.PriceContext
+import com.kambr.sync.generated.SyncParser.RestBookedContext
+import com.kambr.sync.generated.SyncParser.RestCapacityContext
+import com.kambr.sync.generated.SyncParser.SpecialPriceOffersContext
+import com.kambr.sync.generated.SyncParser.TimeContext
+import com.kambr.sync.generated.SyncParser.UpdateIndentifierContext
+import com.kambr.sync.generated.SyncParser.ViaStationContext
+import com.kambr.sync.generated.SyncParser.WebsiteAllocatedContext
+import com.kambr.sync.generated.SyncParser.WebsiteBookingsContext
+import org.antlr.v4.runtime.tree.ParseTree
+import org.antlr.v4.runtime.tree.TerminalNode
+import java.math.BigDecimal
+import java.math.BigInteger
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.ArrayList
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-
-public class MySyncBaseVisitor extends SyncBaseVisitor {
-
-    @Override
-    public List<GeniusFlight> visitFlightRecords(SyncParser.FlightRecordsContext ctx) {
-        List<GeniusFlight> geniusFlightList = new ArrayList<>();
-        for (GeniusFlightContext flight : ctx.geniusFlight()) {
-            geniusFlightList.add(visitGeniusFlight(flight));
+class MySyncBaseVisitor : SyncBaseVisitor<Any>() {
+    override fun visitFlightRecords(ctx: FlightRecordsContext): List<GeniusFlight> {
+        val geniusFlightList: MutableList<GeniusFlight> = ArrayList()
+        for (flight in ctx.geniusFlight()) {
+            geniusFlightList.add(visitGeniusFlight(flight))
         }
-        return geniusFlightList;
+        return geniusFlightList
     }
 
-    @Override
-    public GeniusFlight visitGeniusFlight(GeniusFlightContext ctx) {
-        String airlineCode = null;
-        String flightNumber = null;
-        String origin = null;
-        String destination = null;
-        LocalDate departureDate = null;
-        String cabin = null;
-        String viaStation = null;
-        BigInteger chainID = null;
-        BigInteger flightID = null;
-        Short cabinCapacity = null;
-        Short cabinBooking = null;
-        Short websiteAllocated = null;
-        Short websiteBookings = null;
-        Short poolCapacity = null;
-        Short poolBooked = null;
-        Short restCapacity = null;
-        Short restBooked = null;
-        String departureTime = null;
-        String arrivalTime = null;
-        UpdateIdentifierEnum updateIndentifier = null;
-        List<SpecialPriceOffer> specialPriceOffers = new ArrayList<>();
+    override fun visitGeniusFlight(ctx: GeniusFlightContext): GeniusFlight {
+        var airlineCode: String? = null
+        var flightNumber: String? = null
+        var origin: String? = null
+        var destination: String? = null
+        var departureDate: LocalDate? = null
+        var cabin: String? = null
+        var viaStation: String? = null
+        var chainID: BigInteger? = null
+        var flightID: BigInteger? = null
+        var cabinCapacity: Short? = null
+        var cabinBookings: Short? = null
+        var websiteAllocated: Short? = null
+        var websiteBookings: Short? = null
+        var poolCapacity: Short? = null
+        var poolBooked: Short? = null
+        var restCapacity: Short? = null
+        var restBooked: Short? = null
+        var departureTime: String? = null
+        var arrivalTime: String? = null
+        var updateIndentifier: UpdateIdentifierEnum? = null
+        val specialPriceOffers: MutableList<SpecialPriceOffer> = ArrayList()
 
-        for (int i = 0; i < ctx.getChildCount(); i++) {
-            ParseTree child = ctx.getChild(i);
-            if (child instanceof SyncParser.AirlineCodeContext) {
-                airlineCode = visitAirlineCode(ctx.airlineCode());
-            } else if (child instanceof SyncParser.FlightNumberContext) {
-                flightNumber = visitFlightNumber(ctx.flightNumber());
-            } else if (child instanceof SyncParser.OriginContext) {
-                origin = visitOrigin(ctx.origin());
-            } else if (child instanceof SyncParser.DestinationContext) {
-                destination = visitDestination(ctx.destination());
-            } else if (child instanceof SyncParser.DepartureDateContext) {
-                departureDate = visitDepartureDate(ctx.departureDate());
-            } else if (child instanceof SyncParser.CabinContext) {
-                cabin = visitCabin(ctx.cabin());
-            } else if (child instanceof SyncParser.ViaStationContext) {
-                if (ctx.viaStation() != null) {
-                    viaStation = visitViaStation(ctx.viaStation());
+        for (i in 0 until ctx.childCount) {
+            when (val child = ctx.getChild(i) as ParseTree) {
+                is AirlineCodeContext -> airlineCode = visitAirlineCode(ctx.airlineCode())
+                is FlightNumberContext -> flightNumber = visitFlightNumber(ctx.flightNumber())
+                is OriginContext -> origin = visitOrigin(ctx.origin())
+                is DestinationContext -> destination = visitDestination(ctx.destination())
+                is DepartureDateContext -> departureDate = visitDepartureDate(ctx.departureDate())
+                is CabinContext -> cabin = visitCabin(ctx.cabin())
+                is ViaStationContext -> {
+                    if (ctx.viaStation() != null) {
+                        viaStation = visitViaStation(ctx.viaStation())
+                    }
                 }
-            } else if (child instanceof SyncParser.ChainIDContext) {
-                chainID = visitChainID(ctx.chainID());
-            } else if (child instanceof SyncParser.FlightIDContext) {
-                flightID = visitFlightID(ctx.flightID());
-            } else if (child instanceof SyncParser.CabinCapacityContext) {
-                cabinCapacity = visitCabinCapacity(ctx.cabinCapacity());
-            } else if (child instanceof SyncParser.CabinBookingContext) {
-                cabinBooking = visitCabinBooking(ctx.cabinBooking());
-            } else if (child instanceof SyncParser.WebsiteAllocatedContext) {
-                websiteAllocated = visitWebsiteAllocated(ctx.websiteAllocated());
-            } else if (child instanceof SyncParser.WebsiteBookingsContext) {
-                websiteBookings = visitWebsiteBookings(ctx.websiteBookings());
-            } else if (child instanceof SyncParser.PoolCapacityContext) {
-                poolCapacity = visitPoolCapacity(ctx.poolCapacity());
-            } else if (child instanceof SyncParser.PoolBookedContext) {
-                poolBooked = visitPoolBooked(ctx.poolBooked());
-            } else if (child instanceof SyncParser.RestCapacityContext) {
-                restCapacity = visitRestCapacity(ctx.restCapacity());
-            } else if (child instanceof SyncParser.RestBookedContext) {
-                restBooked = visitRestBooked(ctx.restBooked());
-            } else if (child instanceof SyncParser.DepartureTimeContext) {
-                departureTime = visitDepartureTime(ctx.departureTime());
-            } else if (child instanceof SyncParser.ArrivalTimeContext) {
-                arrivalTime = visitArrivalTime(ctx.arrivalTime());
-            } else if (child instanceof SyncParser.UpdateIndentifierContext) {
-                updateIndentifier = visitUpdateIndentifier(ctx.updateIndentifier());
-            } else if (child instanceof SyncParser.SpecialPriceOffersContext) {
-                specialPriceOffers.add(visitSpecialPriceOffers((SyncParser.SpecialPriceOffersContext) child));
-            } else if (!(child instanceof TerminalNode)) {
-                throw new RuntimeException("Unexpected children of EdiObject. Content is: " + child.getText() +
-                        " Parse tree: " + child.toStringTree());
-            }
-
-        }
-
-        return new GeniusFlight(
-                airlineCode,
-                flightNumber,
-                origin,
-                destination,
-                departureDate,
-                cabin,
-                viaStation,
-                chainID,
-                flightID,
-                cabinCapacity,
-                cabinBooking,
-                websiteAllocated,
-                websiteBookings,
-                poolCapacity,
-                poolBooked,
-                restCapacity,
-                restBooked,
-                departureTime,
-                arrivalTime,
-                updateIndentifier,
-                specialPriceOffers
-        );
-    }
-
-    @Override
-    public String visitAirlineCode(SyncParser.AirlineCodeContext ctx) {
-        return ctx.getText();
-    }
-
-    @Override
-    public String visitFlightNumber(SyncParser.FlightNumberContext ctx) {
-        return ctx.getText();
-    }
-
-    @Override
-    public String visitOrigin(SyncParser.OriginContext ctx) {
-        return ctx.getText();
-    }
-
-    @Override
-    public String visitDestination(SyncParser.DestinationContext ctx) {
-        return ctx.getText();
-    }
-
-    @Override
-    public LocalDate visitDepartureDate(SyncParser.DepartureDateContext ctx) {
-        return LocalDate.parse(ctx.getText(), DateTimeFormatter.ISO_LOCAL_DATE);
-    }
-
-    @Override
-    public String visitCabin(SyncParser.CabinContext ctx) {
-        return ctx.getText();
-    }
-
-    @Override
-    public String visitViaStation(SyncParser.ViaStationContext ctx) {
-        return ctx.getText();
-    }
-
-    @Override
-    public BigInteger visitChainID(SyncParser.ChainIDContext ctx) {
-        return new BigInteger(ctx.getText());
-    }
-
-    @Override
-    public BigInteger visitFlightID(SyncParser.FlightIDContext ctx) {
-        return new BigInteger(ctx.getText());
-    }
-
-    @Override
-    public Short visitCabinCapacity(SyncParser.CabinCapacityContext ctx) {
-        return new Short(ctx.getText());
-    }
-
-    @Override
-    public Short visitCabinBooking(SyncParser.CabinBookingContext ctx) {
-        return new Short(ctx.getText());
-    }
-
-    @Override
-    public Short visitWebsiteAllocated(SyncParser.WebsiteAllocatedContext ctx) {
-        return new Short(ctx.getText());
-    }
-
-    @Override
-    public Short visitWebsiteBookings(SyncParser.WebsiteBookingsContext ctx) {
-        return new Short(ctx.getText());
-    }
-
-    @Override
-    public Short visitPoolCapacity(SyncParser.PoolCapacityContext ctx) {
-        return new Short(ctx.getText());
-    }
-
-    @Override
-    public Short visitPoolBooked(SyncParser.PoolBookedContext ctx) {
-        return new Short(ctx.getText());
-    }
-
-    @Override
-    public Short visitRestCapacity(SyncParser.RestCapacityContext ctx) {
-        return new Short(ctx.getText());
-    }
-
-    @Override
-    public Short visitRestBooked(SyncParser.RestBookedContext ctx) {
-        return new Short(ctx.getText());
-    }
-
-    @Override
-    public String visitDepartureTime(SyncParser.DepartureTimeContext ctx) {
-        return ctx.getText();
-    }
-
-    @Override
-    public String visitArrivalTime(SyncParser.ArrivalTimeContext ctx) {
-        return ctx.getText();
-    }
-
-    @Override
-    public UpdateIdentifierEnum visitUpdateIndentifier(SyncParser.UpdateIndentifierContext ctx) throws RuntimeException {
-        char character;
-        if (ctx.getText().length() >= 1) {
-            character = ctx.getText().charAt(0);
-            if (character == 'N')
-                return UpdateIdentifierEnum.NEW_FLIGHT;
-            else if (character == 'S')
-                return UpdateIdentifierEnum.SPO_FIX;
-            else if (character == 'U')
-                return UpdateIdentifierEnum.NIGHTLY_CAPTURE;
-            else if (character == 'X')
-                return UpdateIdentifierEnum.OTHER;
-            else
-                throw new RuntimeException("Update identifier is supposed to be " +
-                        "'N' or 'S' or 'U' or 'X', but it was " + character);
-        }
-        throw new RuntimeException("Update identifier is supposed to be 'N' or 'S' or 'U' or 'X', but it is missing.");
-    }
-
-    @Override
-    public SpecialPriceOffer visitSpecialPriceOffers(SyncParser.SpecialPriceOffersContext ctx) {
-        Short fromSeat = null;
-        BigDecimal price = null;
-        for (ParseTree child : ctx.children) {
-            if (child instanceof SyncParser.FromSeatContext) {
-                fromSeat = visitFromSeat(ctx.fromSeat());
-            } else if (child instanceof SyncParser.PriceContext) {
-                price = visitPrice(ctx.price());
-            } else if (!(child instanceof TerminalNode)) {
-                throw new RuntimeException("Unexpected children of SpecialPriceOffers. Content is: " + child.getText() +
-                        " Parse tree: " + child.toStringTree());
+                is ChainIDContext -> chainID = visitChainID(ctx.chainID())
+                is FlightIDContext -> flightID = visitFlightID(ctx.flightID())
+                is CabinCapacityContext -> cabinCapacity = visitCabinCapacity(ctx.cabinCapacity())
+                is CabinBookingContext -> cabinBookings = visitCabinBooking(ctx.cabinBooking())
+                is WebsiteAllocatedContext -> websiteAllocated = visitWebsiteAllocated(ctx.websiteAllocated())
+                is WebsiteBookingsContext -> websiteBookings = visitWebsiteBookings(ctx.websiteBookings())
+                is PoolCapacityContext -> poolCapacity = visitPoolCapacity(ctx.poolCapacity())
+                is PoolBookedContext -> poolBooked = visitPoolBooked(ctx.poolBooked())
+                is RestCapacityContext -> restCapacity = visitRestCapacity(ctx.restCapacity())
+                is RestBookedContext -> restBooked = visitRestBooked(ctx.restBooked())
+                is DepartureTimeContext -> departureTime = visitDepartureTime(ctx.departureTime())
+                is ArrivalTimeContext -> arrivalTime = visitArrivalTime(ctx.arrivalTime())
+                is UpdateIndentifierContext -> updateIndentifier = visitUpdateIndentifier(ctx.updateIndentifier())
+                is SpecialPriceOffersContext -> specialPriceOffers.add(visitSpecialPriceOffers(child))
+                !is TerminalNode -> {
+                    throw RuntimeException(
+                        "Unexpected children of EdiObject. Content is: ${child.text}\nParse tree: ${child.toStringTree()}"
+                    )
+                }
             }
         }
-        return new SpecialPriceOffer(fromSeat, price);
+        return GeniusFlight(
+            airlineCode!!,
+            flightNumber!!,
+            origin!!,
+            destination!!,
+            departureDate!!,
+            cabin!!,
+            viaStation,
+            chainID!!,
+            flightID!!,
+            cabinCapacity!!,
+            cabinBookings!!,
+            websiteAllocated!!,
+            websiteBookings!!,
+            poolCapacity!!,
+            poolBooked!!,
+            restCapacity!!,
+            restBooked!!,
+            departureTime!!,
+            arrivalTime!!,
+            updateIndentifier!!,
+            specialPriceOffers
+        )
     }
 
-    @Override
-    public Short visitFromSeat(SyncParser.FromSeatContext ctx) {
-        return new Short(ctx.getText());
+    override fun visitAirlineCode(ctx: AirlineCodeContext): String {
+        return ctx.text
     }
 
-    @Override
-    public BigDecimal visitPrice(SyncParser.PriceContext ctx) {
-        return new BigDecimal(ctx.getText());
+    override fun visitFlightNumber(ctx: FlightNumberContext): String {
+        return ctx.text
     }
 
-    @Override
-    public String visitDate(SyncParser.DateContext ctx) {
-        return ctx.getText();
+    override fun visitOrigin(ctx: OriginContext): String {
+        return ctx.text
     }
 
-    @Override
-    public String visitTime(SyncParser.TimeContext ctx) {
-        return ctx.getText();
+    override fun visitDestination(ctx: DestinationContext): String {
+        return ctx.text
+    }
+
+    override fun visitDepartureDate(ctx: DepartureDateContext): LocalDate {
+        return LocalDate.parse(ctx.text, DateTimeFormatter.ISO_LOCAL_DATE)
+    }
+
+    override fun visitCabin(ctx: CabinContext): String {
+        return ctx.text
+    }
+
+    override fun visitViaStation(ctx: ViaStationContext): String {
+        return ctx.text
+    }
+
+    override fun visitChainID(ctx: ChainIDContext): BigInteger {
+        return BigInteger(ctx.text)
+    }
+
+    override fun visitFlightID(ctx: FlightIDContext): BigInteger {
+        return BigInteger(ctx.text)
+    }
+
+    override fun visitCabinCapacity(ctx: CabinCapacityContext): Short {
+        return ctx.text.toShort()
+    }
+
+    override fun visitCabinBooking(ctx: CabinBookingContext): Short {
+        return ctx.text.toShort()
+    }
+
+    override fun visitWebsiteAllocated(ctx: WebsiteAllocatedContext): Short {
+        return ctx.text.toShort()
+    }
+
+    override fun visitWebsiteBookings(ctx: WebsiteBookingsContext): Short {
+        return ctx.text.toShort()
+    }
+
+    override fun visitPoolCapacity(ctx: PoolCapacityContext): Short {
+        return ctx.text.toShort()
+    }
+
+    override fun visitPoolBooked(ctx: PoolBookedContext): Short {
+        return ctx.text.toShort()
+    }
+
+    override fun visitRestCapacity(ctx: RestCapacityContext): Short {
+        return ctx.text.toShort()
+    }
+
+    override fun visitRestBooked(ctx: RestBookedContext): Short {
+        return ctx.text.toShort()
+    }
+
+    override fun visitDepartureTime(ctx: DepartureTimeContext): String {
+        return ctx.text
+    }
+
+    override fun visitArrivalTime(ctx: ArrivalTimeContext): String {
+        return ctx.text
+    }
+
+    @Throws(RuntimeException::class)
+    override fun visitUpdateIndentifier(ctx: UpdateIndentifierContext): UpdateIdentifierEnum {
+        val character: Char
+        if (ctx.text.isNotEmpty()) {
+            character = ctx.text[0]
+            return if (character == 'N') UpdateIdentifierEnum.NEW_FLIGHT else if (character == 'S') UpdateIdentifierEnum.SPO_FIX else if (character == 'U') UpdateIdentifierEnum.NIGHTLY_CAPTURE else if (character == 'X') UpdateIdentifierEnum.OTHER else throw RuntimeException(
+                "Update identifier is supposed to be " +
+                    "'N' or 'S' or 'U' or 'X', but it was " + character
+            )
+        }
+        throw RuntimeException("Update identifier is supposed to be 'N' or 'S' or 'U' or 'X', but it is missing.")
+    }
+
+    override fun visitSpecialPriceOffers(ctx: SpecialPriceOffersContext): SpecialPriceOffer {
+        var fromSeat: Short? = null
+        var price: BigDecimal? = null
+        for (child in ctx.children) {
+            when (child) {
+                is FromSeatContext -> fromSeat = visitFromSeat(ctx.fromSeat())
+                is PriceContext -> price = visitPrice(ctx.price())
+                !is TerminalNode -> {
+                    throw RuntimeException(
+                        "Unexpected children of SpecialPriceOffers. Content is: ${child.text}\nParse tree: ${child.toStringTree()}"
+                    )
+                }
+            }
+        }
+        return SpecialPriceOffer(fromSeat!!, price!!)
+    }
+
+    override fun visitFromSeat(ctx: FromSeatContext): Short {
+        return ctx.text.toShort()
+    }
+
+    override fun visitPrice(ctx: PriceContext): BigDecimal {
+        return BigDecimal(ctx.text)
+    }
+
+    override fun visitDate(ctx: DateContext): String {
+        return ctx.text
+    }
+
+    override fun visitTime(ctx: TimeContext): String {
+        return ctx.text
     }
 }
