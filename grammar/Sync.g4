@@ -1,7 +1,5 @@
 grammar Sync;
 
-// $ antlr4 /Users/matetoth/Documents/Kambr/Antlr-corendon/grammar/Sync.g4 -o /Users/matetoth/Documents/Kambr/Antlr-corendon/src/main/java/antlr/generated -no-listener -visitor
-
 @header {
 package antlr.generated;
 }

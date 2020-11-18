@@ -34,12 +34,15 @@ import com.kambr.sync.generated.SyncParser.WebsiteBookingsContext
 import org.antlr.v4.runtime.tree.ParseTree
 import org.antlr.v4.runtime.tree.TerminalNode
 import java.math.BigDecimal
-import java.math.BigInteger
 import java.time.LocalDate
+import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.util.ArrayList
 
 class MySyncBaseVisitor : SyncBaseVisitor<Any>() {
+
+    private val timePattern = DateTimeFormatter.ofPattern("HH:mm")
+
     override fun visitFlightRecords(ctx: FlightRecordsContext): List<GeniusFlight> {
         val geniusFlightList: MutableList<GeniusFlight> = ArrayList()
         for (flight in ctx.geniusFlight()) {
@@ -56,8 +59,8 @@ class MySyncBaseVisitor : SyncBaseVisitor<Any>() {
         var departureDate: LocalDate? = null
         var cabin: String? = null
         var viaStation: String? = null
-        var chainID: BigInteger? = null
-        var flightID: BigInteger? = null
+        var chainID: Long? = null
+        var flightID: Long? = null
         var cabinCapacity: Short? = null
         var cabinBookings: Short? = null
         var websiteAllocated: Short? = null
@@ -66,8 +69,8 @@ class MySyncBaseVisitor : SyncBaseVisitor<Any>() {
         var poolBooked: Short? = null
         var restCapacity: Short? = null
         var restBooked: Short? = null
-        var departureTime: String? = null
-        var arrivalTime: String? = null
+        var departureTime: LocalTime? = null
+        var arrivalTime: LocalTime? = null
         var updateIndentifier: UpdateIdentifierEnum? = null
         val specialPriceOffers: MutableList<SpecialPriceOffer> = ArrayList()
 
@@ -158,12 +161,12 @@ class MySyncBaseVisitor : SyncBaseVisitor<Any>() {
         return ctx.text
     }
 
-    override fun visitChainID(ctx: ChainIDContext): BigInteger {
-        return BigInteger(ctx.text)
+    override fun visitChainID(ctx: ChainIDContext): Long {
+        return ctx.text.toLong()
     }
 
-    override fun visitFlightID(ctx: FlightIDContext): BigInteger {
-        return BigInteger(ctx.text)
+    override fun visitFlightID(ctx: FlightIDContext): Long {
+        return ctx.text.toLong()
     }
 
     override fun visitCabinCapacity(ctx: CabinCapacityContext): Short {
@@ -198,12 +201,12 @@ class MySyncBaseVisitor : SyncBaseVisitor<Any>() {
         return ctx.text.toShort()
     }
 
-    override fun visitDepartureTime(ctx: DepartureTimeContext): String {
-        return ctx.text
+    override fun visitDepartureTime(ctx: DepartureTimeContext): LocalTime {
+        return LocalTime.parse(ctx.text, timePattern)
     }
 
-    override fun visitArrivalTime(ctx: ArrivalTimeContext): String {
-        return ctx.text
+    override fun visitArrivalTime(ctx: ArrivalTimeContext): LocalTime {
+        return LocalTime.parse(ctx.text, timePattern)
     }
 
     @Throws(RuntimeException::class)

@@ -1,7 +1,7 @@
 package com.kambr.sync.dataClasses
 
-import java.math.BigInteger
 import java.time.LocalDate
+import java.time.LocalTime
 
 data class GeniusFlight (
     val airlineCode: String ,
@@ -11,8 +11,8 @@ data class GeniusFlight (
     val departureDate: LocalDate,
     val cabin: String,
     val viaStation: String?,
-    val chainID: BigInteger,
-    val flightID: BigInteger,
+    val chainID: Long,
+    val flightID: Long,
     val cabinCapacity: Short,
     val cabinBookings: Short,
     val websiteAllocated: Short,
@@ -21,8 +21,9 @@ data class GeniusFlight (
     val poolBooked: Short,
     val restCapacity: Short,
     val restBooked: Short,
-    val departureTime: String,
-    val arrivalTime: String,
+    val departureTime: LocalTime,
+    val arrivalTime: LocalTime,
     val updateIndentifier: UpdateIdentifierEnum,
-    val specialPriceOffers: List<SpecialPriceOffer>
+    val specialPriceOffers: List<SpecialPriceOffer>,
+    var isHiddenFlight: Boolean = false
 )
