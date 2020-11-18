@@ -100,7 +100,7 @@ class MySyncBaseVisitor : SyncBaseVisitor<Any>() {
                 is SpecialPriceOffersContext -> specialPriceOffers.add(visitSpecialPriceOffers(child))
                 !is TerminalNode -> {
                     throw RuntimeException(
-                        "Unexpected children of EdiObject. Content is: ${child.text}\nParse tree: ${child.toStringTree()}"
+                        "Unexpected children of GeniusFlight. Content is: ${child.text}\nParse tree: ${child.toStringTree()}"
                     )
                 }
             }
