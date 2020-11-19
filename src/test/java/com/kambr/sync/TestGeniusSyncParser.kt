@@ -37,17 +37,18 @@ class TestGeniusSyncParser {
         Assert.assrt(flight1.chainID.toString() == "74490395")
         Assert.assrt(flight1.flightID.toString() == "74490396")
         Assert.assrt(flight1.cabinCapacity.toString() == "189")
-        Assert.assrt(flight1.cabinBookings.toString().equals("10"))
-        Assert.assrt(flight1.websiteAllocated.toString().equals("0"))
-        Assert.assrt(flight1.websiteBookings.toString().equals("0"))
-        Assert.assrt(flight1.poolCapacity.toString().equals("179"))
-        Assert.assrt(flight1.poolBooked.toString().equals("10"))
-        Assert.assrt(flight1.restCapacity.toString().equals("0"))
-        Assert.assrt(flight1.restBooked.toString().equals("0"))
+        Assert.assrt(flight1.cabinBookings.toString() == "10")
+        Assert.assrt(flight1.websiteAllocated.toString() == "0")
+        Assert.assrt(flight1.websiteBookings.toString() == "0")
+        Assert.assrt(flight1.poolCapacity.toString() == "179")
+        Assert.assrt(flight1.poolBooked.toString() == "10")
+        Assert.assrt(flight1.restCapacity.toString() == "0")
+        Assert.assrt(flight1.restBooked.toString() == "0")
         Assert.assrt(flight1.departureTime.toString() == "06:30")
         Assert.assrt(flight1.arrivalTime.toString() == "12:20")
         Assert.assrt(flight1.updateIdentifier.name == "NEW_FLIGHT")
         Assert.assrt(flight1.specialPriceOffers.isEmpty())
+        Assert.assrt(!flight1.isHiddenFlight)
 
         // Flight 2 (Line in file: 2-4)
         val flight2 = geniusFlights[1]
@@ -76,6 +77,7 @@ class TestGeniusSyncParser {
         Assert.assrt(flight2.specialPriceOffers[0].price.toString() == "120.00")
         Assert.assrt(flight2.specialPriceOffers[1].fromSeats.toString() == "3")
         Assert.assrt(flight2.specialPriceOffers[1].price.toString() == "145.00")
+        Assert.assrt(!flight2.isHiddenFlight)
 
         // Flight 3 (Line in file: 5-9)
         val flight3 = geniusFlights[2]
@@ -108,6 +110,7 @@ class TestGeniusSyncParser {
         Assert.assrt(flight3.specialPriceOffers[2].price.toString() == "120.00")
         Assert.assrt(flight3.specialPriceOffers[3].fromSeats.toString() == "17")
         Assert.assrt(flight3.specialPriceOffers[3].price.toString() == "220.09")
+        Assert.assrt(!flight3.isHiddenFlight)
 
         // Flight 4 (Line in file: 10)
         val flight4 = geniusFlights[3]
@@ -132,6 +135,7 @@ class TestGeniusSyncParser {
         Assert.assrt(flight4.arrivalTime.toString() == "23:55")
         Assert.assrt(flight4.updateIdentifier.name == "SPO_FIX")
         Assert.assrt(flight4.specialPriceOffers.isEmpty())
+        Assert.assrt(!flight4.isHiddenFlight)
 
         // Flight 5 (Line in file: 11-13)
         val flight5 = geniusFlights[4]
@@ -160,5 +164,6 @@ class TestGeniusSyncParser {
         Assert.assrt(flight5.specialPriceOffers[0].price.toString() == "125.00")
         Assert.assrt(flight5.specialPriceOffers[1].fromSeats.toString() == "3")
         Assert.assrt(flight5.specialPriceOffers[1].price.toString() == "146.00")
+        Assert.assrt(!flight5.isHiddenFlight)
     }
 }
