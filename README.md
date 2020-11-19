@@ -24,9 +24,16 @@ $ `export CLASSPATH=".:/usr/local/lib/antlr-4.8-complete.jar:$CLASSPATH"`
 $ `alias antlr4='java -jar /usr/local/lib/antlr-4.8-complete.jar'`  
 $ `alias grun='java org.antlr.v4.gui.TestRig'`  
 
-I advise you to put the last three commands into your `.zshrc` or `.bashrc` file and don't forget to source it, because if you close the terminal, you will have to rerun these commands.  
+I advise you to put the last three commands into your `.zshrc` or `.bashrc` file and don't forget to `source` it, because if you close the terminal, you will have to rerun these commands.  
 
 Generate the files from the `grammar` folder with this command:  
 $ `antlr4 Sync.g4 -o ../src/main/java/com/kambr/sync/generated -no-listener -visitor`  
 
 Well done you just generated a new parser!
+
+### Deploying the project
+
+You can deploy by simply tagging master, or your branch in Azure Devops. This will trigger  
+an automatic build in the pipeline and it will deploy the project to the kambr maven repo(Artifacts tab in Azure).  
+You can deploy manually as well. Run `git pull --tag` to pull down the latest tag. Then run `gradle publish`.  
+If the tag is already present in the repo, the publish step will fail. 
