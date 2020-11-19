@@ -12,7 +12,7 @@ data class GeniusFlight (
     val cabin: String,
     val viaStation: String?,
     val chainID: Long,
-    val flightID: Long,
+    val flightID: Long?,
     val cabinCapacity: Short,
     val cabinBookings: Short,
     val websiteAllocated: Short,
@@ -25,5 +25,5 @@ data class GeniusFlight (
     val arrivalTime: LocalTime,
     val updateIdentifier: UpdateIdentifierEnum,
     val specialPriceOffers: List<SpecialPriceOffer>,
-    var isHiddenFlight: Boolean = false
+    val isHiddenFlight: Boolean = false
 )
