@@ -33,7 +33,7 @@ Well done you just generated a new parser!
 
 ### Deploying the project
 
-You can deploy by simply tagging master, or your branch in Azure Devops. This will trigger  
+You can deploy by simply tagging master or your branch in Azure Devops. This will trigger  
 an automatic build in the pipeline and it will deploy the project to the kambr maven repo(Artifacts tab in Azure).  
 You can deploy manually as well. Run `git pull --tag` to pull down the latest tag. Then run `gradle publish`.  
 If the tag is already present in the repo, the publish step will fail. 
