@@ -1,9 +1,9 @@
-package com.kambr.sync
+package com.kambr.parser.onex.sync
 
 import com.kambr.kambrlogger.Logger
-import com.kambr.sync.dataClasses.GeniusFlight
-import com.kambr.sync.generated.SyncLexer
-import com.kambr.sync.generated.SyncParser
+import com.kambr.parser.onex.sync.dataClasses.GeniusFlight
+import com.kambr.parser.onex.sync.generated.SyncLexer
+import com.kambr.parser.onex.sync.generated.SyncParser
 import org.antlr.v4.runtime.CharStream
 import org.antlr.v4.runtime.CharStreams
 import org.antlr.v4.runtime.CommonTokenStream
@@ -13,12 +13,12 @@ object GeniusSyncParser {
     var logger = Logger(GeniusSyncParser::class.java)
     @JvmStatic
     fun parse(charStream: CharStream?): List<GeniusFlight> {
-        val lexer = SyncLexer(charStream)
-        val tokenStream = CommonTokenStream(lexer)
-        val parser = SyncParser(tokenStream)
-        val flightRecordsContext = parser.flightRecords()
-        val visitor = MySyncBaseVisitor()
-        return visitor.visit(flightRecordsContext) as List<GeniusFlight>
+        val syncLexer = SyncLexer(charStream)
+        val syncTokenStream = CommonTokenStream(syncLexer)
+        val syncParser = SyncParser(syncTokenStream)
+        val flightRecordsContext = syncParser.flightRecords()
+        val syncVisitor = MySyncBaseVisitor()
+        return syncVisitor.visit(flightRecordsContext) as List<GeniusFlight>
     }
 
     @JvmStatic

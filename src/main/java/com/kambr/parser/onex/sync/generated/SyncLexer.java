@@ -1,6 +1,6 @@
 // Generated from Sync.g4 by ANTLR 4.8
 
-package com.kambr.sync.generated;
+package com.kambr.parser.onex.sync.generated;
 
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;

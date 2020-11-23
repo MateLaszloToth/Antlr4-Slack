@@ -11,7 +11,7 @@ plugins {
 
 configurations {
     version versionDetails().lastTag
-    group 'com.kambr'
+    group 'com.kambr.parser'
 }
 
 java {
@@ -25,7 +25,7 @@ java {
 publishing {
     publications {
         myPublication(MavenPublication) {
-            artifactId = 'genius-sync-parser'
+            artifactId = '1x'
 
             from components.java
         }
@@ -72,7 +72,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClassName = 'com.kambr.sync.GeniusSyncParser'
+//    mainClassName = 'com.kambr.sync.GeniusSyncParser'
 }
 
 test {

@@ -1,8 +1,8 @@
-package com.kambr.sync
+package com.kambr.parser.onex.sync
 
 import com.ibm.icu.impl.Assert
 import com.kambr.kambrlogger.Logger
-import com.kambr.sync.GeniusSyncParser.parse
+import com.kambr.parser.onex.sync.GeniusSyncParser.parse
 import org.antlr.v4.runtime.CharStream
 import org.antlr.v4.runtime.CharStreams
 import org.junit.jupiter.api.Test

@@ -1,4 +1,4 @@
-package com.kambr.sync.dataClasses
+package com.kambr.parser.onex.sync.dataClasses
 
 enum class UpdateIdentifierEnum(val value: String) {
     NEW_FLIGHT("N"),

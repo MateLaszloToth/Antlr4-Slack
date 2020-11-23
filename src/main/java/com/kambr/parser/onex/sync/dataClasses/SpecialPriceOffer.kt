@@ -1,4 +1,4 @@
-package com.kambr.sync.dataClasses
+package com.kambr.parser.onex.sync.dataClasses
 
 import java.math.BigDecimal
 
