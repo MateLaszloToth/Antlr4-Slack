@@ -72,7 +72,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-//    mainClassName = 'com.kambr.sync.GeniusSyncParser'
+    mainClassName = 'com.kambr.parser.onex.sync.GeniusSyncParser'
 }
 
 test {
