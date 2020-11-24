@@ -1,5 +1,6 @@
 // package com.kambr.parser.onex.spo
 //
+// import com.kambr.parser.onex.spo.dataClasses.FromAndPrice
 // import com.kambr.parser.onex.spo.dataClasses.SpoGlobal
 // import com.kambr.parser.onex.spo.generated.SpoBaseVisitor
 // import com.kambr.parser.onex.spo.generated.SpoParser
@@ -20,22 +21,57 @@
 // import com.kambr.parser.onex.spo.generated.SpoParser.TaxAmountContext
 // import com.kambr.parser.onex.spo.generated.SpoParser.TotalNumberOfAllocationsContext
 // import org.antlr.v4.runtime.tree.ParseTree
+// import java.math.BigInteger
+// import java.time.LocalDate
+// import java.time.LocalTime
 //
 // class MySpoBaseVisitor: SpoBaseVisitor<Any>() {
 //
 //     override fun visitSpo(ctx: SpoContext): List<SpoGlobal> {
 //         val spoList = mutableListOf<SpoGlobal>()
-//         for(i in 0 until ctx.childCount){
-//             when(val child = ctx.getChild(i) as ParseTree) {
+//         for(child in ctx.children){
+//             when(child) {
 //                 is HeaderContext -> {}
-//                 is RowContext -> spoList.add(visitRow(ctx.row(i)))
+//                 is RowContext -> spoList.add(visitRow(child))
 //             }
 //
 //         }
-//         return visitChildren(ctx)
+//         return spoList
 //     }
 //
 //     override fun visitRow(ctx: RowContext): T {
+//         var departureDate: LocalDate? = null
+//         var origin: String? = null
+//         var destination: String? = null
+//         var viaStation: String? = null
+//         var carrierCode: String? = null
+//         var flightNumber: Short? = null
+//         var departureTime: LocalTime? = null
+//         var arrivalTime: LocalTime? = null
+//         var taxAmount: Double? = null
+//         var surcharge: Double? = null
+//         var fixAllocation: Short? = null
+//         var proRataAmount: Short? = null
+//         var totalNumberOfAllocations: Short? = null
+//         var bookings: Short? = null
+//         var available: Short? = null
+//         var contractPrice: Double? = null
+//         var fromAndPrice: MutableList<FromAndPrice> = mutableListOf()
+//         var flightID: BigInteger? = null
+//         var poolingEnabled: Boolean? = null
+//         var agencyCode: BigInteger? = null
+//         var agencyName: String? = null
+//
+//         for( child in ctx.children){
+//             when(child){
+//                 is SpoParser.DepartureDateContext -> departureDate = visitDepartureDate(child)
+//                 is SpoParser.OriginContext -> origin = visitOrigin(child)
+//                 is SpoParser.DestinationContext -> destination = visitDestination(child)
+//                 is SpoParser.ViaStationContext -> viaStation = visitViaStation(child)
+//                 is CarrierCodeContext ->
+//
+//             }
+//         }
 //         return visitChildren(ctx)
 //     }
 //

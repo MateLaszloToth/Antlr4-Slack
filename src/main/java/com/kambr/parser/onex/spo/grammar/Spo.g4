@@ -15,7 +15,7 @@ header
 row
 : departureDate origin destination viaStation? carrierCode flightNumber
   departureTime arrivalTime taxAmount surcharge fixAllocation proRataAmount
-  totalNumberOfAllocations bookings available contractPrice from price flightID
+  totalNumberOfAllocations bookings available contractPrice fromAndPrice* flightID
   poolingEnabled agencyCode agencyName NEW_LINE
 
 ;
@@ -84,12 +84,16 @@ contractPrice
 : FIELD
 ;
 
+fromAndPrice
+: from price
+;
+
 from
-: FIELD*
+: FIELD
 ;
 
 price
-: FIELD*
+: FIELD
 ;
 
 flightID

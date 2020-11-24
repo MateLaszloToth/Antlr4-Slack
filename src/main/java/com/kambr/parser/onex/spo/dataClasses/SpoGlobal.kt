@@ -8,7 +8,7 @@ data class SpoGlobal(
     val departureDate: LocalDate,
     val origin: String,
     val destination: String,
-    val viaStation: String,
+    val viaStation: String?,
     val carrierCode: String,
     val flightNumber: Short,
     val departureTime: LocalTime,

@@ -127,6 +127,12 @@ public interface SpoVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitContractPrice(SpoParser.ContractPriceContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link SpoParser#fromAndPrice}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFromAndPrice(SpoParser.FromAndPriceContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link SpoParser#from}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
