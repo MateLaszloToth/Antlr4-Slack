@@ -19,7 +19,7 @@ public class SpoParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, FIELD=3, NEW_LINE=4, SEPARATOR_SKIP=5;
+		T__0=1, T__1=2, NUMBER=3, WORD=4, ID=5, NEW_LINE=6, SEPARATOR_SKIP=7;
 	public static final int
 		RULE_spo = 0, RULE_header = 1, RULE_row = 2, RULE_departureDate = 3, RULE_origin = 4, 
 		RULE_destination = 5, RULE_viaStation = 6, RULE_carrierCode = 7, RULE_flightNumber = 8, 
@@ -41,13 +41,13 @@ public class SpoParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'\r'", "'\n'", null, null, "';'"
+			null, "'.'", "':'", null, null, null, null, "';'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, null, null, "FIELD", "NEW_LINE", "SEPARATOR_SKIP"
+			null, null, null, "NUMBER", "WORD", "ID", "NEW_LINE", "SEPARATOR_SKIP"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -105,6 +105,7 @@ public class SpoParser extends Parser {
 		public HeaderContext header() {
 			return getRuleContext(HeaderContext.class,0);
 		}
+		public TerminalNode EOF() { return getToken(SpoParser.EOF, 0); }
 		public List<RowContext> row() {
 			return getRuleContexts(RowContext.class);
 		}
@@ -131,20 +132,22 @@ public class SpoParser extends Parser {
 			{
 			setState(52);
 			header();
-			setState(54); 
+			setState(56);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			do {
+			while (_la==NUMBER) {
 				{
 				{
 				setState(53);
 				row();
 				}
 				}
-				setState(56); 
+				setState(58);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( _la==FIELD );
+			}
+			setState(59);
+			match(EOF);
 			}
 		}
 		catch (RecognitionException re) {
@@ -159,13 +162,14 @@ public class SpoParser extends Parser {
 	}
 
 	public static class HeaderContext extends ParserRuleContext {
-		public List<TerminalNode> FIELD() { return getTokens(SpoParser.FIELD); }
-		public TerminalNode FIELD(int i) {
-			return getToken(SpoParser.FIELD, i);
+		public TerminalNode NEW_LINE() { return getToken(SpoParser.NEW_LINE, 0); }
+		public List<TerminalNode> ID() { return getTokens(SpoParser.ID); }
+		public TerminalNode ID(int i) {
+			return getToken(SpoParser.ID, i);
 		}
-		public List<TerminalNode> SEPARATOR_SKIP() { return getTokens(SpoParser.SEPARATOR_SKIP); }
-		public TerminalNode SEPARATOR_SKIP(int i) {
-			return getToken(SpoParser.SEPARATOR_SKIP, i);
+		public List<TerminalNode> WORD() { return getTokens(SpoParser.WORD); }
+		public TerminalNode WORD(int i) {
+			return getToken(SpoParser.WORD, i);
 		}
 		public HeaderContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -185,36 +189,30 @@ public class SpoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(58);
-			match(FIELD);
-			setState(63);
+			setState(62); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==SEPARATOR_SKIP) {
+			do {
 				{
 				{
-				setState(59);
-				match(SEPARATOR_SKIP);
-				setState(60);
-				match(FIELD);
+				setState(61);
+				_la = _input.LA(1);
+				if ( !(_la==WORD || _la==ID) ) {
+				_errHandler.recoverInline(this);
+				}
+				else {
+					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+					_errHandler.reportMatch(this);
+					consume();
 				}
 				}
-				setState(65);
+				}
+				setState(64); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			}
-			setState(67);
-			_errHandler.sync(this);
-			_la = _input.LA(1);
-			if (_la==T__0) {
-				{
-				setState(66);
-				match(T__0);
-				}
-			}
-
-			setState(69);
-			match(T__1);
+			} while ( _la==WORD || _la==ID );
+			setState(66);
+			match(NEW_LINE);
 			}
 		}
 		catch (RecognitionException re) {
@@ -286,7 +284,6 @@ public class SpoParser extends Parser {
 		public AgencyNameContext agencyName() {
 			return getRuleContext(AgencyNameContext.class,0);
 		}
-		public TerminalNode NEW_LINE() { return getToken(SpoParser.NEW_LINE, 0); }
 		public ViaStationContext viaStation() {
 			return getRuleContext(ViaStationContext.class,0);
 		}
@@ -296,6 +293,7 @@ public class SpoParser extends Parser {
 		public FromAndPriceContext fromAndPrice(int i) {
 			return getRuleContext(FromAndPriceContext.class,i);
 		}
+		public TerminalNode NEW_LINE() { return getToken(SpoParser.NEW_LINE, 0); }
 		public RowContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -310,76 +308,85 @@ public class SpoParser extends Parser {
 	public final RowContext row() throws RecognitionException {
 		RowContext _localctx = new RowContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_row);
+		int _la;
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(71);
+			setState(68);
 			departureDate();
-			setState(72);
+			setState(69);
 			origin();
-			setState(73);
+			setState(70);
 			destination();
-			setState(75);
+			setState(72);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
 			case 1:
 				{
-				setState(74);
+				setState(71);
 				viaStation();
 				}
 				break;
 			}
-			setState(77);
+			setState(74);
 			carrierCode();
-			setState(78);
+			setState(75);
 			flightNumber();
-			setState(79);
+			setState(76);
 			departureTime();
-			setState(80);
+			setState(77);
 			arrivalTime();
-			setState(81);
+			setState(78);
 			taxAmount();
-			setState(82);
+			setState(79);
 			surcharge();
-			setState(83);
+			setState(80);
 			fixAllocation();
-			setState(84);
+			setState(81);
 			proRataAmount();
-			setState(85);
+			setState(82);
 			totalNumberOfAllocations();
-			setState(86);
+			setState(83);
 			bookings();
-			setState(87);
+			setState(84);
 			available();
-			setState(88);
+			setState(85);
 			contractPrice();
-			setState(92);
+			setState(89);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					setState(89);
+					setState(86);
 					fromAndPrice();
 					}
 					} 
 				}
-				setState(94);
+				setState(91);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
 			}
-			setState(95);
+			setState(92);
 			flightID();
-			setState(96);
+			setState(93);
 			poolingEnabled();
-			setState(97);
+			setState(94);
 			agencyCode();
-			setState(98);
+			setState(95);
 			agencyName();
-			setState(99);
-			match(NEW_LINE);
+			setState(97);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			if (_la==NEW_LINE) {
+				{
+				setState(96);
+				match(NEW_LINE);
+				}
+			}
+
 			}
 		}
 		catch (RecognitionException re) {
@@ -394,7 +401,10 @@ public class SpoParser extends Parser {
 	}
 
 	public static class DepartureDateContext extends ParserRuleContext {
-		public TerminalNode FIELD() { return getToken(SpoParser.FIELD, 0); }
+		public List<TerminalNode> NUMBER() { return getTokens(SpoParser.NUMBER); }
+		public TerminalNode NUMBER(int i) {
+			return getToken(SpoParser.NUMBER, i);
+		}
 		public DepartureDateContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -412,8 +422,16 @@ public class SpoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+			setState(99);
+			match(NUMBER);
+			setState(100);
+			match(T__0);
 			setState(101);
-			match(FIELD);
+			match(NUMBER);
+			setState(102);
+			match(T__0);
+			setState(103);
+			match(NUMBER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -428,7 +446,7 @@ public class SpoParser extends Parser {
 	}
 
 	public static class OriginContext extends ParserRuleContext {
-		public TerminalNode FIELD() { return getToken(SpoParser.FIELD, 0); }
+		public TerminalNode WORD() { return getToken(SpoParser.WORD, 0); }
 		public OriginContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -446,8 +464,8 @@ public class SpoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(103);
-			match(FIELD);
+			setState(105);
+			match(WORD);
 			}
 		}
 		catch (RecognitionException re) {
@@ -462,7 +480,7 @@ public class SpoParser extends Parser {
 	}
 
 	public static class DestinationContext extends ParserRuleContext {
-		public TerminalNode FIELD() { return getToken(SpoParser.FIELD, 0); }
+		public TerminalNode WORD() { return getToken(SpoParser.WORD, 0); }
 		public DestinationContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -480,8 +498,8 @@ public class SpoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(105);
-			match(FIELD);
+			setState(107);
+			match(WORD);
 			}
 		}
 		catch (RecognitionException re) {
@@ -496,7 +514,7 @@ public class SpoParser extends Parser {
 	}
 
 	public static class ViaStationContext extends ParserRuleContext {
-		public TerminalNode FIELD() { return getToken(SpoParser.FIELD, 0); }
+		public TerminalNode WORD() { return getToken(SpoParser.WORD, 0); }
 		public ViaStationContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -514,8 +532,8 @@ public class SpoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(107);
-			match(FIELD);
+			setState(109);
+			match(WORD);
 			}
 		}
 		catch (RecognitionException re) {
@@ -530,7 +548,7 @@ public class SpoParser extends Parser {
 	}
 
 	public static class CarrierCodeContext extends ParserRuleContext {
-		public TerminalNode FIELD() { return getToken(SpoParser.FIELD, 0); }
+		public TerminalNode WORD() { return getToken(SpoParser.WORD, 0); }
 		public CarrierCodeContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -548,8 +566,8 @@ public class SpoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(109);
-			match(FIELD);
+			setState(111);
+			match(WORD);
 			}
 		}
 		catch (RecognitionException re) {
@@ -564,7 +582,7 @@ public class SpoParser extends Parser {
 	}
 
 	public static class FlightNumberContext extends ParserRuleContext {
-		public TerminalNode FIELD() { return getToken(SpoParser.FIELD, 0); }
+		public TerminalNode NUMBER() { return getToken(SpoParser.NUMBER, 0); }
 		public FlightNumberContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -582,8 +600,8 @@ public class SpoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(111);
-			match(FIELD);
+			setState(113);
+			match(NUMBER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -598,7 +616,10 @@ public class SpoParser extends Parser {
 	}
 
 	public static class DepartureTimeContext extends ParserRuleContext {
-		public TerminalNode FIELD() { return getToken(SpoParser.FIELD, 0); }
+		public List<TerminalNode> NUMBER() { return getTokens(SpoParser.NUMBER); }
+		public TerminalNode NUMBER(int i) {
+			return getToken(SpoParser.NUMBER, i);
+		}
 		public DepartureTimeContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -616,8 +637,12 @@ public class SpoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(113);
-			match(FIELD);
+			setState(115);
+			match(NUMBER);
+			setState(116);
+			match(T__1);
+			setState(117);
+			match(NUMBER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -632,7 +657,10 @@ public class SpoParser extends Parser {
 	}
 
 	public static class ArrivalTimeContext extends ParserRuleContext {
-		public TerminalNode FIELD() { return getToken(SpoParser.FIELD, 0); }
+		public List<TerminalNode> NUMBER() { return getTokens(SpoParser.NUMBER); }
+		public TerminalNode NUMBER(int i) {
+			return getToken(SpoParser.NUMBER, i);
+		}
 		public ArrivalTimeContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -650,8 +678,12 @@ public class SpoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(115);
-			match(FIELD);
+			setState(119);
+			match(NUMBER);
+			setState(120);
+			match(T__1);
+			setState(121);
+			match(NUMBER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -666,7 +698,7 @@ public class SpoParser extends Parser {
 	}
 
 	public static class TaxAmountContext extends ParserRuleContext {
-		public TerminalNode FIELD() { return getToken(SpoParser.FIELD, 0); }
+		public TerminalNode NUMBER() { return getToken(SpoParser.NUMBER, 0); }
 		public TaxAmountContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -684,8 +716,8 @@ public class SpoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(117);
-			match(FIELD);
+			setState(123);
+			match(NUMBER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -700,7 +732,7 @@ public class SpoParser extends Parser {
 	}
 
 	public static class SurchargeContext extends ParserRuleContext {
-		public TerminalNode FIELD() { return getToken(SpoParser.FIELD, 0); }
+		public TerminalNode NUMBER() { return getToken(SpoParser.NUMBER, 0); }
 		public SurchargeContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -718,8 +750,8 @@ public class SpoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(119);
-			match(FIELD);
+			setState(125);
+			match(NUMBER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -734,7 +766,7 @@ public class SpoParser extends Parser {
 	}
 
 	public static class FixAllocationContext extends ParserRuleContext {
-		public TerminalNode FIELD() { return getToken(SpoParser.FIELD, 0); }
+		public TerminalNode NUMBER() { return getToken(SpoParser.NUMBER, 0); }
 		public FixAllocationContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -752,8 +784,8 @@ public class SpoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(121);
-			match(FIELD);
+			setState(127);
+			match(NUMBER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -768,7 +800,7 @@ public class SpoParser extends Parser {
 	}
 
 	public static class ProRataAmountContext extends ParserRuleContext {
-		public TerminalNode FIELD() { return getToken(SpoParser.FIELD, 0); }
+		public TerminalNode NUMBER() { return getToken(SpoParser.NUMBER, 0); }
 		public ProRataAmountContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -786,8 +818,8 @@ public class SpoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(123);
-			match(FIELD);
+			setState(129);
+			match(NUMBER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -802,7 +834,7 @@ public class SpoParser extends Parser {
 	}
 
 	public static class TotalNumberOfAllocationsContext extends ParserRuleContext {
-		public TerminalNode FIELD() { return getToken(SpoParser.FIELD, 0); }
+		public TerminalNode NUMBER() { return getToken(SpoParser.NUMBER, 0); }
 		public TotalNumberOfAllocationsContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -820,8 +852,8 @@ public class SpoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(125);
-			match(FIELD);
+			setState(131);
+			match(NUMBER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -836,7 +868,7 @@ public class SpoParser extends Parser {
 	}
 
 	public static class BookingsContext extends ParserRuleContext {
-		public TerminalNode FIELD() { return getToken(SpoParser.FIELD, 0); }
+		public TerminalNode NUMBER() { return getToken(SpoParser.NUMBER, 0); }
 		public BookingsContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -854,8 +886,8 @@ public class SpoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(127);
-			match(FIELD);
+			setState(133);
+			match(NUMBER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -870,7 +902,7 @@ public class SpoParser extends Parser {
 	}
 
 	public static class AvailableContext extends ParserRuleContext {
-		public TerminalNode FIELD() { return getToken(SpoParser.FIELD, 0); }
+		public TerminalNode NUMBER() { return getToken(SpoParser.NUMBER, 0); }
 		public AvailableContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -888,8 +920,8 @@ public class SpoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(129);
-			match(FIELD);
+			setState(135);
+			match(NUMBER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -904,7 +936,7 @@ public class SpoParser extends Parser {
 	}
 
 	public static class ContractPriceContext extends ParserRuleContext {
-		public TerminalNode FIELD() { return getToken(SpoParser.FIELD, 0); }
+		public TerminalNode NUMBER() { return getToken(SpoParser.NUMBER, 0); }
 		public ContractPriceContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -922,8 +954,8 @@ public class SpoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(131);
-			match(FIELD);
+			setState(137);
+			match(NUMBER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -961,9 +993,9 @@ public class SpoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(133);
+			setState(139);
 			from();
-			setState(134);
+			setState(140);
 			price();
 			}
 		}
@@ -979,7 +1011,7 @@ public class SpoParser extends Parser {
 	}
 
 	public static class FromContext extends ParserRuleContext {
-		public TerminalNode FIELD() { return getToken(SpoParser.FIELD, 0); }
+		public TerminalNode NUMBER() { return getToken(SpoParser.NUMBER, 0); }
 		public FromContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -997,8 +1029,8 @@ public class SpoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(136);
-			match(FIELD);
+			setState(142);
+			match(NUMBER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1013,7 +1045,7 @@ public class SpoParser extends Parser {
 	}
 
 	public static class PriceContext extends ParserRuleContext {
-		public TerminalNode FIELD() { return getToken(SpoParser.FIELD, 0); }
+		public TerminalNode NUMBER() { return getToken(SpoParser.NUMBER, 0); }
 		public PriceContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1031,8 +1063,8 @@ public class SpoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(138);
-			match(FIELD);
+			setState(144);
+			match(NUMBER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1047,7 +1079,7 @@ public class SpoParser extends Parser {
 	}
 
 	public static class FlightIDContext extends ParserRuleContext {
-		public TerminalNode FIELD() { return getToken(SpoParser.FIELD, 0); }
+		public TerminalNode NUMBER() { return getToken(SpoParser.NUMBER, 0); }
 		public FlightIDContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1065,8 +1097,8 @@ public class SpoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(140);
-			match(FIELD);
+			setState(146);
+			match(NUMBER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1081,7 +1113,7 @@ public class SpoParser extends Parser {
 	}
 
 	public static class PoolingEnabledContext extends ParserRuleContext {
-		public TerminalNode FIELD() { return getToken(SpoParser.FIELD, 0); }
+		public TerminalNode NUMBER() { return getToken(SpoParser.NUMBER, 0); }
 		public PoolingEnabledContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1099,8 +1131,8 @@ public class SpoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(142);
-			match(FIELD);
+			setState(148);
+			match(NUMBER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1115,7 +1147,7 @@ public class SpoParser extends Parser {
 	}
 
 	public static class AgencyCodeContext extends ParserRuleContext {
-		public TerminalNode FIELD() { return getToken(SpoParser.FIELD, 0); }
+		public TerminalNode NUMBER() { return getToken(SpoParser.NUMBER, 0); }
 		public AgencyCodeContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1133,8 +1165,8 @@ public class SpoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(144);
-			match(FIELD);
+			setState(150);
+			match(NUMBER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1149,7 +1181,7 @@ public class SpoParser extends Parser {
 	}
 
 	public static class AgencyNameContext extends ParserRuleContext {
-		public TerminalNode FIELD() { return getToken(SpoParser.FIELD, 0); }
+		public TerminalNode WORD() { return getToken(SpoParser.WORD, 0); }
 		public AgencyNameContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1167,8 +1199,8 @@ public class SpoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(146);
-			match(FIELD);
+			setState(152);
+			match(WORD);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1183,41 +1215,43 @@ public class SpoParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\7\u0097\4\2\t\2\4"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\t\u009d\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
-		"\4\32\t\32\4\33\t\33\3\2\3\2\6\29\n\2\r\2\16\2:\3\3\3\3\3\3\7\3@\n\3\f"+
-		"\3\16\3C\13\3\3\3\5\3F\n\3\3\3\3\3\3\4\3\4\3\4\3\4\5\4N\n\4\3\4\3\4\3"+
-		"\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\7\4]\n\4\f\4\16\4`\13\4\3\4"+
-		"\3\4\3\4\3\4\3\4\3\4\3\5\3\5\3\6\3\6\3\7\3\7\3\b\3\b\3\t\3\t\3\n\3\n\3"+
-		"\13\3\13\3\f\3\f\3\r\3\r\3\16\3\16\3\17\3\17\3\20\3\20\3\21\3\21\3\22"+
-		"\3\22\3\23\3\23\3\24\3\24\3\25\3\25\3\25\3\26\3\26\3\27\3\27\3\30\3\30"+
-		"\3\31\3\31\3\32\3\32\3\33\3\33\3\33\2\2\34\2\4\6\b\n\f\16\20\22\24\26"+
-		"\30\32\34\36 \"$&(*,.\60\62\64\2\2\2\u0081\2\66\3\2\2\2\4<\3\2\2\2\6I"+
-		"\3\2\2\2\bg\3\2\2\2\ni\3\2\2\2\fk\3\2\2\2\16m\3\2\2\2\20o\3\2\2\2\22q"+
-		"\3\2\2\2\24s\3\2\2\2\26u\3\2\2\2\30w\3\2\2\2\32y\3\2\2\2\34{\3\2\2\2\36"+
-		"}\3\2\2\2 \177\3\2\2\2\"\u0081\3\2\2\2$\u0083\3\2\2\2&\u0085\3\2\2\2("+
-		"\u0087\3\2\2\2*\u008a\3\2\2\2,\u008c\3\2\2\2.\u008e\3\2\2\2\60\u0090\3"+
-		"\2\2\2\62\u0092\3\2\2\2\64\u0094\3\2\2\2\668\5\4\3\2\679\5\6\4\28\67\3"+
-		"\2\2\29:\3\2\2\2:8\3\2\2\2:;\3\2\2\2;\3\3\2\2\2<A\7\5\2\2=>\7\7\2\2>@"+
-		"\7\5\2\2?=\3\2\2\2@C\3\2\2\2A?\3\2\2\2AB\3\2\2\2BE\3\2\2\2CA\3\2\2\2D"+
-		"F\7\3\2\2ED\3\2\2\2EF\3\2\2\2FG\3\2\2\2GH\7\4\2\2H\5\3\2\2\2IJ\5\b\5\2"+
-		"JK\5\n\6\2KM\5\f\7\2LN\5\16\b\2ML\3\2\2\2MN\3\2\2\2NO\3\2\2\2OP\5\20\t"+
-		"\2PQ\5\22\n\2QR\5\24\13\2RS\5\26\f\2ST\5\30\r\2TU\5\32\16\2UV\5\34\17"+
-		"\2VW\5\36\20\2WX\5 \21\2XY\5\"\22\2YZ\5$\23\2Z^\5&\24\2[]\5(\25\2\\[\3"+
-		"\2\2\2]`\3\2\2\2^\\\3\2\2\2^_\3\2\2\2_a\3\2\2\2`^\3\2\2\2ab\5.\30\2bc"+
-		"\5\60\31\2cd\5\62\32\2de\5\64\33\2ef\7\6\2\2f\7\3\2\2\2gh\7\5\2\2h\t\3"+
-		"\2\2\2ij\7\5\2\2j\13\3\2\2\2kl\7\5\2\2l\r\3\2\2\2mn\7\5\2\2n\17\3\2\2"+
-		"\2op\7\5\2\2p\21\3\2\2\2qr\7\5\2\2r\23\3\2\2\2st\7\5\2\2t\25\3\2\2\2u"+
-		"v\7\5\2\2v\27\3\2\2\2wx\7\5\2\2x\31\3\2\2\2yz\7\5\2\2z\33\3\2\2\2{|\7"+
-		"\5\2\2|\35\3\2\2\2}~\7\5\2\2~\37\3\2\2\2\177\u0080\7\5\2\2\u0080!\3\2"+
-		"\2\2\u0081\u0082\7\5\2\2\u0082#\3\2\2\2\u0083\u0084\7\5\2\2\u0084%\3\2"+
-		"\2\2\u0085\u0086\7\5\2\2\u0086\'\3\2\2\2\u0087\u0088\5*\26\2\u0088\u0089"+
-		"\5,\27\2\u0089)\3\2\2\2\u008a\u008b\7\5\2\2\u008b+\3\2\2\2\u008c\u008d"+
-		"\7\5\2\2\u008d-\3\2\2\2\u008e\u008f\7\5\2\2\u008f/\3\2\2\2\u0090\u0091"+
-		"\7\5\2\2\u0091\61\3\2\2\2\u0092\u0093\7\5\2\2\u0093\63\3\2\2\2\u0094\u0095"+
-		"\7\5\2\2\u0095\65\3\2\2\2\7:AEM^";
+		"\4\32\t\32\4\33\t\33\3\2\3\2\7\29\n\2\f\2\16\2<\13\2\3\2\3\2\3\3\6\3A"+
+		"\n\3\r\3\16\3B\3\3\3\3\3\4\3\4\3\4\3\4\5\4K\n\4\3\4\3\4\3\4\3\4\3\4\3"+
+		"\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\7\4Z\n\4\f\4\16\4]\13\4\3\4\3\4\3\4\3\4"+
+		"\3\4\5\4d\n\4\3\5\3\5\3\5\3\5\3\5\3\5\3\6\3\6\3\7\3\7\3\b\3\b\3\t\3\t"+
+		"\3\n\3\n\3\13\3\13\3\13\3\13\3\f\3\f\3\f\3\f\3\r\3\r\3\16\3\16\3\17\3"+
+		"\17\3\20\3\20\3\21\3\21\3\22\3\22\3\23\3\23\3\24\3\24\3\25\3\25\3\25\3"+
+		"\26\3\26\3\27\3\27\3\30\3\30\3\31\3\31\3\32\3\32\3\33\3\33\3\33\2\2\34"+
+		"\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60\62\64\2\3\3\2\6\7"+
+		"\2\u0087\2\66\3\2\2\2\4@\3\2\2\2\6F\3\2\2\2\be\3\2\2\2\nk\3\2\2\2\fm\3"+
+		"\2\2\2\16o\3\2\2\2\20q\3\2\2\2\22s\3\2\2\2\24u\3\2\2\2\26y\3\2\2\2\30"+
+		"}\3\2\2\2\32\177\3\2\2\2\34\u0081\3\2\2\2\36\u0083\3\2\2\2 \u0085\3\2"+
+		"\2\2\"\u0087\3\2\2\2$\u0089\3\2\2\2&\u008b\3\2\2\2(\u008d\3\2\2\2*\u0090"+
+		"\3\2\2\2,\u0092\3\2\2\2.\u0094\3\2\2\2\60\u0096\3\2\2\2\62\u0098\3\2\2"+
+		"\2\64\u009a\3\2\2\2\66:\5\4\3\2\679\5\6\4\28\67\3\2\2\29<\3\2\2\2:8\3"+
+		"\2\2\2:;\3\2\2\2;=\3\2\2\2<:\3\2\2\2=>\7\2\2\3>\3\3\2\2\2?A\t\2\2\2@?"+
+		"\3\2\2\2AB\3\2\2\2B@\3\2\2\2BC\3\2\2\2CD\3\2\2\2DE\7\b\2\2E\5\3\2\2\2"+
+		"FG\5\b\5\2GH\5\n\6\2HJ\5\f\7\2IK\5\16\b\2JI\3\2\2\2JK\3\2\2\2KL\3\2\2"+
+		"\2LM\5\20\t\2MN\5\22\n\2NO\5\24\13\2OP\5\26\f\2PQ\5\30\r\2QR\5\32\16\2"+
+		"RS\5\34\17\2ST\5\36\20\2TU\5 \21\2UV\5\"\22\2VW\5$\23\2W[\5&\24\2XZ\5"+
+		"(\25\2YX\3\2\2\2Z]\3\2\2\2[Y\3\2\2\2[\\\3\2\2\2\\^\3\2\2\2][\3\2\2\2^"+
+		"_\5.\30\2_`\5\60\31\2`a\5\62\32\2ac\5\64\33\2bd\7\b\2\2cb\3\2\2\2cd\3"+
+		"\2\2\2d\7\3\2\2\2ef\7\5\2\2fg\7\3\2\2gh\7\5\2\2hi\7\3\2\2ij\7\5\2\2j\t"+
+		"\3\2\2\2kl\7\6\2\2l\13\3\2\2\2mn\7\6\2\2n\r\3\2\2\2op\7\6\2\2p\17\3\2"+
+		"\2\2qr\7\6\2\2r\21\3\2\2\2st\7\5\2\2t\23\3\2\2\2uv\7\5\2\2vw\7\4\2\2w"+
+		"x\7\5\2\2x\25\3\2\2\2yz\7\5\2\2z{\7\4\2\2{|\7\5\2\2|\27\3\2\2\2}~\7\5"+
+		"\2\2~\31\3\2\2\2\177\u0080\7\5\2\2\u0080\33\3\2\2\2\u0081\u0082\7\5\2"+
+		"\2\u0082\35\3\2\2\2\u0083\u0084\7\5\2\2\u0084\37\3\2\2\2\u0085\u0086\7"+
+		"\5\2\2\u0086!\3\2\2\2\u0087\u0088\7\5\2\2\u0088#\3\2\2\2\u0089\u008a\7"+
+		"\5\2\2\u008a%\3\2\2\2\u008b\u008c\7\5\2\2\u008c\'\3\2\2\2\u008d\u008e"+
+		"\5*\26\2\u008e\u008f\5,\27\2\u008f)\3\2\2\2\u0090\u0091\7\5\2\2\u0091"+
+		"+\3\2\2\2\u0092\u0093\7\5\2\2\u0093-\3\2\2\2\u0094\u0095\7\5\2\2\u0095"+
+		"/\3\2\2\2\u0096\u0097\7\5\2\2\u0097\61\3\2\2\2\u0098\u0099\7\5\2\2\u0099"+
+		"\63\3\2\2\2\u009a\u009b\7\6\2\2\u009b\65\3\2\2\2\7:BJ[c";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

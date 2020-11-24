@@ -22,7 +22,7 @@ data class SpoGlobal(
     val available: Short,
     val contractPrice: Double,
     val fromAndPrice: List<FromAndPrice>,
-    val flightID: BigInteger,
+    val flightID: Long,
     val poolingEnabled: Boolean,
     val agencyCode: BigInteger,
     val agencyName: String,

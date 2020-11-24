@@ -5,83 +5,83 @@ package com.kambr.parser.onex.spo.generated;
 }
 
 spo
-: header row+
+: header row* EOF
 ;
 
 header
-: FIELD (';' FIELD)* '\r'? '\n'
+: (ID | WORD)+ NEW_LINE
 ;
 
 row
 : departureDate origin destination viaStation? carrierCode flightNumber
   departureTime arrivalTime taxAmount surcharge fixAllocation proRataAmount
   totalNumberOfAllocations bookings available contractPrice fromAndPrice* flightID
-  poolingEnabled agencyCode agencyName NEW_LINE
+  poolingEnabled agencyCode agencyName NEW_LINE?
 
 ;
 
 departureDate
-: FIELD
+: NUMBER '.' NUMBER '.' NUMBER
 ;
 
 origin
-: FIELD
+: WORD
 ;
 
 destination
-: FIELD
+: WORD
 ;
 
 viaStation
-: FIELD
+: WORD
 ;
 
 carrierCode
-: FIELD
+: WORD
 ;
 
 flightNumber
-: FIELD
+: NUMBER
 ;
 
 departureTime
-: FIELD
+: NUMBER ':' NUMBER
 ;
 
 arrivalTime
-: FIELD
+: NUMBER ':' NUMBER
 ;
 
 taxAmount
-: FIELD
+: NUMBER
 ;
 
 surcharge
-: FIELD
+: NUMBER
 ;
 
 fixAllocation
-: FIELD
+: NUMBER
 ;
 
 proRataAmount
-: FIELD
+: NUMBER
 ;
 
 totalNumberOfAllocations
-: FIELD
+: NUMBER
 ;
 
 bookings
-: FIELD
+: NUMBER
 ;
 
 available
-: FIELD
+: NUMBER
 ;
 
 contractPrice
-: FIELD
+: NUMBER
 ;
 
 fromAndPrice
@@ -89,32 +89,39 @@ fromAndPrice
 ;
 
 from
-: FIELD
+: NUMBER
 ;
 
 price
-: FIELD
+: NUMBER
 ;
 
 flightID
-: FIELD
+: NUMBER
 ;
 
 poolingEnabled
-: FIELD
+: NUMBER
 ;
 
 agencyCode
-: FIELD
+: NUMBER
 ;
 
 agencyName
-: FIELD
+: WORD
 ;
 
+NUMBER
+: '-'? [0-9]+ (',' [0-9]+)?
+;
 
-FIELD
-: ~[;\n\r]+
+WORD
+: ([a-z] | [A-Z] | ' ' | '(' | ')' | '_')+
+;
+
+ID
+: [a-zA-Z]+ [0-9]+
 ;
 
 NEW_LINE

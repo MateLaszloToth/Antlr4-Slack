@@ -12,7 +12,7 @@ class TestGeniusSyncParser {
 
     companion object {
         var FILE_PATH = "src/test/resources/sync/test-file.txt"
-        var logger = Logger(GeniusSyncParser::class.java)
+        var logger = Logger(this::class.java)
     }
 
     @Test
@@ -23,7 +23,7 @@ class TestGeniusSyncParser {
         } catch (e: IOException) {
             logger.error(e.localizedMessage)
         }
-        val geniusFlights = parse(charStream)
+        val geniusFlights = parse(charStream!!)
 
         // Flight 1 (Line in file: 1)
         val flight1 = geniusFlights[0]

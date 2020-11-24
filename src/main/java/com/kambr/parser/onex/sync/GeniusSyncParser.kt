@@ -12,11 +12,11 @@ import java.io.IOException
 object GeniusSyncParser {
     var logger = Logger(GeniusSyncParser::class.java)
     @JvmStatic
-    fun parse(charStream: CharStream?): List<GeniusFlight> {
+    fun parse(charStream: CharStream): List<GeniusFlight> {
         val syncLexer = SyncLexer(charStream)
         val syncTokenStream = CommonTokenStream(syncLexer)
         val syncParser = SyncParser(syncTokenStream)
-        val flightRecordsContext = syncParser.flightRecords()
+        val flightRecordsContext: SyncParser.FlightRecordsContext = syncParser.flightRecords()
         val syncVisitor = MySyncBaseVisitor()
         return syncVisitor.visit(flightRecordsContext) as List<GeniusFlight>
     }
@@ -29,6 +29,6 @@ object GeniusSyncParser {
         } catch (e: IOException) {
             logger.error(e.localizedMessage)
         }
-        val geniusFlights = parse(charStream)
+        val geniusFlights = parse(charStream!!)
     }
 }

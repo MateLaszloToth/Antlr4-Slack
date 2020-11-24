@@ -1,172 +1,236 @@
-// package com.kambr.parser.onex.spo
-//
-// import com.kambr.parser.onex.spo.dataClasses.FromAndPrice
-// import com.kambr.parser.onex.spo.dataClasses.SpoGlobal
-// import com.kambr.parser.onex.spo.generated.SpoBaseVisitor
-// import com.kambr.parser.onex.spo.generated.SpoParser
-// import com.kambr.parser.onex.spo.generated.SpoParser.AgencyCodeContext
-// import com.kambr.parser.onex.spo.generated.SpoParser.AgencyNameContext
-// import com.kambr.parser.onex.spo.generated.SpoParser.AvailableContext
-// import com.kambr.parser.onex.spo.generated.SpoParser.BookingsContext
-// import com.kambr.parser.onex.spo.generated.SpoParser.CarrierCodeContext
-// import com.kambr.parser.onex.spo.generated.SpoParser.ContractPriceContext
-// import com.kambr.parser.onex.spo.generated.SpoParser.FixAllocationContext
-// import com.kambr.parser.onex.spo.generated.SpoParser.FromContext
-// import com.kambr.parser.onex.spo.generated.SpoParser.HeaderContext
-// import com.kambr.parser.onex.spo.generated.SpoParser.PoolingEnabledContext
-// import com.kambr.parser.onex.spo.generated.SpoParser.ProRataAmountContext
-// import com.kambr.parser.onex.spo.generated.SpoParser.RowContext
-// import com.kambr.parser.onex.spo.generated.SpoParser.SpoContext
-// import com.kambr.parser.onex.spo.generated.SpoParser.SurchargeContext
-// import com.kambr.parser.onex.spo.generated.SpoParser.TaxAmountContext
-// import com.kambr.parser.onex.spo.generated.SpoParser.TotalNumberOfAllocationsContext
-// import org.antlr.v4.runtime.tree.ParseTree
-// import java.math.BigInteger
-// import java.time.LocalDate
-// import java.time.LocalTime
-//
-// class MySpoBaseVisitor: SpoBaseVisitor<Any>() {
-//
-//     override fun visitSpo(ctx: SpoContext): List<SpoGlobal> {
-//         val spoList = mutableListOf<SpoGlobal>()
-//         for(child in ctx.children){
-//             when(child) {
-//                 is HeaderContext -> {}
-//                 is RowContext -> spoList.add(visitRow(child))
-//             }
-//
-//         }
-//         return spoList
-//     }
-//
-//     override fun visitRow(ctx: RowContext): T {
-//         var departureDate: LocalDate? = null
-//         var origin: String? = null
-//         var destination: String? = null
-//         var viaStation: String? = null
-//         var carrierCode: String? = null
-//         var flightNumber: Short? = null
-//         var departureTime: LocalTime? = null
-//         var arrivalTime: LocalTime? = null
-//         var taxAmount: Double? = null
-//         var surcharge: Double? = null
-//         var fixAllocation: Short? = null
-//         var proRataAmount: Short? = null
-//         var totalNumberOfAllocations: Short? = null
-//         var bookings: Short? = null
-//         var available: Short? = null
-//         var contractPrice: Double? = null
-//         var fromAndPrice: MutableList<FromAndPrice> = mutableListOf()
-//         var flightID: BigInteger? = null
-//         var poolingEnabled: Boolean? = null
-//         var agencyCode: BigInteger? = null
-//         var agencyName: String? = null
-//
-//         for( child in ctx.children){
-//             when(child){
-//                 is SpoParser.DepartureDateContext -> departureDate = visitDepartureDate(child)
-//                 is SpoParser.OriginContext -> origin = visitOrigin(child)
-//                 is SpoParser.DestinationContext -> destination = visitDestination(child)
-//                 is SpoParser.ViaStationContext -> viaStation = visitViaStation(child)
-//                 is CarrierCodeContext ->
-//
-//             }
-//         }
-//         return visitChildren(ctx)
-//     }
-//
-//     override fun visitDepartureDate(ctx: SpoParser.DepartureDateContext): T {
-//         return visitChildren(ctx)
-//     }
-//
-//     override fun visitOrigin(ctx: SpoParser.OriginContext): T {
-//         return visitChildren(ctx)
-//     }
-//
-//     override fun visitDestination(ctx: SpoParser.DestinationContext): T {
-//         return visitChildren(ctx)
-//     }
-//
-//     override fun visitViaStation(ctx: SpoParser.ViaStationContext): T {
-//         return visitChildren(ctx)
-//     }
-//
-//     override fun visitCarrierCode(ctx: CarrierCodeContext): T {
-//         return visitChildren(ctx)
-//     }
-//
-//
-//     override fun visitFlightNumber(ctx: SpoParser.FlightNumberContext): T {
-//         return visitChildren(ctx)
-//     }
-//
-//     override fun visitDepartureTime(ctx: SpoParser.DepartureTimeContext): T {
-//         return visitChildren(ctx)
-//     }
-//
-//     override fun visitArrivalTime(ctx: SpoParser.ArrivalTimeContext): T {
-//         return visitChildren(ctx)
-//     }
-//
-//     override fun visitTaxAmount(ctx: TaxAmountContext): T {
-//         return visitChildren(ctx)
-//     }
-//
-//     override fun visitSurcharge(ctx: SurchargeContext): T {
-//         return visitChildren(ctx)
-//     }
-//
-//     override fun visitFixAllocation(ctx: FixAllocationContext): T {
-//         return visitChildren(ctx)
-//     }
-//
-//     override fun visitProRataAmount(ctx: ProRataAmountContext): T {
-//         return visitChildren(ctx)
-//     }
-//
-//     override fun visitTotalNumberOfAllocations(ctx: TotalNumberOfAllocationsContext): T {
-//         return visitChildren(ctx)
-//     }
-//
-//     override fun visitBookings(ctx: BookingsContext): T {
-//         return visitChildren(ctx)
-//     }
-//
-//     override fun visitAvailable(ctx: AvailableContext): T {
-//         return visitChildren(ctx)
-//     }
-//
-//     override fun visitContractPrice(ctx: ContractPriceContext): T {
-//         return visitChildren(ctx)
-//     }
-//
-//
-//     override fun visitFrom(ctx: FromContext): T {
-//         return visitChildren(ctx)
-//     }
-//
-//
-//     override fun visitPrice(ctx: SpoParser.PriceContext): T {
-//         return visitChildren(ctx)
-//     }
-//
-//
-//     override fun visitFlightID(ctx: SpoParser.FlightIDContext): T {
-//         return visitChildren(ctx)
-//     }
-//
-//
-//     override fun visitPoolingEnabled(ctx: PoolingEnabledContext): T {
-//         return visitChildren(ctx)
-//     }
-//
-//
-//     override fun visitAgencyCode(ctx: AgencyCodeContext): T {
-//         return visitChildren(ctx)
-//     }
-//
-//
-//     override fun visitAgencyName(ctx: AgencyNameContext): T {
-//         return visitChildren(ctx)
-//     }
-// }
+package com.kambr.parser.onex.spo
+
+import com.kambr.parser.onex.spo.dataClasses.FromAndPrice
+import com.kambr.parser.onex.spo.dataClasses.SpoGlobal
+import com.kambr.parser.onex.spo.generated.SpoBaseVisitor
+import com.kambr.parser.onex.spo.generated.SpoParser
+import com.kambr.parser.onex.spo.generated.SpoParser.AgencyCodeContext
+import com.kambr.parser.onex.spo.generated.SpoParser.AgencyNameContext
+import com.kambr.parser.onex.spo.generated.SpoParser.AvailableContext
+import com.kambr.parser.onex.spo.generated.SpoParser.BookingsContext
+import com.kambr.parser.onex.spo.generated.SpoParser.CarrierCodeContext
+import com.kambr.parser.onex.spo.generated.SpoParser.ContractPriceContext
+import com.kambr.parser.onex.spo.generated.SpoParser.FixAllocationContext
+import com.kambr.parser.onex.spo.generated.SpoParser.FromContext
+import com.kambr.parser.onex.spo.generated.SpoParser.HeaderContext
+import com.kambr.parser.onex.spo.generated.SpoParser.PoolingEnabledContext
+import com.kambr.parser.onex.spo.generated.SpoParser.ProRataAmountContext
+import com.kambr.parser.onex.spo.generated.SpoParser.RowContext
+import com.kambr.parser.onex.spo.generated.SpoParser.SpoContext
+import com.kambr.parser.onex.spo.generated.SpoParser.SurchargeContext
+import com.kambr.parser.onex.spo.generated.SpoParser.TaxAmountContext
+import com.kambr.parser.onex.spo.generated.SpoParser.TotalNumberOfAllocationsContext
+import org.antlr.v4.runtime.tree.TerminalNode
+import java.math.BigInteger
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
+
+class MySpoBaseVisitor : SpoBaseVisitor<Any>() {
+
+    companion object{
+        val datePattern: DateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
+        val timePattern: DateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm")
+    }
+
+    override fun visitSpo(ctx: SpoContext): List<SpoGlobal> {
+        val spoList = mutableListOf<SpoGlobal>()
+        for (child in ctx.children) {
+            when (child) {
+                is HeaderContext -> {
+                }
+                is RowContext -> spoList.add(visitRow(child))
+            }
+        }
+        return spoList
+    }
+
+    override fun visitRow(ctx: RowContext): SpoGlobal {
+        var departureDate: LocalDate? = null
+        var origin: String? = null
+        var destination: String? = null
+        var viaStation: String? = null
+        var carrierCode: String? = null
+        var flightNumber: Short? = null
+        var departureTime: LocalTime? = null
+        var arrivalTime: LocalTime? = null
+        var taxAmount: Double? = null
+        var surcharge: Double? = null
+        var fixAllocation: Short? = null
+        var proRataAmount: Short? = null
+        var totalNumberOfAllocations: Short? = null
+        var bookings: Short? = null
+        var available: Short? = null
+        var contractPrice: Double? = null
+        val fromAndPrice: MutableList<FromAndPrice> = mutableListOf()
+        var flightID: Long? = null
+        var poolingEnabled: Boolean? = null
+        var agencyCode: BigInteger? = null
+        var agencyName: String? = null
+
+        for (child in ctx.children) {
+            when (child) {
+                is SpoParser.DepartureDateContext -> departureDate = visitDepartureDate(child)
+                is SpoParser.OriginContext -> origin = visitOrigin(child)
+                is SpoParser.DestinationContext -> destination = visitDestination(child)
+                is SpoParser.ViaStationContext -> {
+                    if (ctx.viaStation() != null) {
+                        viaStation = visitViaStation(ctx.viaStation())
+                    }
+                }
+                is CarrierCodeContext -> carrierCode = visitCarrierCode(child)
+                is SpoParser.FlightNumberContext -> flightNumber = visitFlightNumber(child)
+                is SpoParser.DepartureTimeContext -> departureTime = visitDepartureTime(child)
+                is SpoParser.ArrivalTimeContext -> arrivalTime = visitArrivalTime(child)
+                is TaxAmountContext -> taxAmount = visitTaxAmount(child)
+                is SurchargeContext -> surcharge = visitSurcharge(child)
+                is FixAllocationContext -> fixAllocation = visitFixAllocation(child)
+                is ProRataAmountContext -> proRataAmount = visitProRataAmount(child)
+                is TotalNumberOfAllocationsContext -> totalNumberOfAllocations = visitTotalNumberOfAllocations(child)
+                is BookingsContext -> bookings = visitBookings(child)
+                is AvailableContext -> available = visitAvailable(child)
+                is ContractPriceContext -> contractPrice = visitContractPrice(child)
+                is SpoParser.FromAndPriceContext -> fromAndPrice.add(visitFromAndPrice(child))
+                is SpoParser.FlightIDContext -> flightID = visitFlightID(child)
+                is PoolingEnabledContext -> poolingEnabled = visitPoolingEnabled(child)
+                is AgencyCodeContext -> agencyCode = visitAgencyCode(child)
+                is AgencyNameContext -> agencyName = visitAgencyName(child)
+                !is TerminalNode -> {
+                    throw RuntimeException(
+                        "Unexpected children of row. Content is: ${child.text}\nParse tree: ${child.toStringTree()}"
+                    )
+                }
+            }
+        }
+
+        return SpoGlobal(
+            departureDate = departureDate!!,
+            origin = origin!!,
+            destination = destination!!,
+            viaStation = viaStation,
+            carrierCode = carrierCode!!,
+            flightNumber = flightNumber!!,
+            departureTime = departureTime!!,
+            arrivalTime = arrivalTime!!,
+            taxAmount = taxAmount!!,
+            surcharge = surcharge!!,
+            fixAllocation = fixAllocation!!,
+            proRataAmount = proRataAmount!!,
+            totalNumberOfAllocations = totalNumberOfAllocations!!,
+            bookings = bookings!!,
+            available = available!!,
+            contractPrice = contractPrice!!,
+            fromAndPrice = fromAndPrice,
+            flightID = flightID!!,
+            poolingEnabled = poolingEnabled!!,
+            agencyCode = agencyCode!!,
+            agencyName = agencyName!!,
+        )
+    }
+
+    override fun visitDepartureDate(ctx: SpoParser.DepartureDateContext): LocalDate {
+        return LocalDate.parse(ctx.text, datePattern)
+    }
+
+    override fun visitOrigin(ctx: SpoParser.OriginContext): String {
+        return ctx.text
+    }
+
+    override fun visitDestination(ctx: SpoParser.DestinationContext): String {
+        return ctx.text
+    }
+
+    override fun visitViaStation(ctx: SpoParser.ViaStationContext): String {
+        return ctx.text
+    }
+
+    override fun visitCarrierCode(ctx: CarrierCodeContext): String {
+        return ctx.text
+    }
+
+    override fun visitFlightNumber(ctx: SpoParser.FlightNumberContext): Short {
+        return ctx.text.toShort()
+    }
+
+    override fun visitDepartureTime(ctx: SpoParser.DepartureTimeContext): LocalTime {
+        return LocalTime.parse(ctx.text, timePattern)
+    }
+
+    override fun visitArrivalTime(ctx: SpoParser.ArrivalTimeContext): LocalTime {
+        return LocalTime.parse(ctx.text, timePattern)
+    }
+
+    override fun visitTaxAmount(ctx: TaxAmountContext): Double {
+        return ctx.text.replace(',','.').toDouble()
+    }
+
+    override fun visitSurcharge(ctx: SurchargeContext): Double {
+        return ctx.text.replace(',','.').toDouble()
+    }
+
+    override fun visitFixAllocation(ctx: FixAllocationContext): Short {
+        return ctx.text.toShort()
+    }
+
+    override fun visitProRataAmount(ctx: ProRataAmountContext): Short {
+        return ctx.text.toShort()
+    }
+
+    override fun visitTotalNumberOfAllocations(ctx: TotalNumberOfAllocationsContext): Short {
+        return ctx.text.toShort()
+    }
+
+    override fun visitBookings(ctx: BookingsContext): Short {
+        return ctx.text.toShort()
+    }
+
+    override fun visitAvailable(ctx: AvailableContext): Short {
+        return ctx.text.toShort()
+    }
+
+    override fun visitContractPrice(ctx: ContractPriceContext): Double {
+        return ctx.text.replace(',','.').toDouble()
+    }
+
+    override fun visitFromAndPrice(ctx: SpoParser.FromAndPriceContext): FromAndPrice {
+        var from: Short? = null
+        var price: Double? = null
+
+        for (child in ctx.children) {
+            when(child) {
+                is FromContext -> from = visitFrom(child)
+                is SpoParser.PriceContext -> price = visitPrice(child)
+                else -> {
+                    throw RuntimeException(
+                        "Unexpected children of fromAndPrice. Content is: ${child.text}\nParse tree: ${child.toStringTree()}"
+                    )
+                }
+            }
+        }
+        return FromAndPrice(from!!, price!!)
+    }
+
+    override fun visitFrom(ctx: FromContext): Short {
+        return ctx.text.toShort()
+    }
+
+    override fun visitPrice(ctx: SpoParser.PriceContext): Double {
+        return ctx.text.replace(',','.').toDouble()
+    }
+
+    override fun visitFlightID(ctx: SpoParser.FlightIDContext): Long {
+        return ctx.text.toLong()
+    }
+
+    override fun visitPoolingEnabled(ctx: PoolingEnabledContext): Boolean {
+        return ctx.text == "1"
+    }
+
+    override fun visitAgencyCode(ctx: AgencyCodeContext): BigInteger {
+        return ctx.text.toBigInteger()
+    }
+
+    override fun visitAgencyName(ctx: AgencyNameContext): String {
+        return ctx.text
+    }
+}
