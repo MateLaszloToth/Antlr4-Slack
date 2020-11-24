@@ -10,7 +10,7 @@ import org.antlr.v4.runtime.CommonTokenStream
 import java.io.IOException
 
 object GeniusSyncParser {
-    var logger = Logger(GeniusSyncParser::class.java)
+
     @JvmStatic
     fun parse(charStream: CharStream): List<GeniusFlight> {
         val syncLexer = SyncLexer(charStream)
@@ -19,16 +19,5 @@ object GeniusSyncParser {
         val flightRecordsContext: SyncParser.FlightRecordsContext = syncParser.flightRecords()
         val syncVisitor = MySyncBaseVisitor()
         return syncVisitor.visit(flightRecordsContext) as List<GeniusFlight>
-    }
-
-    @JvmStatic
-    fun main(args: Array<String>) {
-        var charStream: CharStream? = null
-        try {
-            charStream = CharStreams.fromFileName("") // Add filepath if you want to run main
-        } catch (e: IOException) {
-            logger.error(e.localizedMessage)
-        }
-        val geniusFlights = parse(charStream!!)
     }
 }

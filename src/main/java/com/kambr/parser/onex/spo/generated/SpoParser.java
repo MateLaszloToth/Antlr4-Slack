@@ -1182,6 +1182,7 @@ public class SpoParser extends Parser {
 
 	public static class AgencyNameContext extends ParserRuleContext {
 		public TerminalNode WORD() { return getToken(SpoParser.WORD, 0); }
+		public TerminalNode ID() { return getToken(SpoParser.ID, 0); }
 		public AgencyNameContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1196,11 +1197,20 @@ public class SpoParser extends Parser {
 	public final AgencyNameContext agencyName() throws RecognitionException {
 		AgencyNameContext _localctx = new AgencyNameContext(_ctx, getState());
 		enterRule(_localctx, 50, RULE_agencyName);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(152);
-			match(WORD);
+			_la = _input.LA(1);
+			if ( !(_la==WORD || _la==ID) ) {
+			_errHandler.recoverInline(this);
+			}
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -1251,7 +1261,7 @@ public class SpoParser extends Parser {
 		"\5*\26\2\u008e\u008f\5,\27\2\u008f)\3\2\2\2\u0090\u0091\7\5\2\2\u0091"+
 		"+\3\2\2\2\u0092\u0093\7\5\2\2\u0093-\3\2\2\2\u0094\u0095\7\5\2\2\u0095"+
 		"/\3\2\2\2\u0096\u0097\7\5\2\2\u0097\61\3\2\2\2\u0098\u0099\7\5\2\2\u0099"+
-		"\63\3\2\2\2\u009a\u009b\7\6\2\2\u009b\65\3\2\2\2\7:BJ[c";
+		"\63\3\2\2\2\u009a\u009b\t\2\2\2\u009b\65\3\2\2\2\7:BJ[c";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

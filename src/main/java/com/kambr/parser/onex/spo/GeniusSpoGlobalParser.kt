@@ -8,6 +8,7 @@ import org.antlr.v4.runtime.CommonTokenStream
 
 object GeniusSpoGlobalParser {
 
+    @JvmStatic
     fun parse(charStream: CharStream): List<SpoGlobal> {
         val spoGlobalLexer = SpoLexer(charStream)
         val spoGlobalTokenStream = CommonTokenStream(spoGlobalLexer)
