@@ -11,7 +11,7 @@ import java.io.IOException
 class TestGeniusSyncParser {
 
     companion object {
-        var FILE_PATH = "src/test/resources/test-file.txt"
+        var FILE_PATH = "src/test/resources/sync/test-file.txt"
         var logger = Logger(GeniusSyncParser::class.java)
     }
 

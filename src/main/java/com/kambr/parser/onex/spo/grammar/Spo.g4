@@ -9,100 +9,112 @@ spo
 ;
 
 header
-: row
-;
-
-row
 : FIELD (';' FIELD)* '\r'? '\n'
 ;
 
+row
+: departureDate origin destination viaStation? carrierCode flightNumber
+  departureTime arrivalTime taxAmount surcharge fixAllocation proRataAmount
+  totalNumberOfAllocations bookings available contractPrice from price flightID
+  poolingEnabled agencyCode agencyName NEW_LINE
+
+;
+
+departureDate
+: FIELD
+;
+
 origin
-:
+: FIELD
 ;
 
 destination
-:
+: FIELD
 ;
 
 viaStation
-:
+: FIELD
 ;
 
 carrierCode
-:
+: FIELD
 ;
 
 flightNumber
-:
+: FIELD
 ;
 
 departureTime
-:
+: FIELD
 ;
 
 arrivalTime
-:
+: FIELD
 ;
 
 taxAmount
-:
+: FIELD
 ;
 
 surcharge
-:
+: FIELD
 ;
 
 fixAllocation
-:
+: FIELD
 ;
 
 proRataAmount
-:
+: FIELD
 ;
 
 totalNumberOfAllocations
-:
+: FIELD
 ;
 
-booking
-:
+bookings
+: FIELD
 ;
 
 available
-:
+: FIELD
 ;
 
 contractPrice
-:
+: FIELD
 ;
 
 from
-:
+: FIELD*
 ;
 
 price
-:
+: FIELD*
 ;
 
 flightID
-:
+: FIELD
 ;
 
 poolingEnabled
-:
+: FIELD
 ;
 
 agencyCode
-:
+: FIELD
 ;
 
 agencyName
-:
+: FIELD
 ;
 
 
 FIELD
 : ~[;\n\r]+
+;
+
+NEW_LINE
+: '\r'? '\n'
 ;
 
 SEPARATOR_SKIP
