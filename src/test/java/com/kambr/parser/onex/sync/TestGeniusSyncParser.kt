@@ -16,7 +16,7 @@ class TestGeniusSyncParser {
     }
 
     @Test
-    fun test_main() {
+    fun test_genius_sync_parser() {
         var charStream: CharStream? = null
         try {
             charStream = CharStreams.fromFileName(FILE_PATH)
@@ -74,9 +74,9 @@ class TestGeniusSyncParser {
         Assert.assrt(flight2.updateIdentifier.name == "OTHER")
         Assert.assrt(flight2.specialPriceOffers.size == 2)
         Assert.assrt(flight2.specialPriceOffers[0].fromSeats == 2)
-        Assert.assrt(flight2.specialPriceOffers[0].price == 120.00)
+        Assert.assrt(flight2.specialPriceOffers[0].price == "120.00".toBigDecimal())
         Assert.assrt(flight2.specialPriceOffers[1].fromSeats == 3)
-        Assert.assrt(flight2.specialPriceOffers[1].price == 145.00)
+        Assert.assrt(flight2.specialPriceOffers[1].price == 145.0.toBigDecimal())
         Assert.assrt(!flight2.isHiddenFlight)
 
         // Flight 3 (Line in file: 5-9)
@@ -103,13 +103,13 @@ class TestGeniusSyncParser {
         Assert.assrt(flight3.updateIdentifier.name == "NIGHTLY_CAPTURE")
         Assert.assrt(flight3.specialPriceOffers.size == 4)
         Assert.assrt(flight3.specialPriceOffers[0].fromSeats == 1)
-        Assert.assrt(flight3.specialPriceOffers[0].price == 105.90)
+        Assert.assrt(flight3.specialPriceOffers[0].price == 105.9.toBigDecimal())
         Assert.assrt(flight3.specialPriceOffers[1].fromSeats == 2)
-        Assert.assrt(flight3.specialPriceOffers[1].price == 120.00)
+        Assert.assrt(flight3.specialPriceOffers[1].price == 120.0.toBigDecimal())
         Assert.assrt(flight3.specialPriceOffers[2].fromSeats == 2)
-        Assert.assrt(flight3.specialPriceOffers[2].price == 120.00)
+        Assert.assrt(flight3.specialPriceOffers[2].price == 120.0.toBigDecimal())
         Assert.assrt(flight3.specialPriceOffers[3].fromSeats == 17)
-        Assert.assrt(flight3.specialPriceOffers[3].price == 220.09)
+        Assert.assrt(flight3.specialPriceOffers[3].price == 220.09.toBigDecimal())
         Assert.assrt(!flight3.isHiddenFlight)
 
         // Flight 4 (Line in file: 10)
@@ -161,9 +161,9 @@ class TestGeniusSyncParser {
         Assert.assrt(flight5.updateIdentifier.name == "NEW_FLIGHT")
         Assert.assrt(flight5.specialPriceOffers.size == 2)
         Assert.assrt(flight5.specialPriceOffers[0].fromSeats == 2)
-        Assert.assrt(flight5.specialPriceOffers[0].price == 125.00)
+        Assert.assrt(flight5.specialPriceOffers[0].price == 125.0.toBigDecimal())
         Assert.assrt(flight5.specialPriceOffers[1].fromSeats == 3)
-        Assert.assrt(flight5.specialPriceOffers[1].price == 146.00)
+        Assert.assrt(flight5.specialPriceOffers[1].price == 146.0.toBigDecimal())
         Assert.assrt(!flight5.isHiddenFlight)
     }
 }

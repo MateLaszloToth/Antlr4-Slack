@@ -54,8 +54,8 @@ class MySpoBaseVisitor : SpoBaseVisitor<Any>() {
         var flightNumber: String? = null
         var departureTime: LocalTime? = null
         var arrivalTime: LocalTime? = null
-        var taxAmount: Double? = null
-        var surcharge: Double? = null
+        var taxAmount: BigDecimal? = null
+        var surcharge: BigDecimal? = null
         var fixAllocation: Int? = null
         var proRataAmount: Int? = null
         var totalNumberOfAllocations: Int? = null
@@ -160,12 +160,12 @@ class MySpoBaseVisitor : SpoBaseVisitor<Any>() {
         return LocalTime.parse(ctx.text, timePattern)
     }
 
-    override fun visitTaxAmount(ctx: TaxAmountContext): Double {
-        return ctx.text.replace(',','.').toDouble()
+    override fun visitTaxAmount(ctx: TaxAmountContext): BigDecimal {
+        return ctx.text.replace(',','.').toBigDecimal()
     }
 
-    override fun visitSurcharge(ctx: SurchargeContext): Double {
-        return ctx.text.replace(',','.').toDouble()
+    override fun visitSurcharge(ctx: SurchargeContext): BigDecimal {
+        return ctx.text.replace(',','.').toBigDecimal()
     }
 
     override fun visitFixAllocation(ctx: FixAllocationContext): Int {
@@ -194,7 +194,7 @@ class MySpoBaseVisitor : SpoBaseVisitor<Any>() {
 
     override fun visitFromAndPrice(ctx: SpoParser.FromAndPriceContext): FromAndPrice {
         var from: Int? = null
-        var price: Double? = null
+        var price: BigDecimal? = null
 
         for (child in ctx.children) {
             when(child) {
@@ -214,8 +214,8 @@ class MySpoBaseVisitor : SpoBaseVisitor<Any>() {
         return ctx.text.toInt()
     }
 
-    override fun visitPrice(ctx: SpoParser.PriceContext): Double {
-        return ctx.text.replace(',','.').toDouble()
+    override fun visitPrice(ctx: SpoParser.PriceContext): BigDecimal {
+        return ctx.text.replace(',','.').toBigDecimal()
     }
 
     override fun visitFlightID(ctx: SpoParser.FlightIDContext): Long {

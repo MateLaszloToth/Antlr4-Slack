@@ -33,8 +33,8 @@ class TestGeniusSpoGlobalParser {
         Assert.assrt(spoGlobalRecords[0].flightNumber == "1407")
         Assert.assrt(spoGlobalRecords[0].departureTime.toString() == "07:00")
         Assert.assrt(spoGlobalRecords[0].arrivalTime.toString() == "08:50")
-        Assert.assrt(spoGlobalRecords[0].taxAmount == 0.0)
-        Assert.assrt(spoGlobalRecords[0].surcharge == 1.5)
+        Assert.assrt(spoGlobalRecords[0].taxAmount == 0.toBigDecimal())
+        Assert.assrt(spoGlobalRecords[0].surcharge == 1.5.toBigDecimal())
         Assert.assrt(spoGlobalRecords[0].fixAllocation == 0)
         Assert.assrt(spoGlobalRecords[0].proRataAmount == 0)
         Assert.assrt(spoGlobalRecords[0].totalNumberOfAllocations == 0)
@@ -50,7 +50,7 @@ class TestGeniusSpoGlobalParser {
         var correction = 1
         spoGlobalRecords[0].fromAndPrice.forEachIndexed { index, fromAndPrice ->
             Assert.assrt(fromAndPrice.from == (index+correction))
-            Assert.assrt(fromAndPrice.price == (index+correction+1).toDouble())
+            Assert.assrt(fromAndPrice.price == (index+correction+1).toBigDecimal())
             correction++
         }
 
@@ -62,18 +62,21 @@ class TestGeniusSpoGlobalParser {
         Assert.assrt(spoGlobalRecords[1].flightNumber == "1407")
         Assert.assrt(spoGlobalRecords[1].departureTime.toString() == "07:00")
         Assert.assrt(spoGlobalRecords[1].arrivalTime.toString() == "08:50")
-        Assert.assrt(spoGlobalRecords[1].taxAmount == 0.0)
-        Assert.assrt(spoGlobalRecords[1].surcharge == 1.5)
+        Assert.assrt(spoGlobalRecords[1].taxAmount == 0.toBigDecimal())
+        Assert.assrt(spoGlobalRecords[1].surcharge == 1.5.toBigDecimal())
         Assert.assrt(spoGlobalRecords[1].fixAllocation == 0)
         Assert.assrt(spoGlobalRecords[1].proRataAmount == 0)
         Assert.assrt(spoGlobalRecords[1].totalNumberOfAllocations == 0)
         Assert.assrt(spoGlobalRecords[1].bookings == 0)
         Assert.assrt(spoGlobalRecords[1].available == (-3))
         Assert.assrt(spoGlobalRecords[1].contractPrice == 50.8.toBigDecimal())
-        Assert.assrt(spoGlobalRecords[1].fromAndPrice.isEmpty())
+        Assert.assrt(spoGlobalRecords[1].fromAndPrice.size == 1)
         Assert.assrt(spoGlobalRecords[1].flightID == 74513199.toLong())
         Assert.assrt(!spoGlobalRecords[1].poolingEnabled)
         Assert.assrt(spoGlobalRecords[1].agencyID == 1000069.toLong())
         Assert.assrt(spoGlobalRecords[1].agencyName == "6SPOT6 REISEN GMBH (SPLITCHARTER) & Co. Co ")
+
+        Assert.assrt(spoGlobalRecords[1].fromAndPrice.first().from == 1)
+        Assert.assrt(spoGlobalRecords[1].fromAndPrice.first().price == "30.00".toBigDecimal())
     }
 }

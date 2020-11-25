@@ -1,3 +1,5 @@
 package com.kambr.parser.onex.sync.dataClasses
 
-data class SpecialPriceOffer(var fromSeats: Int, var price: Double)
+import java.math.BigDecimal
+
+data class SpecialPriceOffer(var fromSeats: Int, var price: BigDecimal)

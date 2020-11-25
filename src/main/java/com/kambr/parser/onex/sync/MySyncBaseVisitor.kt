@@ -33,6 +33,7 @@ import com.kambr.parser.onex.sync.generated.SyncParser.WebsiteAllocatedContext
 import com.kambr.parser.onex.sync.generated.SyncParser.WebsiteBookingsContext
 import org.antlr.v4.runtime.tree.ParseTree
 import org.antlr.v4.runtime.tree.TerminalNode
+import java.math.BigDecimal
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -223,7 +224,7 @@ class MySyncBaseVisitor : SyncBaseVisitor<Any>() {
 
     override fun visitSpecialPriceOffers(ctx: SpecialPriceOffersContext): SpecialPriceOffer {
         var fromSeat: Int? = null
-        var price: Double? = null
+        var price: BigDecimal? = null
         for (child in ctx.children) {
             when (child) {
                 is FromSeatContext -> fromSeat = visitFromSeat(ctx.fromSeat())
@@ -242,8 +243,8 @@ class MySyncBaseVisitor : SyncBaseVisitor<Any>() {
         return ctx.text.toInt()
     }
 
-    override fun visitPrice(ctx: PriceContext): Double {
-        return ctx.text.toDouble()
+    override fun visitPrice(ctx: PriceContext): BigDecimal {
+        return ctx.text.toBigDecimal()
     }
 
     override fun visitDate(ctx: DateContext): String {
