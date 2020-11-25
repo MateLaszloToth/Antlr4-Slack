@@ -21,6 +21,7 @@ import com.kambr.parser.onex.spo.generated.SpoParser.SurchargeContext
 import com.kambr.parser.onex.spo.generated.SpoParser.TaxAmountContext
 import com.kambr.parser.onex.spo.generated.SpoParser.TotalNumberOfAllocationsContext
 import org.antlr.v4.runtime.tree.TerminalNode
+import java.math.BigDecimal
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -60,7 +61,7 @@ class MySpoBaseVisitor : SpoBaseVisitor<Any>() {
         var totalNumberOfAllocations: Int? = null
         var bookings: Int? = null
         var available: Int? = null
-        var contractPrice: Double? = null
+        var contractPrice: BigDecimal? = null
         val fromAndPrice: MutableList<FromAndPrice> = mutableListOf()
         var flightID: Long? = null
         var poolingEnabled: Boolean? = null
@@ -187,8 +188,8 @@ class MySpoBaseVisitor : SpoBaseVisitor<Any>() {
         return ctx.text.toInt()
     }
 
-    override fun visitContractPrice(ctx: ContractPriceContext): Double {
-        return ctx.text.replace(',','.').toDouble()
+    override fun visitContractPrice(ctx: ContractPriceContext): BigDecimal {
+        return ctx.text.replace(',','.').toBigDecimal()
     }
 
     override fun visitFromAndPrice(ctx: SpoParser.FromAndPriceContext): FromAndPrice {
