@@ -33,7 +33,6 @@ import com.kambr.parser.onex.sync.generated.SyncParser.WebsiteAllocatedContext
 import com.kambr.parser.onex.sync.generated.SyncParser.WebsiteBookingsContext
 import org.antlr.v4.runtime.tree.ParseTree
 import org.antlr.v4.runtime.tree.TerminalNode
-import java.math.BigDecimal
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -52,7 +51,7 @@ class MySyncBaseVisitor : SyncBaseVisitor<Any>() {
     }
 
     override fun visitGeniusFlight(ctx: GeniusFlightContext): GeniusFlight {
-        var airlineCode: String? = null
+        var carrierCode: String? = null
         var flightNumber: String? = null
         var origin: String? = null
         var destination: String? = null
@@ -61,14 +60,14 @@ class MySyncBaseVisitor : SyncBaseVisitor<Any>() {
         var viaStation: String? = null
         var chainID: Long? = null
         var flightID: Long? = null
-        var cabinCapacity: Short? = null
-        var cabinBookings: Short? = null
-        var websiteAllocated: Short? = null
-        var websiteBookings: Short? = null
-        var poolCapacity: Short? = null
-        var poolBooked: Short? = null
-        var restCapacity: Short? = null
-        var restBooked: Short? = null
+        var cabinCapacity: Int? = null
+        var cabinBookings: Int? = null
+        var websiteAllocated: Int? = null
+        var websiteBookings: Int? = null
+        var poolCapacity: Int? = null
+        var poolBooked: Int? = null
+        var restCapacity: Int? = null
+        var restBooked: Int? = null
         var departureTime: LocalTime? = null
         var arrivalTime: LocalTime? = null
         var updateIdentifier: UpdateIdentifierEnum? = null
@@ -76,7 +75,7 @@ class MySyncBaseVisitor : SyncBaseVisitor<Any>() {
 
         for (i in 0 until ctx.childCount) {
             when (val child = ctx.getChild(i) as ParseTree) {
-                is AirlineCodeContext -> airlineCode = visitAirlineCode(ctx.airlineCode())
+                is AirlineCodeContext -> carrierCode = visitAirlineCode(ctx.airlineCode())
                 is FlightNumberContext -> flightNumber = visitFlightNumber(ctx.flightNumber())
                 is OriginContext -> origin = visitOrigin(ctx.origin())
                 is DestinationContext -> destination = visitDestination(ctx.destination())
@@ -109,7 +108,7 @@ class MySyncBaseVisitor : SyncBaseVisitor<Any>() {
             }
         }
         return GeniusFlight(
-            airlineCode!!,
+            carrierCode!!,
             flightNumber!!,
             origin!!,
             destination!!,
@@ -169,36 +168,36 @@ class MySyncBaseVisitor : SyncBaseVisitor<Any>() {
         return ctx.text.toLong()
     }
 
-    override fun visitCabinCapacity(ctx: CabinCapacityContext): Short {
-        return ctx.text.toShort()
+    override fun visitCabinCapacity(ctx: CabinCapacityContext): Int {
+        return ctx.text.toInt()
     }
 
-    override fun visitCabinBooking(ctx: CabinBookingContext): Short {
-        return ctx.text.toShort()
+    override fun visitCabinBooking(ctx: CabinBookingContext): Int {
+        return ctx.text.toInt()
     }
 
-    override fun visitWebsiteAllocated(ctx: WebsiteAllocatedContext): Short {
-        return ctx.text.toShort()
+    override fun visitWebsiteAllocated(ctx: WebsiteAllocatedContext): Int {
+        return ctx.text.toInt()
     }
 
-    override fun visitWebsiteBookings(ctx: WebsiteBookingsContext): Short {
-        return ctx.text.toShort()
+    override fun visitWebsiteBookings(ctx: WebsiteBookingsContext): Int {
+        return ctx.text.toInt()
     }
 
-    override fun visitPoolCapacity(ctx: PoolCapacityContext): Short {
-        return ctx.text.toShort()
+    override fun visitPoolCapacity(ctx: PoolCapacityContext): Int {
+        return ctx.text.toInt()
     }
 
-    override fun visitPoolBooked(ctx: PoolBookedContext): Short {
-        return ctx.text.toShort()
+    override fun visitPoolBooked(ctx: PoolBookedContext): Int {
+        return ctx.text.toInt()
     }
 
-    override fun visitRestCapacity(ctx: RestCapacityContext): Short {
-        return ctx.text.toShort()
+    override fun visitRestCapacity(ctx: RestCapacityContext): Int {
+        return ctx.text.toInt()
     }
 
-    override fun visitRestBooked(ctx: RestBookedContext): Short {
-        return ctx.text.toShort()
+    override fun visitRestBooked(ctx: RestBookedContext): Int {
+        return ctx.text.toInt()
     }
 
     override fun visitDepartureTime(ctx: DepartureTimeContext): LocalTime {
@@ -223,8 +222,8 @@ class MySyncBaseVisitor : SyncBaseVisitor<Any>() {
     }
 
     override fun visitSpecialPriceOffers(ctx: SpecialPriceOffersContext): SpecialPriceOffer {
-        var fromSeat: Short? = null
-        var price: BigDecimal? = null
+        var fromSeat: Int? = null
+        var price: Double? = null
         for (child in ctx.children) {
             when (child) {
                 is FromSeatContext -> fromSeat = visitFromSeat(ctx.fromSeat())
@@ -239,12 +238,12 @@ class MySyncBaseVisitor : SyncBaseVisitor<Any>() {
         return SpecialPriceOffer(fromSeat!!, price!!)
     }
 
-    override fun visitFromSeat(ctx: FromSeatContext): Short {
-        return ctx.text.toShort()
+    override fun visitFromSeat(ctx: FromSeatContext): Int {
+        return ctx.text.toInt()
     }
 
-    override fun visitPrice(ctx: PriceContext): BigDecimal {
-        return BigDecimal(ctx.text)
+    override fun visitPrice(ctx: PriceContext): Double {
+        return ctx.text.toDouble()
     }
 
     override fun visitDate(ctx: DateContext): String {

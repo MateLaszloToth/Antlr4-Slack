@@ -157,11 +157,11 @@ public interface SpoVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPoolingEnabled(SpoParser.PoolingEnabledContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SpoParser#agencyCode}.
+	 * Visit a parse tree produced by {@link SpoParser#agencyID}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAgencyCode(SpoParser.AgencyCodeContext ctx);
+	T visitAgencyID(SpoParser.AgencyIDContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SpoParser#agencyName}.
 	 * @param ctx the parse tree

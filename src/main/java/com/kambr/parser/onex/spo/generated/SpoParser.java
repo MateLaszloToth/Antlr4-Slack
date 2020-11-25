@@ -27,14 +27,14 @@ public class SpoParser extends Parser {
 		RULE_fixAllocation = 13, RULE_proRataAmount = 14, RULE_totalNumberOfAllocations = 15, 
 		RULE_bookings = 16, RULE_available = 17, RULE_contractPrice = 18, RULE_fromAndPrice = 19, 
 		RULE_from = 20, RULE_price = 21, RULE_flightID = 22, RULE_poolingEnabled = 23, 
-		RULE_agencyCode = 24, RULE_agencyName = 25;
+		RULE_agencyID = 24, RULE_agencyName = 25;
 	private static String[] makeRuleNames() {
 		return new String[] {
 			"spo", "header", "row", "departureDate", "origin", "destination", "viaStation", 
 			"carrierCode", "flightNumber", "departureTime", "arrivalTime", "taxAmount", 
 			"surcharge", "fixAllocation", "proRataAmount", "totalNumberOfAllocations", 
 			"bookings", "available", "contractPrice", "fromAndPrice", "from", "price", 
-			"flightID", "poolingEnabled", "agencyCode", "agencyName"
+			"flightID", "poolingEnabled", "agencyID", "agencyName"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -278,8 +278,8 @@ public class SpoParser extends Parser {
 		public PoolingEnabledContext poolingEnabled() {
 			return getRuleContext(PoolingEnabledContext.class,0);
 		}
-		public AgencyCodeContext agencyCode() {
-			return getRuleContext(AgencyCodeContext.class,0);
+		public AgencyIDContext agencyID() {
+			return getRuleContext(AgencyIDContext.class,0);
 		}
 		public AgencyNameContext agencyName() {
 			return getRuleContext(AgencyNameContext.class,0);
@@ -374,7 +374,7 @@ public class SpoParser extends Parser {
 			setState(93);
 			poolingEnabled();
 			setState(94);
-			agencyCode();
+			agencyID();
 			setState(95);
 			agencyName();
 			setState(97);
@@ -1146,22 +1146,22 @@ public class SpoParser extends Parser {
 		return _localctx;
 	}
 
-	public static class AgencyCodeContext extends ParserRuleContext {
+	public static class AgencyIDContext extends ParserRuleContext {
 		public TerminalNode NUMBER() { return getToken(SpoParser.NUMBER, 0); }
-		public AgencyCodeContext(ParserRuleContext parent, int invokingState) {
+		public AgencyIDContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_agencyCode; }
+		@Override public int getRuleIndex() { return RULE_agencyID; }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof SpoVisitor ) return ((SpoVisitor<? extends T>)visitor).visitAgencyCode(this);
+			if ( visitor instanceof SpoVisitor ) return ((SpoVisitor<? extends T>)visitor).visitAgencyID(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final AgencyCodeContext agencyCode() throws RecognitionException {
-		AgencyCodeContext _localctx = new AgencyCodeContext(_ctx, getState());
-		enterRule(_localctx, 48, RULE_agencyCode);
+	public final AgencyIDContext agencyID() throws RecognitionException {
+		AgencyIDContext _localctx = new AgencyIDContext(_ctx, getState());
+		enterRule(_localctx, 48, RULE_agencyID);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{

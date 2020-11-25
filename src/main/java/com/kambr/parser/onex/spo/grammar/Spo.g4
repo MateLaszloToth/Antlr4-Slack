@@ -16,7 +16,7 @@ row
 : departureDate origin destination viaStation? carrierCode flightNumber
   departureTime arrivalTime taxAmount surcharge fixAllocation proRataAmount
   totalNumberOfAllocations bookings available contractPrice fromAndPrice* flightID
-  poolingEnabled agencyCode agencyName NEW_LINE?
+  poolingEnabled agencyID agencyName NEW_LINE?
 
 ;
 
@@ -104,7 +104,7 @@ poolingEnabled
 : NUMBER
 ;
 
-agencyCode
+agencyID
 : NUMBER
 ;
 

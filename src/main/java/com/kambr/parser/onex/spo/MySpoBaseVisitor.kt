@@ -4,7 +4,7 @@ import com.kambr.parser.onex.spo.dataClasses.FromAndPrice
 import com.kambr.parser.onex.spo.dataClasses.SpoGlobal
 import com.kambr.parser.onex.spo.generated.SpoBaseVisitor
 import com.kambr.parser.onex.spo.generated.SpoParser
-import com.kambr.parser.onex.spo.generated.SpoParser.AgencyCodeContext
+import com.kambr.parser.onex.spo.generated.SpoParser.AgencyIDContext
 import com.kambr.parser.onex.spo.generated.SpoParser.AgencyNameContext
 import com.kambr.parser.onex.spo.generated.SpoParser.AvailableContext
 import com.kambr.parser.onex.spo.generated.SpoParser.BookingsContext
@@ -50,21 +50,21 @@ class MySpoBaseVisitor : SpoBaseVisitor<Any>() {
         var destination: String? = null
         var viaStation: String? = null
         var carrierCode: String? = null
-        var flightNumber: Short? = null
+        var flightNumber: String? = null
         var departureTime: LocalTime? = null
         var arrivalTime: LocalTime? = null
         var taxAmount: Double? = null
         var surcharge: Double? = null
-        var fixAllocation: Short? = null
-        var proRataAmount: Short? = null
-        var totalNumberOfAllocations: Short? = null
-        var bookings: Short? = null
-        var available: Short? = null
+        var fixAllocation: Int? = null
+        var proRataAmount: Int? = null
+        var totalNumberOfAllocations: Int? = null
+        var bookings: Int? = null
+        var available: Int? = null
         var contractPrice: Double? = null
         val fromAndPrice: MutableList<FromAndPrice> = mutableListOf()
         var flightID: Long? = null
         var poolingEnabled: Boolean? = null
-        var agencyCode: Long? = null
+        var agencyID: Long? = null
         var agencyName: String? = null
 
         for (child in ctx.children) {
@@ -92,7 +92,7 @@ class MySpoBaseVisitor : SpoBaseVisitor<Any>() {
                 is SpoParser.FromAndPriceContext -> fromAndPrice.add(visitFromAndPrice(child))
                 is SpoParser.FlightIDContext -> flightID = visitFlightID(child)
                 is PoolingEnabledContext -> poolingEnabled = visitPoolingEnabled(child)
-                is AgencyCodeContext -> agencyCode = visitAgencyCode(child)
+                is AgencyIDContext -> agencyID = visitAgencyID(child)
                 is AgencyNameContext -> agencyName = visitAgencyName(child)
                 !is TerminalNode -> {
                     throw RuntimeException(
@@ -122,7 +122,7 @@ class MySpoBaseVisitor : SpoBaseVisitor<Any>() {
             fromAndPrice = fromAndPrice,
             flightID = flightID!!,
             poolingEnabled = poolingEnabled!!,
-            agencyCode = agencyCode!!,
+            agencyID = agencyID!!,
             agencyName = agencyName!!,
         )
     }
@@ -147,8 +147,8 @@ class MySpoBaseVisitor : SpoBaseVisitor<Any>() {
         return ctx.text
     }
 
-    override fun visitFlightNumber(ctx: SpoParser.FlightNumberContext): Short {
-        return ctx.text.toShort()
+    override fun visitFlightNumber(ctx: SpoParser.FlightNumberContext): String {
+        return ctx.text
     }
 
     override fun visitDepartureTime(ctx: SpoParser.DepartureTimeContext): LocalTime {
@@ -167,24 +167,24 @@ class MySpoBaseVisitor : SpoBaseVisitor<Any>() {
         return ctx.text.replace(',','.').toDouble()
     }
 
-    override fun visitFixAllocation(ctx: FixAllocationContext): Short {
-        return ctx.text.toShort()
+    override fun visitFixAllocation(ctx: FixAllocationContext): Int {
+        return ctx.text.toInt()
     }
 
-    override fun visitProRataAmount(ctx: ProRataAmountContext): Short {
-        return ctx.text.toShort()
+    override fun visitProRataAmount(ctx: ProRataAmountContext): Int {
+        return ctx.text.toInt()
     }
 
-    override fun visitTotalNumberOfAllocations(ctx: TotalNumberOfAllocationsContext): Short {
-        return ctx.text.toShort()
+    override fun visitTotalNumberOfAllocations(ctx: TotalNumberOfAllocationsContext): Int {
+        return ctx.text.toInt()
     }
 
-    override fun visitBookings(ctx: BookingsContext): Short {
-        return ctx.text.toShort()
+    override fun visitBookings(ctx: BookingsContext): Int {
+        return ctx.text.toInt()
     }
 
-    override fun visitAvailable(ctx: AvailableContext): Short {
-        return ctx.text.toShort()
+    override fun visitAvailable(ctx: AvailableContext): Int {
+        return ctx.text.toInt()
     }
 
     override fun visitContractPrice(ctx: ContractPriceContext): Double {
@@ -192,7 +192,7 @@ class MySpoBaseVisitor : SpoBaseVisitor<Any>() {
     }
 
     override fun visitFromAndPrice(ctx: SpoParser.FromAndPriceContext): FromAndPrice {
-        var from: Short? = null
+        var from: Int? = null
         var price: Double? = null
 
         for (child in ctx.children) {
@@ -209,8 +209,8 @@ class MySpoBaseVisitor : SpoBaseVisitor<Any>() {
         return FromAndPrice(from!!, price!!)
     }
 
-    override fun visitFrom(ctx: FromContext): Short {
-        return ctx.text.toShort()
+    override fun visitFrom(ctx: FromContext): Int {
+        return ctx.text.toInt()
     }
 
     override fun visitPrice(ctx: SpoParser.PriceContext): Double {
@@ -225,7 +225,7 @@ class MySpoBaseVisitor : SpoBaseVisitor<Any>() {
         return ctx.text == "1"
     }
 
-    override fun visitAgencyCode(ctx: AgencyCodeContext): Long {
+    override fun visitAgencyID(ctx: AgencyIDContext): Long {
         return ctx.text.toLong()
     }
 

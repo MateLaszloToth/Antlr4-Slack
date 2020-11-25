@@ -43,7 +43,7 @@ from
 price
 flightID
 poolingEnabled
-agencyCode
+agencyID
 agencyName
 
 
