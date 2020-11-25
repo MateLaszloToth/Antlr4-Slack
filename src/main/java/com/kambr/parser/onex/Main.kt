@@ -16,7 +16,7 @@ fun main(args: Array<String>) {
 
     var charStream: CharStream? = null
     val result: MutableList<Any> = mutableListOf()
-    val fileList = File(directory).listFiles()!!.filter { it.name.endsWith(extension) }
+    val fileList = File(directory).listFiles {_, name -> name.endsWith(extension) }!!
 
     fileList.forEach { file ->
         try {
