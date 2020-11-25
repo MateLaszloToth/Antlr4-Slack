@@ -1,0 +1,10 @@
+T__0=1
+T__1=2
+NUMBER=3
+WORD=4
+ID=5
+NEW_LINE=6
+SEPARATOR_SKIP=7
+'.'=1
+':'=2
+';'=7
