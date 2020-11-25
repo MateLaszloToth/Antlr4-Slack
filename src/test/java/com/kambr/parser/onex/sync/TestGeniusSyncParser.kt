@@ -11,8 +11,8 @@ import java.io.IOException
 class TestGeniusSyncParser {
 
     companion object {
-        var FILE_PATH = "src/test/resources/sync/test-file.txt"
-        var logger = Logger(this::class.java)
+        const val FILE_PATH = "src/test/resources/sync/test-file.txt"
+        val logger = Logger(this::class.java)
     }
 
     @Test

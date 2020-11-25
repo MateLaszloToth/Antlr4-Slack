@@ -21,7 +21,6 @@ import com.kambr.parser.onex.spo.generated.SpoParser.SurchargeContext
 import com.kambr.parser.onex.spo.generated.SpoParser.TaxAmountContext
 import com.kambr.parser.onex.spo.generated.SpoParser.TotalNumberOfAllocationsContext
 import org.antlr.v4.runtime.tree.TerminalNode
-import java.math.BigInteger
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -65,7 +64,7 @@ class MySpoBaseVisitor : SpoBaseVisitor<Any>() {
         val fromAndPrice: MutableList<FromAndPrice> = mutableListOf()
         var flightID: Long? = null
         var poolingEnabled: Boolean? = null
-        var agencyCode: BigInteger? = null
+        var agencyCode: Long? = null
         var agencyName: String? = null
 
         for (child in ctx.children) {
@@ -226,8 +225,8 @@ class MySpoBaseVisitor : SpoBaseVisitor<Any>() {
         return ctx.text == "1"
     }
 
-    override fun visitAgencyCode(ctx: AgencyCodeContext): BigInteger {
-        return ctx.text.toBigInteger()
+    override fun visitAgencyCode(ctx: AgencyCodeContext): Long {
+        return ctx.text.toLong()
     }
 
     override fun visitAgencyName(ctx: AgencyNameContext): String {

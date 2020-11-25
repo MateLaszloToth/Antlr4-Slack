@@ -1,6 +1,5 @@
 package com.kambr.parser.onex.spo.dataClasses
 
-import java.math.BigInteger
 import java.time.LocalDate
 import java.time.LocalTime
 
@@ -24,6 +23,6 @@ data class SpoGlobal(
     val fromAndPrice: List<FromAndPrice>,
     val flightID: Long,
     val poolingEnabled: Boolean,
-    val agencyCode: BigInteger,
+    val agencyCode: Long,
     val agencyName: String,
 )

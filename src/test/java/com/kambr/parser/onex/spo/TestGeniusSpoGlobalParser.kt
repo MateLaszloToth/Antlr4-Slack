@@ -11,8 +11,8 @@ import java.io.IOException
 class TestGeniusSpoGlobalParser {
 
     companion object {
-        var FILE_PATH = "src/test/resources/spo/test-file.csv"
-        var logger = Logger(this::class.java)
+        const val FILE_PATH = "src/test/resources/spo/test-file.csv"
+        val logger = Logger(this::class.java)
     }
 
     @Test
@@ -44,7 +44,7 @@ class TestGeniusSpoGlobalParser {
         Assert.assrt(spoGlobalRecords[0].fromAndPrice.size == 15)
         Assert.assrt(spoGlobalRecords[0].flightID == 74513199.toLong())
         Assert.assrt(!spoGlobalRecords[0].poolingEnabled)
-        Assert.assrt(spoGlobalRecords[0].agencyCode == 1000118.toBigInteger())
+        Assert.assrt(spoGlobalRecords[0].agencyCode == 1000118.toLong())
         Assert.assrt(spoGlobalRecords[0].agencyName == "WEBSITE")
 
         var correction = 1
@@ -73,7 +73,7 @@ class TestGeniusSpoGlobalParser {
         Assert.assrt(spoGlobalRecords[1].fromAndPrice.isEmpty())
         Assert.assrt(spoGlobalRecords[1].flightID == 74513199.toLong())
         Assert.assrt(!spoGlobalRecords[1].poolingEnabled)
-        Assert.assrt(spoGlobalRecords[1].agencyCode == 1000069.toBigInteger())
+        Assert.assrt(spoGlobalRecords[1].agencyCode == 1000069.toLong())
         Assert.assrt(spoGlobalRecords[1].agencyName == "6SPOT6 REISEN GMBH (SPLITCHARTER) & Co. Co ")
     }
 }
