@@ -3,8 +3,8 @@ package com.kambr.parser.onex.sync.dataClasses
 import java.time.LocalDate
 import java.time.LocalTime
 
-data class GeniusFlight (
-    val carrierCode: String ,
+data class GeniusFlight(
+    val carrierCode: String,
     val flightNumber: String,
     val origin: String,
     val destination: String,
