@@ -214,10 +214,16 @@ class MySyncBaseVisitor : SyncBaseVisitor<Any>() {
         val character: Char
         if (ctx.text.isNotEmpty()) {
             character = ctx.text[0]
-            return if (character == 'N') UpdateIdentifierEnum.NEW_FLIGHT else if (character == 'S') UpdateIdentifierEnum.SPO_FIX else if (character == 'U') UpdateIdentifierEnum.NIGHTLY_CAPTURE else if (character == 'X') UpdateIdentifierEnum.OTHER else throw RuntimeException(
-                "Update identifier is supposed to be " +
-                    "'N' or 'S' or 'U' or 'X', but it was " + character
-            )
+            return when (character) {
+                'N' -> UpdateIdentifierEnum.NEW_FLIGHT
+                'S' -> UpdateIdentifierEnum.SPO_FIX
+                'U' -> UpdateIdentifierEnum.NIGHTLY_CAPTURE
+                'X' -> UpdateIdentifierEnum.OTHER
+                else -> throw RuntimeException(
+                    "Update identifier is supposed to be " +
+                        "'N' or 'S' or 'U' or 'X', but it was " + character
+                )
+            }
         }
         throw RuntimeException("Update identifier is supposed to be 'N' or 'S' or 'U' or 'X', but it is missing.")
     }
