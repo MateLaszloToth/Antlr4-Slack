@@ -15,7 +15,7 @@ data class Tursys (
     val bookingTime: LocalTime,
     val ticketingDate: LocalDate,
     val ticketingTime: LocalTime,
-    val cancellationDate: LocalDate,
+    val cancellationDate: LocalDate?,
     val agentCode: String,
     val salesSource: String,
     val passengerType: PassengerTypeEnum,

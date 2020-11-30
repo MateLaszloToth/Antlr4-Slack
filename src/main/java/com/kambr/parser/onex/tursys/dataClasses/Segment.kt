@@ -12,5 +12,5 @@ data class Segment(
     val cabinCode: String,
     val seatAssignment: String?,
     val liftStatus: LiftStatusEnum?,
-    val boardingSequence: Int
+    val boardingSequence: Int?
 )

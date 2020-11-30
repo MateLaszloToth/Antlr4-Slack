@@ -1,13 +1,10 @@
 package com.kambr.parser.onex.sync
 
-import com.kambr.kambrlogger.Logger
 import com.kambr.parser.onex.sync.dataClasses.GeniusFlight
 import com.kambr.parser.onex.sync.generated.SyncLexer
 import com.kambr.parser.onex.sync.generated.SyncParser
 import org.antlr.v4.runtime.CharStream
-import org.antlr.v4.runtime.CharStreams
 import org.antlr.v4.runtime.CommonTokenStream
-import java.io.IOException
 
 object GeniusSyncParser {
 
