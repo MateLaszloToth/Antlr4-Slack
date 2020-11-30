@@ -22,7 +22,7 @@ fun main(args: Array<String>) {
 
     // fileList.forEach { file ->
         try {
-            charStream = CharStreams.fromFileName(File("/Users/matetoth/Documents/Kambr/kambr-parser-1x/src/test/resources/tursys/test-file.csv").absolutePath)
+            charStream = CharStreams.fromFileName(File("/Users/matetoth/Desktop/Corendon/import/TURSYS_CORENDON_PNR_20201022_T1.csv").absolutePath)
         } catch (e: IOException) {
             // syncLogger.error(e.localizedMessage)
             // spoLogger.error(e.localizedMessage)

@@ -9,152 +9,152 @@ file
 ;
 
 header
-: (ID | WORD)+ NEW_LINE
+:  (WORD SEPARATOR)*  WORD NEW_LINE
 ;
 
 row
-: segment segment segment pnr couponIdentificationCode fareBasisCode bookingTypeCode
+: segment+ pnr couponIdentificationCode fareBasisCode bookingTypeCode
 bookingStatusCode bookingDate bookingTime ticketingDate ticketingTime
-cancellationDate? agentCode salesSource passengerType currency rateOfExchange
+cancellationDate agentCode salesSource passengerType currency rateOfExchange
 spoBasePrice promoIdentifier discount dynamicPriceAdjustment priceAdjustmentApplied
-salesPrice tax totalAmount NEW_LINE
+salesPrice tax totalAmount NEW_LINE?
 ;
 
 segment
-: departureDate? carrierCode? flightNumber origin? destination? flightPath?
- cabinCode? seatAssignment? liftStatus? boardingSequence
+: departureDate carrierCode flightNumber origin destination flightPath
+ cabinCode seatAssignment liftStatus boardingSequence
 ;
 
 departureDate
-: INTEGER
+: INTEGER? SEPARATOR
 ;
 
 carrierCode
-: WORD
+: WORD? SEPARATOR
 ;
 
 flightNumber
-: INTEGER
+: INTEGER SEPARATOR
 ;
 
 origin
-: WORD
+: WORD? SEPARATOR
 ;
 
 destination
-: WORD
+: WORD? SEPARATOR
 ;
 
 flightPath
-: WORD
+: WORD? SEPARATOR
 ;
 
 cabinCode
-:  WORD
+:  WORD? SEPARATOR
 ;
 
 seatAssignment
-:  INTEGER
+:  INTEGER? SEPARATOR
 ;
 
 liftStatus
-: WORD
+: WORD? SEPARATOR
 ;
 
 boardingSequence
-: INTEGER
+: INTEGER SEPARATOR
 ;
 
 pnr
-: ID
+: WORD SEPARATOR
 ;
 
 couponIdentificationCode
-: INTEGER
+: INTEGER SEPARATOR
 ;
 
 fareBasisCode
-: WORD
+: WORD SEPARATOR
 ;
 
 bookingTypeCode
-: INTEGER
+: INTEGER SEPARATOR
 ;
 
 bookingStatusCode
-: WORD
+: WORD SEPARATOR
 ;
 
 bookingDate
-: INTEGER
+: INTEGER SEPARATOR
 ;
 
 bookingTime
-: INTEGER
+: INTEGER SEPARATOR
 ;
 
 ticketingDate
-: INTEGER
+: INTEGER SEPARATOR
 ;
 
 ticketingTime
-: INTEGER
+: INTEGER SEPARATOR
 ;
 
 cancellationDate
-: INTEGER
+: INTEGER? SEPARATOR
 ;
 
 agentCode
-: INTEGER
+: INTEGER SEPARATOR
 ;
 
 salesSource
-: WORD
+: WORD SEPARATOR
 ;
 
 passengerType
-: WORD
+: WORD SEPARATOR
 ;
 
 currency
-: WORD
+: WORD SEPARATOR
 ;
 
 rateOfExchange
-: NUMBER
+: (NUMBER | INTEGER) SEPARATOR
 ;
 
 spoBasePrice
-: NUMBER
+: (NUMBER | INTEGER) SEPARATOR
 ;
 
 promoIdentifier
-: INTEGER
+: INTEGER SEPARATOR
 ;
 
 discount
-: NUMBER
+: (NUMBER | INTEGER) SEPARATOR
 ;
 
 dynamicPriceAdjustment
-: NUMBER
+: (NUMBER | INTEGER) SEPARATOR
 ;
 
 priceAdjustmentApplied
-: INTEGER
+: INTEGER SEPARATOR
 ;
 
 salesPrice
-: NUMBER
+: (NUMBER | INTEGER) SEPARATOR
 ;
 
 tax
-: NUMBER
+: (NUMBER | INTEGER) SEPARATOR
 ;
 
 totalAmount
-: NUMBER
+: (NUMBER | INTEGER)
 ;
 
 INTEGER
@@ -169,14 +169,10 @@ WORD
 :  (([0-9] | '_' | '-')* [a-zA-Z]+ ([0-9] | '_' | '-')*)+
 ;
 
-ID
-: ([a-zA-Z] | [0-9])+
-;
-
 NEW_LINE
 : '\r'? '\n'
 ;
 
-SEPARATOR_SKIP
-: '|' -> skip
+SEPARATOR
+: '|'
 ;
