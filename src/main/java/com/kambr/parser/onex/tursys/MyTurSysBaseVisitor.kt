@@ -2,6 +2,7 @@ package com.kambr.parser.onex.tursys
 
 import com.kambr.parser.onex.tursys.dataClasses.BookingStatusCodeEnum
 import com.kambr.parser.onex.tursys.dataClasses.BookingTypeCodeEnum
+import com.kambr.parser.onex.tursys.dataClasses.LiftStatusEnum
 import com.kambr.parser.onex.tursys.dataClasses.PassengerTypeEnum
 import com.kambr.parser.onex.tursys.dataClasses.Segment
 import com.kambr.parser.onex.tursys.dataClasses.Tursys
@@ -20,6 +21,7 @@ import com.kambr.parser.onex.tursys.generated.TurSysParser.CurrencyContext
 import com.kambr.parser.onex.tursys.generated.TurSysParser.DiscountContext
 import com.kambr.parser.onex.tursys.generated.TurSysParser.DynamicPriceAdjustmentContext
 import com.kambr.parser.onex.tursys.generated.TurSysParser.FareBasisCodeContext
+import com.kambr.parser.onex.tursys.generated.TurSysParser.FileContext
 import com.kambr.parser.onex.tursys.generated.TurSysParser.FlightPathContext
 import com.kambr.parser.onex.tursys.generated.TurSysParser.LiftStatusContext
 import com.kambr.parser.onex.tursys.generated.TurSysParser.PassengerTypeContext
@@ -36,6 +38,7 @@ import com.kambr.parser.onex.tursys.generated.TurSysParser.TaxContext
 import com.kambr.parser.onex.tursys.generated.TurSysParser.TicketingDateContext
 import com.kambr.parser.onex.tursys.generated.TurSysParser.TicketingTimeContext
 import com.kambr.parser.onex.tursys.generated.TurSysParser.TotalAmountContext
+import org.antlr.v4.runtime.tree.TerminalNode
 import java.math.BigDecimal
 import java.time.LocalDate
 import java.time.LocalTime
@@ -46,7 +49,26 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
 
     companion object {
         val datePattern: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd")
-        val timePattern: DateTimeFormatter = DateTimeFormatter.ofPattern("HHmmss")
+        val timePatternHHmmss: DateTimeFormatter = DateTimeFormatter.ofPattern("HHmmss")
+        val timePatternHmmss: DateTimeFormatter = DateTimeFormatter.ofPattern("Hmmss")
+    }
+
+    override fun visitFile(ctx: FileContext): List<Tursys> {
+        val tursys: MutableList<Tursys> = mutableListOf()
+        for (child in ctx.children) {
+            when (child) {
+                is TurSysParser.HeaderContext -> {
+                }
+                is TurSysParser.RowContext -> tursys.add(visitRow(child))
+                !is TerminalNode -> {
+                    throw RuntimeException(
+                        "Unexpected children of FileContext. Content is: ${child.text}\nParse tree: ${child.toStringTree()}"
+                    )
+                }
+            }
+        }
+
+        return tursys
     }
 
     override fun visitRow(ctx: TurSysParser.RowContext): Tursys {
@@ -60,7 +82,7 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
         var bookingTime: LocalTime? = null
         var ticketingDate: LocalDate? = null
         var ticketingTime: LocalTime? = null
-        var cancellationDate: LocalDate? = null,
+        var cancellationDate: LocalDate? = null
         var agentCode: String? = null
         var salesSource: String? = null
         var passengerType: PassengerTypeEnum? = null
@@ -77,7 +99,7 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
 
         for (child in ctx.children) {
             when (child) {
-                is SegmentContext -> segments.add(visitSegment(child))
+                is SegmentContext -> if (nonNull(child.departureDate().INTEGER())) segments.add(visitSegment(child))
                 is PnrContext -> pnr = visitPnr(child)
                 is CouponIdentificationCodeContext -> couponIdentificationCode = visitCouponIdentificationCode(child)
                 is FareBasisCodeContext -> fareBasisCode = visitFareBasisCode(child)
@@ -101,7 +123,9 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
                 is SalesPriceContext -> salesPrice = visitSalesPrice(child)
                 is TaxContext -> tax = visitTax(child)
                 is TotalAmountContext -> totalAmount = visitTotalAmount(child)
-
+                !is TerminalNode -> throw RuntimeException(
+                    "Unexpected children of RowContext. Content is: ${child.text}\nParse tree: ${child.toStringTree()}"
+                )
             }
         }
 
@@ -116,7 +140,7 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
             bookingTime = bookingTime!!,
             ticketingDate = ticketingDate!!,
             ticketingTime = ticketingTime!!,
-            cancellationDate = cancellationDate!!,
+            cancellationDate = cancellationDate,
             agentCode = agentCode!!,
             salesSource = salesSource!!,
             passengerType = passengerType!!,
@@ -133,60 +157,113 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
         )
     }
 
-    override fun visitSegment(ctx: SegmentContext) {
-        return visitChildren(ctx)
+    override fun visitSegment(ctx: SegmentContext): Segment {
+        var departureDate: LocalDate? = null
+        var carrierCode: String? = null
+        var flightNumber: String? = null
+        var origin: String? = null
+        var destination: String? = null
+        var flightPath: String? = null
+        var cabinCode: String? = null
+        var seatAssignment: String? = null
+        var liftStatus: LiftStatusEnum? = null
+        var boardingSequence: Int? = null
+
+        for (child in ctx.children) {
+            when (child) {
+                is TurSysParser.DepartureDateContext -> departureDate = visitDepartureDate(child)
+                is TurSysParser.CarrierCodeContext -> carrierCode = visitCarrierCode(child)
+                is TurSysParser.FlightNumberContext -> flightNumber = visitFlightNumber(child)
+                is TurSysParser.OriginContext -> origin = visitOrigin(child)
+                is TurSysParser.DestinationContext -> destination = visitDestination(child)
+                is FlightPathContext -> flightPath = visitFlightPath(child)
+                is CabinCodeContext -> cabinCode = visitCabinCode(child)
+                is SeatAssignmentContext -> seatAssignment = visitSeatAssignment(child)
+                is LiftStatusContext -> liftStatus = visitLiftStatus(child)
+                is BoardingSequenceContext -> boardingSequence = visitBoardingSequence(child)
+                !is TerminalNode -> throw RuntimeException(
+                    "Unexpected children of SegmentContext. Content is: ${child.text}\nParse tree: ${child.toStringTree()}"
+                )
+            }
+        }
+
+        return Segment(
+            departureDate = departureDate!!,
+            carrierCode = carrierCode!!,
+            flightNumber = flightNumber!!,
+            origin = origin!!,
+            destination = destination!!,
+            flightPath = flightPath!!,
+            cabinCode = cabinCode!!,
+            seatAssignment = seatAssignment,
+            liftStatus = liftStatus,
+            boardingSequence = boardingSequence
+        )
     }
 
     override fun visitDepartureDate(ctx: TurSysParser.DepartureDateContext): LocalDate {
-        return LocalDate.parse(ctx.text, datePattern)
+        return LocalDate.parse(ctx.INTEGER().text, datePattern)
     }
 
     override fun visitCarrierCode(ctx: TurSysParser.CarrierCodeContext): String {
-        return ctx.text
+        return ctx.WORD().text
     }
 
     override fun visitFlightNumber(ctx: TurSysParser.FlightNumberContext): String {
-        return ctx.text
+        return ctx.INTEGER().text
     }
 
     override fun visitOrigin(ctx: TurSysParser.OriginContext): String {
-        return ctx.text
+        return ctx.WORD().text
     }
 
     override fun visitDestination(ctx: TurSysParser.DestinationContext): String {
-        return ctx.text
+        return ctx.WORD().text
     }
 
     override fun visitFlightPath(ctx: FlightPathContext): String {
-        return ctx.text
+        return ctx.WORD().text
     }
 
     override fun visitCabinCode(ctx: CabinCodeContext): String {
-        return ctx.text
+        return ctx.WORD().text
     }
 
-    override fun visitSeatAssignment(ctx: SeatAssignmentContext): String {
-        return ctx.text
+    override fun visitSeatAssignment(ctx: SeatAssignmentContext): String? {
+        return ctx.WORD()?.text
     }
 
-    override fun visitLiftStatus(ctx: LiftStatusContext): {
-        return visitChildren(ctx)
+    override fun visitLiftStatus(ctx: LiftStatusContext): LiftStatusEnum? {
+        return when (ctx.WORD()?.text) {
+            "CheckedIn" -> LiftStatusEnum.CHECKED_IN
+            "Boarded" -> LiftStatusEnum.BOARDED
+            "NoShow" -> LiftStatusEnum.NO_SHOW
+            "GoShow" -> LiftStatusEnum.GO_SHOW
+            "Offloaded" -> LiftStatusEnum.OFFLOADED
+            "VoluntaryDeniedBoarded" -> LiftStatusEnum.VOLUNTARY_DENIED_BOARDED
+            "DeniedBoarded" -> LiftStatusEnum.DENIED_BOARDED
+            null -> null
+            else -> throw RuntimeException(
+                "LiftStatus should be CheckedIn, Boarded, NoShow, GoShow, Offloaded, " +
+                    "VoluntaryDeniedBoarded, or DeniedBoarded, but it is: ${ctx.WORD().text}"
+            )
+        }
     }
 
-    override fun visitBoardingSequence(ctx: BoardingSequenceContext): Int {
-        return ctx.text.toInt()
+    override fun visitBoardingSequence(ctx: BoardingSequenceContext): Int? {
+        return ctx.INTEGER()?.text?.toInt()
     }
 
     override fun visitPnr(ctx: PnrContext): String {
-        return ctx.text
+        return ctx.WORD().text
     }
 
     override fun visitCouponIdentificationCode(ctx: CouponIdentificationCodeContext): String {
-        return ctx.text
+        return ctx.INTEGER().text
     }
 
     override fun visitFareBasisCode(ctx: FareBasisCodeContext): String {
-        return ctx.text
+        return ctx.WORD().text
     }
 
     override fun visitBookingTypeCode(ctx: BookingTypeCodeContext): BookingTypeCodeEnum {
@@ -196,9 +273,7 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
             3 -> BookingTypeCodeEnum.MULTI_CITY
             4 -> BookingTypeCodeEnum.OPEN_JAW
             else -> throw RuntimeException(
-                "BookingTypeCode should be 1, 2, 3, or 4, but was: ${
-                    ctx.INTEGER().text
-                }"
+                "BookingTypeCode should be 1, 2, 3, or 4, but it is: ${ctx.INTEGER().text}"
             )
         }
     }
@@ -212,31 +287,37 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
             "GL" -> BookingStatusCodeEnum.GROUP_WAITLIST_OPTION
             "XX" -> BookingStatusCodeEnum.CANCELLED
             else -> throw RuntimeException(
-                "BookingStatusCode should be HK, WL, HL, GN, GL, or XX, but was: ${
-                    ctx.WORD().text
-                }"
+                "BookingStatusCode should be HK, WL, HL, GN, GL, or XX, but it is: ${ctx.WORD().text}"
             )
         }
     }
 
     override fun visitBookingDate(ctx: BookingDateContext): LocalDate {
-        return LocalDate.parse(ctx.INTEGER().text , datePattern)
+        return LocalDate.parse(ctx.INTEGER().text, datePattern)
     }
 
     override fun visitBookingTime(ctx: BookingTimeContext): LocalTime {
-        return LocalTime.parse(ctx.text, timePattern)
+        return if (ctx.INTEGER().text.length == 5) { // 9:35:10 AM -> 93510  10:35:10 AM -> 103510
+            LocalTime.parse(ctx.INTEGER().text, timePatternHmmss)
+        } else {
+            LocalTime.parse(ctx.INTEGER().text, timePatternHHmmss)
+        }
     }
 
     override fun visitTicketingDate(ctx: TicketingDateContext): LocalDate {
-        return LocalDate.parse(ctx.text, datePattern)
+        return LocalDate.parse(ctx.INTEGER().text, datePattern)
     }
 
     override fun visitTicketingTime(ctx: TicketingTimeContext): LocalTime {
-        return LocalTime.parse(ctx.text, timePattern)
+        return if (ctx.INTEGER().text.length == 5) { // 9:35:10 AM -> 93510  10:35:10 AM -> 103510
+            LocalTime.parse(ctx.INTEGER().text, timePatternHmmss)
+        } else {
+            LocalTime.parse(ctx.INTEGER().text, timePatternHHmmss)
+        }
     }
 
     override fun visitCancellationDate(ctx: CancellationDateContext): LocalDate? {
-        return if (nonNull(ctx.text)) LocalDate.parse(ctx.text, datePattern) else null
+        return if (nonNull(ctx.INTEGER())) LocalDate.parse(ctx.INTEGER().text, datePattern) else null
     }
 
     override fun visitAgentCode(ctx: AgentCodeContext): String {
@@ -247,8 +328,15 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
         return ctx.WORD().text
     }
 
-    override fun visitPassengerType(ctx: PassengerTypeContext): {
-        return ctx.WORD().text
+    override fun visitPassengerType(ctx: PassengerTypeContext): PassengerTypeEnum {
+        return when (ctx.WORD().text) {
+            "ADT" -> PassengerTypeEnum.ADULT
+            "CHD" -> PassengerTypeEnum.CHILD
+            "INF" -> PassengerTypeEnum.INFANT
+            else -> throw RuntimeException(
+                "PassengerType should be ADT, CHD, or INF, but it is: ${ctx.WORD().text}"
+            )
+        }
     }
 
     override fun visitCurrency(ctx: CurrencyContext): String {
@@ -256,38 +344,45 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
     }
 
     override fun visitRateOfExchange(ctx: RateOfExchangeContext): BigDecimal {
-        return ctx.NUMBER() .text.replace(',', ',').toBigDecimal() // TODO figure out what to do when it Integer
+        val result = ctx.NUMBER()?.text ?: ctx.INTEGER().text
+        return result.replace(',', '.').toBigDecimal()
     }
 
     override fun visitSpoBasePrice(ctx: SpoBasePriceContext): BigDecimal {
-        return ctx.text.replace(',', ',').toBigDecimal()
+        val result = ctx.NUMBER()?.text ?: ctx.INTEGER().text
+        return result.replace(',', '.').toBigDecimal()
     }
 
     override fun visitPromoIdentifier(ctx: PromoIdentifierContext): Boolean {
-        return ctx.text == "1"
+        return ctx.INTEGER().text == "1"
     }
 
     override fun visitDiscount(ctx: DiscountContext): BigDecimal {
-        return ctx.text.replace(',', ',').toBigDecimal()
+        val result = ctx.NUMBER()?.text ?: ctx.INTEGER().text
+        return result.replace(',', '.').toBigDecimal()
     }
 
     override fun visitDynamicPriceAdjustment(ctx: DynamicPriceAdjustmentContext): BigDecimal {
-        return ctx.text.replace(',', ',').toBigDecimal()
+        val result = ctx.NUMBER()?.text ?: ctx.INTEGER().text
+        return result.replace(',', '.').toBigDecimal()
     }
 
     override fun visitPriceAdjustmentApplied(ctx: PriceAdjustmentAppliedContext): Boolean {
-        return ctx.text == "1"
+        return ctx.INTEGER().text == "1"
     }
 
-    override fun visitSalesPrice(ctx: SalesPriceContext): Boolean {
-        return ctx.text == "1"
+    override fun visitSalesPrice(ctx: SalesPriceContext): BigDecimal {
+        val result = ctx.NUMBER()?.text ?: ctx.INTEGER().text
+        return result.replace(',', '.').toBigDecimal()
     }
 
     override fun visitTax(ctx: TaxContext): BigDecimal {
-        return ctx.text.replace(',', ',').toBigDecimal()
+        val result = ctx.NUMBER()?.text ?: ctx.INTEGER().text
+        return result.replace(',', '.').toBigDecimal()
     }
 
     override fun visitTotalAmount(ctx: TotalAmountContext): BigDecimal {
-        return ctx.text.replace(',', ',').toBigDecimal()
+        val result = ctx.NUMBER()?.text ?: ctx.INTEGER().text
+        return result.replace(',', '.').toBigDecimal()
     }
 }

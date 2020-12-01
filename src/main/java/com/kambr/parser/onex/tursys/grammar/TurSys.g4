@@ -54,7 +54,7 @@ cabinCode
 ;
 
 seatAssignment
-:  INTEGER? SEPARATOR
+:  WORD? SEPARATOR
 ;
 
 liftStatus
@@ -62,7 +62,7 @@ liftStatus
 ;
 
 boardingSequence
-: INTEGER SEPARATOR
+: INTEGER? SEPARATOR
 ;
 
 pnr
