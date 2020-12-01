@@ -1,9 +1,9 @@
 package com.kambr.parser.onex.tursys
 
-import com.kambr.parser.onex.tursys.dataClasses.BookingStatusCodeEnum
-import com.kambr.parser.onex.tursys.dataClasses.BookingTypeCodeEnum
-import com.kambr.parser.onex.tursys.dataClasses.LiftStatusEnum
-import com.kambr.parser.onex.tursys.dataClasses.PassengerTypeEnum
+import com.kambr.parser.onex.tursys.dataClasses.BookingStatusCode
+import com.kambr.parser.onex.tursys.dataClasses.BookingTypeCode
+import com.kambr.parser.onex.tursys.dataClasses.LiftStatus
+import com.kambr.parser.onex.tursys.dataClasses.PassengerType
 import com.kambr.parser.onex.tursys.dataClasses.Segment
 import com.kambr.parser.onex.tursys.dataClasses.Tursys
 import com.kambr.parser.onex.tursys.generated.TurSysBaseVisitor
@@ -76,8 +76,8 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
         var pnr: String? = null
         var couponIdentificationCode: String? = null
         var fareBasisCode: String? = null
-        var bookingTypeCode: BookingTypeCodeEnum? = null
-        var bookingStatusCode: BookingStatusCodeEnum? = null
+        var bookingTypeCode: BookingTypeCode? = null
+        var bookingStatusCode: BookingStatusCode? = null
         var bookingDate: LocalDate? = null
         var bookingTime: LocalTime? = null
         var ticketingDate: LocalDate? = null
@@ -85,7 +85,7 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
         var cancellationDate: LocalDate? = null
         var agentCode: String? = null
         var salesSource: String? = null
-        var passengerType: PassengerTypeEnum? = null
+        var passengerType: PassengerType? = null
         var currency: String? = null
         var rateOfExchange: BigDecimal? = null
         var spoBasePrice: BigDecimal? = null
@@ -166,7 +166,7 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
         var flightPath: String? = null
         var cabinCode: String? = null
         var seatAssignment: String? = null
-        var liftStatus: LiftStatusEnum? = null
+        var liftStatus: LiftStatus? = null
         var boardingSequence: Int? = null
 
         for (child in ctx.children) {
@@ -233,15 +233,15 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
         return ctx.WORD()?.text
     }
 
-    override fun visitLiftStatus(ctx: LiftStatusContext): LiftStatusEnum? {
+    override fun visitLiftStatus(ctx: LiftStatusContext): LiftStatus? {
         return when (ctx.WORD()?.text) {
-            "CheckedIn" -> LiftStatusEnum.CHECKED_IN
-            "Boarded" -> LiftStatusEnum.BOARDED
-            "NoShow" -> LiftStatusEnum.NO_SHOW
-            "GoShow" -> LiftStatusEnum.GO_SHOW
-            "Offloaded" -> LiftStatusEnum.OFFLOADED
-            "VoluntaryDeniedBoarded" -> LiftStatusEnum.VOLUNTARY_DENIED_BOARDED
-            "DeniedBoarded" -> LiftStatusEnum.DENIED_BOARDED
+            "CheckedIn" -> LiftStatus.CHECKED_IN
+            "Boarded" -> LiftStatus.BOARDED
+            "NoShow" -> LiftStatus.NO_SHOW
+            "GoShow" -> LiftStatus.GO_SHOW
+            "Offloaded" -> LiftStatus.OFFLOADED
+            "VoluntaryDeniedBoarded" -> LiftStatus.VOLUNTARY_DENIED_BOARDED
+            "DeniedBoarded" -> LiftStatus.DENIED_BOARDED
             null -> null
             else -> throw RuntimeException(
                 "LiftStatus should be CheckedIn, Boarded, NoShow, GoShow, Offloaded, " +
@@ -266,26 +266,26 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
         return ctx.WORD().text
     }
 
-    override fun visitBookingTypeCode(ctx: BookingTypeCodeContext): BookingTypeCodeEnum {
+    override fun visitBookingTypeCode(ctx: BookingTypeCodeContext): BookingTypeCode {
         return when (ctx.INTEGER().text.toInt()) {
-            1 -> BookingTypeCodeEnum.ONE_WAY
-            2 -> BookingTypeCodeEnum.ROUND_TRIP
-            3 -> BookingTypeCodeEnum.MULTI_CITY
-            4 -> BookingTypeCodeEnum.OPEN_JAW
+            1 -> BookingTypeCode.ONE_WAY
+            2 -> BookingTypeCode.ROUND_TRIP
+            3 -> BookingTypeCode.MULTI_CITY
+            4 -> BookingTypeCode.OPEN_JAW
             else -> throw RuntimeException(
                 "BookingTypeCode should be 1, 2, 3, or 4, but it is: ${ctx.INTEGER().text}"
             )
         }
     }
 
-    override fun visitBookingStatusCode(ctx: BookingStatusCodeContext): BookingStatusCodeEnum {
+    override fun visitBookingStatusCode(ctx: BookingStatusCodeContext): BookingStatusCode {
         return when (ctx.WORD().text) {
-            "HK" -> BookingStatusCodeEnum.CONFIRMED
-            "WL" -> BookingStatusCodeEnum.WAITLIST
-            "HL" -> BookingStatusCodeEnum.OPTION
-            "GN" -> BookingStatusCodeEnum.GROUP_BOOKING
-            "GL" -> BookingStatusCodeEnum.GROUP_WAITLIST_OPTION
-            "XX" -> BookingStatusCodeEnum.CANCELLED
+            "HK" -> BookingStatusCode.CONFIRMED
+            "WL" -> BookingStatusCode.WAITLIST
+            "HL" -> BookingStatusCode.OPTION
+            "GN" -> BookingStatusCode.GROUP_BOOKING
+            "GL" -> BookingStatusCode.GROUP_WAITLIST_OPTION
+            "XX" -> BookingStatusCode.CANCELLED
             else -> throw RuntimeException(
                 "BookingStatusCode should be HK, WL, HL, GN, GL, or XX, but it is: ${ctx.WORD().text}"
             )
@@ -328,11 +328,11 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
         return ctx.WORD().text
     }
 
-    override fun visitPassengerType(ctx: PassengerTypeContext): PassengerTypeEnum {
+    override fun visitPassengerType(ctx: PassengerTypeContext): PassengerType {
         return when (ctx.WORD().text) {
-            "ADT" -> PassengerTypeEnum.ADULT
-            "CHD" -> PassengerTypeEnum.CHILD
-            "INF" -> PassengerTypeEnum.INFANT
+            "ADT" -> PassengerType.ADULT
+            "CHD" -> PassengerType.CHILD
+            "INF" -> PassengerType.INFANT
             else -> throw RuntimeException(
                 "PassengerType should be ADT, CHD, or INF, but it is: ${ctx.WORD().text}"
             )

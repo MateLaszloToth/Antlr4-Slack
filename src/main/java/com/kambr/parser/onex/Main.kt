@@ -9,20 +9,24 @@ import org.antlr.v4.runtime.CharStreams
 import java.io.File
 import java.io.IOException
 
-fun main(args: Array<String>) {
-    val directory = "" // change to the directory from where you want to parse all files
-    val extension = ".csv"
-    val syncLogger = Logger(GeniusSyncParser::class.java)
-    val spoLogger = Logger(GeniusSpoGlobalParser::class.java)
+fun main() {
+    val directory = "" // change to the directory from where you want to parse all files of specific type
+    val syncFileName = "SYNC_.*_.*\\.txt".toRegex()
+    val spoGlobalFileName = ".*SpoGlobal.*".toRegex()
+    val tursysFileName = "TURSYS.*".toRegex()
+    val syncLowareFileName = "SYNC_.*_.*_.*\\.txt".toRegex()
+
+    // val syncLogger = Logger(GeniusSyncParser::class.java)
+    // val spoLogger = Logger(GeniusSpoGlobalParser::class.java)
     val tursysLogger = Logger(TursysParser::class.java)
 
     var charStream: CharStream? = null
     val result: MutableList<Any> = mutableListOf()
-    // val fileList = File(directory).listFiles {_, name -> name.endsWith(extension) }!!
+    val fileList = File(directory).listFiles { _, name -> name.contains(syncFileName) }!!
 
-    // fileList.forEach { file ->
+    fileList.forEach { file ->
         try {
-            charStream = CharStreams.fromFileName(File("/Users/matetoth/Desktop/Corendon/import/TURSYS_CORENDON_PNR_20201022_T1.csv").absolutePath)
+            charStream = CharStreams.fromFileName(file.absolutePath)
         } catch (e: IOException) {
             // syncLogger.error(e.localizedMessage)
             // spoLogger.error(e.localizedMessage)
@@ -31,7 +35,7 @@ fun main(args: Array<String>) {
         // result.add(GeniusSyncParser.parse(charStream!!))
         // result.add(GeniusSpoGlobalParser.parse(charStream!!))
         result.add(TursysParser.parse(charStream!!))
-    // }
+    }
 
     println("Done")
 }

@@ -1,6 +1,6 @@
 package com.kambr.parser.onex.tursys.dataClasses
 
-enum class LiftStatusEnum {
+enum class LiftStatus {
     CHECKED_IN,
     BOARDED,
     NO_SHOW,

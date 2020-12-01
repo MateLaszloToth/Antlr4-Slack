@@ -2,7 +2,7 @@ package com.kambr.parser.onex.sync
 
 import com.kambr.parser.onex.sync.dataClasses.GeniusFlight
 import com.kambr.parser.onex.sync.dataClasses.SpecialPriceOffer
-import com.kambr.parser.onex.sync.dataClasses.UpdateIdentifierEnum
+import com.kambr.parser.onex.sync.dataClasses.UpdateIdentifier
 import com.kambr.parser.onex.sync.generated.SyncBaseVisitor
 import com.kambr.parser.onex.sync.generated.SyncParser.AirlineCodeContext
 import com.kambr.parser.onex.sync.generated.SyncParser.ArrivalTimeContext
@@ -71,7 +71,7 @@ class MySyncBaseVisitor : SyncBaseVisitor<Any>() {
         var restBooked: Int? = null
         var departureTime: LocalTime? = null
         var arrivalTime: LocalTime? = null
-        var updateIdentifier: UpdateIdentifierEnum? = null
+        var updateIdentifier: UpdateIdentifier? = null
         val specialPriceOffers: MutableList<SpecialPriceOffer> = ArrayList()
 
         for (i in 0 until ctx.childCount) {
@@ -210,15 +210,15 @@ class MySyncBaseVisitor : SyncBaseVisitor<Any>() {
     }
 
     @Throws(RuntimeException::class)
-    override fun visitUpdateIndentifier(ctx: UpdateIndentifierContext): UpdateIdentifierEnum {
+    override fun visitUpdateIndentifier(ctx: UpdateIndentifierContext): UpdateIdentifier {
         val character: Char
         if (ctx.text.isNotEmpty()) {
             character = ctx.text[0]
             return when (character) {
-                'N' -> UpdateIdentifierEnum.NEW_FLIGHT
-                'S' -> UpdateIdentifierEnum.SPO_FIX
-                'U' -> UpdateIdentifierEnum.NIGHTLY_CAPTURE
-                'X' -> UpdateIdentifierEnum.OTHER
+                'N' -> UpdateIdentifier.NEW_FLIGHT
+                'S' -> UpdateIdentifier.SPO_FIX
+                'U' -> UpdateIdentifier.NIGHTLY_CAPTURE
+                'X' -> UpdateIdentifier.OTHER
                 else -> throw RuntimeException(
                     "Update identifier is supposed to be " +
                         "'N' or 'S' or 'U' or 'X', but it was " + character

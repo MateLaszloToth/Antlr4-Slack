@@ -1,6 +1,6 @@
 package com.kambr.parser.onex.tursys.dataClasses
 
-enum class BookingStatusCodeEnum(val value: String) {
+enum class BookingStatusCode(val value: String) {
     CONFIRMED("HK"),
     WAITLIST("WL"),
     OPTION("HL"),
