@@ -51,6 +51,8 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
         val datePattern: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd")
         val timePatternHHmmss: DateTimeFormatter = DateTimeFormatter.ofPattern("HHmmss")
         val timePatternHmmss: DateTimeFormatter = DateTimeFormatter.ofPattern("Hmmss")
+        const val COMMA = ','
+        const val PERIOD = '.'
     }
 
     override fun visitFile(ctx: FileContext): List<Tursys> {
@@ -345,12 +347,12 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
 
     override fun visitRateOfExchange(ctx: RateOfExchangeContext): BigDecimal {
         val result = ctx.NUMBER()?.text ?: ctx.INTEGER().text
-        return result.replace(',', '.').toBigDecimal()
+        return result.replace(COMMA, PERIOD).toBigDecimal()
     }
 
     override fun visitSpoBasePrice(ctx: SpoBasePriceContext): BigDecimal {
         val result = ctx.NUMBER()?.text ?: ctx.INTEGER().text
-        return result.replace(',', '.').toBigDecimal()
+        return result.replace(COMMA, PERIOD).toBigDecimal()
     }
 
     override fun visitPromoIdentifier(ctx: PromoIdentifierContext): Boolean {
@@ -359,12 +361,12 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
 
     override fun visitDiscount(ctx: DiscountContext): BigDecimal {
         val result = ctx.NUMBER()?.text ?: ctx.INTEGER().text
-        return result.replace(',', '.').toBigDecimal()
+        return result.replace(COMMA, PERIOD).toBigDecimal()
     }
 
     override fun visitDynamicPriceAdjustment(ctx: DynamicPriceAdjustmentContext): BigDecimal {
         val result = ctx.NUMBER()?.text ?: ctx.INTEGER().text
-        return result.replace(',', '.').toBigDecimal()
+        return result.replace(COMMA, PERIOD).toBigDecimal()
     }
 
     override fun visitPriceAdjustmentApplied(ctx: PriceAdjustmentAppliedContext): Boolean {
@@ -373,16 +375,16 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
 
     override fun visitSalesPrice(ctx: SalesPriceContext): BigDecimal {
         val result = ctx.NUMBER()?.text ?: ctx.INTEGER().text
-        return result.replace(',', '.').toBigDecimal()
+        return result.replace(COMMA, PERIOD).toBigDecimal()
     }
 
     override fun visitTax(ctx: TaxContext): BigDecimal {
         val result = ctx.NUMBER()?.text ?: ctx.INTEGER().text
-        return result.replace(',', '.').toBigDecimal()
+        return result.replace(COMMA, PERIOD).toBigDecimal()
     }
 
     override fun visitTotalAmount(ctx: TotalAmountContext): BigDecimal {
         val result = ctx.NUMBER()?.text ?: ctx.INTEGER().text
-        return result.replace(',', '.').toBigDecimal()
+        return result.replace(COMMA, PERIOD).toBigDecimal()
     }
 }
