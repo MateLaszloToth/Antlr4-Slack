@@ -1,6 +1,6 @@
 package com.kambr.parser.onex.syncLowFare
 
-import com.kambr.parser.onex.syncLowFare.dataClasses.GeniusLowFare
+import com.kambr.parser.onex.syncLowFare.dataClasses.LowFareSales
 import com.kambr.parser.onex.syncLowFare.generated.SyncLowFareBaseVisitor
 import com.kambr.parser.onex.syncLowFare.generated.SyncLowFareParser
 import com.kambr.parser.onex.syncLowFare.generated.SyncLowFareParser.AdditionalAmountContext
@@ -22,13 +22,13 @@ class MySyncLowFareBaseVisitor : SyncLowFareBaseVisitor<Any>() {
         val timePattern: DateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm")
     }
 
-    override fun visitFile(ctx: SyncLowFareParser.FileContext): List<GeniusLowFare> {
-        val lowFareList: MutableList<GeniusLowFare> = mutableListOf()
+    override fun visitFile(ctx: SyncLowFareParser.FileContext): List<LowFareSales> {
+        val lowFareSalesList: MutableList<LowFareSales> = mutableListOf()
         for (child in ctx.children) {
             when (child) {
                 is SyncLowFareParser.HeaderContext -> {
                 }
-                is SyncLowFareParser.RowContext -> lowFareList.add(visitRow(child))
+                is SyncLowFareParser.RowContext -> lowFareSalesList.add(visitRow(child))
                 !is TerminalNode -> {
                     throw RuntimeException(
                         "Unexpected children of FileContext. Content is: ${child.text}\nParse tree: ${child.toStringTree()}"
@@ -37,10 +37,10 @@ class MySyncLowFareBaseVisitor : SyncLowFareBaseVisitor<Any>() {
             }
         }
 
-        return lowFareList
+        return lowFareSalesList
     }
 
-    override fun visitRow(ctx: SyncLowFareParser.RowContext): GeniusLowFare {
+    override fun visitRow(ctx: SyncLowFareParser.RowContext): LowFareSales {
         var departureDate: LocalDate? = null
         var origin: String? = null
         var destination: String? = null
@@ -85,7 +85,7 @@ class MySyncLowFareBaseVisitor : SyncLowFareBaseVisitor<Any>() {
                 }
             }
         }
-        return GeniusLowFare(
+        return LowFareSales(
             departureDate = departureDate!!,
             origin = origin!!,
             destination = destination!!,

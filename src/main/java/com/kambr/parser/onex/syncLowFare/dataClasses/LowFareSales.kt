@@ -4,7 +4,7 @@ import java.math.BigDecimal
 import java.time.LocalDate
 import java.time.LocalTime
 
-data class GeniusLowFare(
+data class LowFareSales(
     val departureDate: LocalDate,
     val origin: String,
     val destination: String,
