@@ -16,7 +16,7 @@ fun main() {
     val syncFileName = "SYNC_.*_.*\\.txt".toRegex()
     val spoGlobalFileName = ".*SpoGlobal.*".toRegex()
     val tursysFileName = "TURSYS.*".toRegex()
-    val syncLowareFileName = "SYNC_.*_.*_.*\\.txt".toRegex()
+    val syncLowareFileName = "SYNC_.*_.*_.*_.*\\.txt".toRegex()
 
     // val syncLogger = Logger(GeniusSyncParser::class.java)
     // val spoLogger = Logger(GeniusSpoGlobalParser::class.java)
