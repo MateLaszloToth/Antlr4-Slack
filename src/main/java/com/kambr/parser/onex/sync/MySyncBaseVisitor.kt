@@ -2,7 +2,7 @@ package com.kambr.parser.onex.sync
 
 import com.kambr.parser.onex.sync.dataClasses.GeniusFlight
 import com.kambr.parser.onex.sync.dataClasses.SpecialPriceOffer
-import com.kambr.parser.onex.sync.dataClasses.UpdateIdentifierEnum
+import com.kambr.parser.onex.sync.dataClasses.UpdateIdentifier
 import com.kambr.parser.onex.sync.generated.SyncBaseVisitor
 import com.kambr.parser.onex.sync.generated.SyncParser.AirlineCodeContext
 import com.kambr.parser.onex.sync.generated.SyncParser.ArrivalTimeContext
@@ -71,7 +71,7 @@ class MySyncBaseVisitor : SyncBaseVisitor<Any>() {
         var restBooked: Int? = null
         var departureTime: LocalTime? = null
         var arrivalTime: LocalTime? = null
-        var updateIdentifier: UpdateIdentifierEnum? = null
+        var updateIdentifier: UpdateIdentifier? = null
         val specialPriceOffers: MutableList<SpecialPriceOffer> = ArrayList()
 
         for (i in 0 until ctx.childCount) {
@@ -103,7 +103,7 @@ class MySyncBaseVisitor : SyncBaseVisitor<Any>() {
                 is SpecialPriceOffersContext -> specialPriceOffers.add(visitSpecialPriceOffers(child))
                 !is TerminalNode -> {
                     throw RuntimeException(
-                        "Unexpected children of GeniusFlight. Content is: ${child.text}\nParse tree: ${child.toStringTree()}"
+                        "Unexpected children of GeniusFlightContext. Content is: ${child.text}\nParse tree: ${child.toStringTree()}"
                     )
                 }
             }
@@ -210,14 +210,20 @@ class MySyncBaseVisitor : SyncBaseVisitor<Any>() {
     }
 
     @Throws(RuntimeException::class)
-    override fun visitUpdateIndentifier(ctx: UpdateIndentifierContext): UpdateIdentifierEnum {
+    override fun visitUpdateIndentifier(ctx: UpdateIndentifierContext): UpdateIdentifier {
         val character: Char
         if (ctx.text.isNotEmpty()) {
             character = ctx.text[0]
-            return if (character == 'N') UpdateIdentifierEnum.NEW_FLIGHT else if (character == 'S') UpdateIdentifierEnum.SPO_FIX else if (character == 'U') UpdateIdentifierEnum.NIGHTLY_CAPTURE else if (character == 'X') UpdateIdentifierEnum.OTHER else throw RuntimeException(
-                "Update identifier is supposed to be " +
-                    "'N' or 'S' or 'U' or 'X', but it was " + character
-            )
+            return when (character) {
+                'N' -> UpdateIdentifier.NEW_FLIGHT
+                'S' -> UpdateIdentifier.SPO_FIX
+                'U' -> UpdateIdentifier.NIGHTLY_CAPTURE
+                'X' -> UpdateIdentifier.OTHER
+                else -> throw RuntimeException(
+                    "Update identifier is supposed to be " +
+                        "'N' or 'S' or 'U' or 'X', but it was " + character
+                )
+            }
         }
         throw RuntimeException("Update identifier is supposed to be 'N' or 'S' or 'U' or 'X', but it is missing.")
     }

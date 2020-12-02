@@ -28,7 +28,7 @@ import java.time.format.DateTimeFormatter
 
 class MySpoBaseVisitor : SpoBaseVisitor<Any>() {
 
-    companion object{
+    companion object {
         val datePattern: DateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
         val timePattern: DateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm")
     }
@@ -97,7 +97,7 @@ class MySpoBaseVisitor : SpoBaseVisitor<Any>() {
                 is AgencyNameContext -> agencyName = visitAgencyName(child)
                 !is TerminalNode -> {
                     throw RuntimeException(
-                        "Unexpected children of row. Content is: ${child.text}\nParse tree: ${child.toStringTree()}"
+                        "Unexpected children of RowContext. Content is: ${child.text}\nParse tree: ${child.toStringTree()}"
                     )
                 }
             }
@@ -161,11 +161,11 @@ class MySpoBaseVisitor : SpoBaseVisitor<Any>() {
     }
 
     override fun visitTaxAmount(ctx: TaxAmountContext): BigDecimal {
-        return ctx.text.replace(',','.').toBigDecimal()
+        return ctx.text.replace(',', '.').toBigDecimal()
     }
 
     override fun visitSurcharge(ctx: SurchargeContext): BigDecimal {
-        return ctx.text.replace(',','.').toBigDecimal()
+        return ctx.text.replace(',', '.').toBigDecimal()
     }
 
     override fun visitFixAllocation(ctx: FixAllocationContext): Int {
@@ -189,7 +189,7 @@ class MySpoBaseVisitor : SpoBaseVisitor<Any>() {
     }
 
     override fun visitContractPrice(ctx: ContractPriceContext): BigDecimal {
-        return ctx.text.replace(',','.').toBigDecimal()
+        return ctx.text.replace(',', '.').toBigDecimal()
     }
 
     override fun visitFromAndPrice(ctx: SpoParser.FromAndPriceContext): FromAndPrice {
@@ -197,7 +197,7 @@ class MySpoBaseVisitor : SpoBaseVisitor<Any>() {
         var price: BigDecimal? = null
 
         for (child in ctx.children) {
-            when(child) {
+            when (child) {
                 is FromContext -> from = visitFrom(child)
                 is SpoParser.PriceContext -> price = visitPrice(child)
                 else -> {
@@ -215,7 +215,7 @@ class MySpoBaseVisitor : SpoBaseVisitor<Any>() {
     }
 
     override fun visitPrice(ctx: SpoParser.PriceContext): BigDecimal {
-        return ctx.text.replace(',','.').toBigDecimal()
+        return ctx.text.replace(',', '.').toBigDecimal()
     }
 
     override fun visitFlightID(ctx: SpoParser.FlightIDContext): Long {
