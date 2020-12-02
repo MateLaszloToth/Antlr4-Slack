@@ -14,7 +14,7 @@ data class LowFareSales(
     val departureTime: LocalTime,
     val arrivalTime: LocalTime,
     val flightID: Long,
-    val pnrIdentifier: String,
+    val passengerNameRecordID: String,
     val agencyID: Long,
     val agencyName: String,
     val seatsSold: Int,

@@ -95,7 +95,7 @@ class MySyncLowFareBaseVisitor : SyncLowFareBaseVisitor<Any>() {
             departureTime = departureTime!!,
             arrivalTime = arrivalTime!!,
             flightID = flightID!!,
-            pnrIdentifier = pnrIdentifier!!,
+            passengerNameRecordID = pnrIdentifier!!,
             agencyID = agencyID!!,
             agencyName = agencyName!!,
             seatsSold = seatsSold!!,
