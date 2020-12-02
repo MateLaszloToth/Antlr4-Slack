@@ -7,7 +7,7 @@ import org.antlr.v4.runtime.CharStreams
 import org.junit.jupiter.api.Test
 import java.io.IOException
 
-class TestTurSysParser {
+class TurSysParserTest {
 
     companion object {
         const val FILE_PATH = "src/test/resources/tursys/test-file.csv"

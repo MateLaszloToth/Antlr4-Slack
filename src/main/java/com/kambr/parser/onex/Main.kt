@@ -3,6 +3,8 @@ package com.kambr.parser.onex
 import com.kambr.kambrlogger.Logger
 import com.kambr.parser.onex.spo.GeniusSpoGlobalParser
 import com.kambr.parser.onex.sync.GeniusSyncParser
+import com.kambr.parser.onex.syncLowFare.GeniusSyncLowFareParser
+import com.kambr.parser.onex.syncLowFare.generated.SyncLowFareParser
 import com.kambr.parser.onex.tursys.TursysParser
 import org.antlr.v4.runtime.CharStream
 import org.antlr.v4.runtime.CharStreams
@@ -18,7 +20,8 @@ fun main() {
 
     // val syncLogger = Logger(GeniusSyncParser::class.java)
     // val spoLogger = Logger(GeniusSpoGlobalParser::class.java)
-    val tursysLogger = Logger(TursysParser::class.java)
+    // val tursysLogger = Logger(TursysParser::class.java)
+    val syncLowFareLogger = Logger(SyncLowFareParser::class.java)
 
     var charStream: CharStream? = null
     val result: MutableList<Any> = mutableListOf()
@@ -30,11 +33,13 @@ fun main() {
         } catch (e: IOException) {
             // syncLogger.error(e.localizedMessage)
             // spoLogger.error(e.localizedMessage)
-            tursysLogger.error(e.localizedMessage)
+            // tursysLogger.error(e.localizedMessage)
+            syncLowFareLogger.error(e.localizedMessage)
         }
         // result.add(GeniusSyncParser.parse(charStream!!))
         // result.add(GeniusSpoGlobalParser.parse(charStream!!))
-        result.add(TursysParser.parse(charStream!!))
+        // result.add(TursysParser.parse(charStream!!))
+        result.add(GeniusSyncLowFareParser.parse(charStream!!))
     }
 
     println("Done")

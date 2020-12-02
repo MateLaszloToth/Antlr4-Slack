@@ -8,7 +8,7 @@ import org.antlr.v4.runtime.CharStreams
 import org.junit.jupiter.api.Test
 import java.io.IOException
 
-class TestGeniusSpoGlobalParser {
+class GeniusSpoGlobalParserTest {
 
     companion object {
         const val FILE_PATH = "src/test/resources/spo/test-file.csv"
