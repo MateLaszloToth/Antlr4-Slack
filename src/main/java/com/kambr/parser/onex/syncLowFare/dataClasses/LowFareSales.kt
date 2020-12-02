@@ -21,5 +21,5 @@ data class LowFareSales(
     val flightPrice: BigDecimal,
     val tax: BigDecimal,
     val additionalAmount: BigDecimal,
-    val sum: BigDecimal
+    val totalAmount: BigDecimal
 )

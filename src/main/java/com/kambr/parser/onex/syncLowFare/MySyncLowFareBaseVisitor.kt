@@ -102,7 +102,7 @@ class MySyncLowFareBaseVisitor : SyncLowFareBaseVisitor<Any>() {
             flightPrice = flightPrice!!,
             tax = tax!!,
             additionalAmount = additionalAmount!!,
-            sum = sum!!
+            totalAmount = sum!!
         )
     }
 

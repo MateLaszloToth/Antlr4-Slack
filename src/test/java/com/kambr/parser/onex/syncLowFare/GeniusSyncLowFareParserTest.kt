@@ -40,7 +40,7 @@ class GeniusSyncLowFareParserTest {
         Assert.assrt(360.01.toBigDecimal() == geniusLowFares[0].flightPrice)
         Assert.assrt(0.10.toBigDecimal().setScale(2) == geniusLowFares[0].tax)
         Assert.assrt(3.00.toBigDecimal().setScale(2) == geniusLowFares[0].additionalAmount)
-        Assert.assrt(363.00.toBigDecimal().setScale(2) == geniusLowFares[0].sum)
+        Assert.assrt(363.00.toBigDecimal().setScale(2) == geniusLowFares[0].totalAmount)
 
         // Record 2
         Assert.assrt("2020-10-20" == geniusLowFares[1].departureDate.toString())
@@ -59,6 +59,6 @@ class GeniusSyncLowFareParserTest {
         Assert.assrt(760.00.toBigDecimal().setScale(2) == geniusLowFares[1].flightPrice)
         Assert.assrt(0.toBigDecimal() == geniusLowFares[1].tax)
         Assert.assrt(7.00.toBigDecimal().setScale(2) == geniusLowFares[1].additionalAmount)
-        Assert.assrt(767.00.toBigDecimal().setScale(2) == geniusLowFares[1].sum)
+        Assert.assrt(767.00.toBigDecimal().setScale(2) == geniusLowFares[1].totalAmount)
     }
 }
