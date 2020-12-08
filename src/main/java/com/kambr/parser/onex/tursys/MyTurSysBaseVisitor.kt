@@ -56,12 +56,12 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
     }
 
     override fun visitFile(ctx: FileContext): List<Tursys> {
-        val tursys: MutableList<Tursys> = mutableListOf()
+        val tursysList: MutableList<Tursys> = mutableListOf()
         for (child in ctx.children) {
             when (child) {
                 is TurSysParser.HeaderContext -> {
                 }
-                is TurSysParser.RowContext -> tursys.add(visitRow(child))
+                is TurSysParser.RowContext -> tursysList.add(visitRow(child))
                 !is TerminalNode -> {
                     throw RuntimeException(
                         "Unexpected children of FileContext. Content is: ${child.text}\nParse tree: ${child.toStringTree()}"
@@ -70,7 +70,7 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
             }
         }
 
-        return tursys
+        return tursysList
     }
 
     override fun visitRow(ctx: TurSysParser.RowContext): Tursys {
