@@ -5,8 +5,11 @@ package com.kambr.parser.onex.tursys.generated;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.misc.*;
 import org.antlr.v4.runtime.tree.*;
 import java.util.List;
+import java.util.Iterator;
+import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class TurSysParser extends Parser {
@@ -848,7 +851,7 @@ public class TurSysParser extends Parser {
 
 	public static class LiftStatusContext extends ParserRuleContext {
 		public TerminalNode SEPARATOR() { return getToken(TurSysParser.SEPARATOR, 0); }
-		public TerminalNode WORD() { return getToken(TurSysParser.WORD, 0); }
+		public TerminalNode INTEGER() { return getToken(TurSysParser.INTEGER, 0); }
 		public LiftStatusContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -870,10 +873,10 @@ public class TurSysParser extends Parser {
 			setState(173);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==WORD) {
+			if (_la==INTEGER) {
 				{
 				setState(172);
-				match(WORD);
+				match(INTEGER);
 				}
 			}
 
@@ -1915,7 +1918,7 @@ public class TurSysParser extends Parser {
 		"\u00a3\7\7\2\2\u00a3\25\3\2\2\2\u00a4\u00a6\7\5\2\2\u00a5\u00a4\3\2\2"+
 		"\2\u00a5\u00a6\3\2\2\2\u00a6\u00a7\3\2\2\2\u00a7\u00a8\7\7\2\2\u00a8\27"+
 		"\3\2\2\2\u00a9\u00ab\7\5\2\2\u00aa\u00a9\3\2\2\2\u00aa\u00ab\3\2\2\2\u00ab"+
-		"\u00ac\3\2\2\2\u00ac\u00ad\7\7\2\2\u00ad\31\3\2\2\2\u00ae\u00b0\7\5\2"+
+		"\u00ac\3\2\2\2\u00ac\u00ad\7\7\2\2\u00ad\31\3\2\2\2\u00ae\u00b0\7\3\2"+
 		"\2\u00af\u00ae\3\2\2\2\u00af\u00b0\3\2\2\2\u00b0\u00b1\3\2\2\2\u00b1\u00b2"+
 		"\7\7\2\2\u00b2\33\3\2\2\2\u00b3\u00b5\7\3\2\2\u00b4\u00b3\3\2\2\2\u00b4"+
 		"\u00b5\3\2\2\2\u00b5\u00b6\3\2\2\2\u00b6\u00b7\7\7\2\2\u00b7\35\3\2\2"+

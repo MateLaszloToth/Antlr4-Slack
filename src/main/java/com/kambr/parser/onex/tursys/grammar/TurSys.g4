@@ -58,7 +58,7 @@ seatAssignment
 ;
 
 liftStatus
-: WORD? SEPARATOR
+: INTEGER? SEPARATOR
 ;
 
 boardingSequence
@@ -162,7 +162,7 @@ INTEGER
 ;
 
 NUMBER
-: '-'? [0-9]+ (',' [0-9]+)?
+: '-'? [0-9]+ '.' [0-9]+
 ;
 
 WORD

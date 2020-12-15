@@ -51,8 +51,7 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
         val datePattern: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd")
         val timePatternHHmmss: DateTimeFormatter = DateTimeFormatter.ofPattern("HHmmss")
         val timePatternHmmss: DateTimeFormatter = DateTimeFormatter.ofPattern("Hmmss")
-        const val COMMA = ','
-        const val PERIOD = '.'
+        val timePatternHHmm: DateTimeFormatter = DateTimeFormatter.ofPattern("HHmm")
     }
 
     override fun visitFile(ctx: FileContext): List<Tursys> {
@@ -228,7 +227,7 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
     }
 
     override fun visitCabinCode(ctx: CabinCodeContext): String {
-        return ctx.WORD().text
+        return ctx.WORD()?.text ?: "Y"
     }
 
     override fun visitSeatAssignment(ctx: SeatAssignmentContext): String? {
@@ -236,18 +235,19 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
     }
 
     override fun visitLiftStatus(ctx: LiftStatusContext): LiftStatus? {
-        return when (ctx.WORD()?.text) {
-            "CheckedIn" -> LiftStatus.CHECKED_IN
-            "Boarded" -> LiftStatus.BOARDED
-            "NoShow" -> LiftStatus.NO_SHOW
-            "GoShow" -> LiftStatus.GO_SHOW
-            "Offloaded" -> LiftStatus.OFFLOADED
-            "VoluntaryDeniedBoarded" -> LiftStatus.VOLUNTARY_DENIED_BOARDED
-            "DeniedBoarded" -> LiftStatus.DENIED_BOARDED
+        return when (ctx.INTEGER()?.text?.toInt()) {
+            0 -> LiftStatus.DEFAULT
+            1 -> LiftStatus.CHECKED_IN
+            2 -> LiftStatus.BOARDED
+            3 -> LiftStatus.NO_SHOW
+            4 -> LiftStatus.GO_SHOW
+            5 -> LiftStatus.OFFLOADED
+            6 -> LiftStatus.VOLUNTARY_DENIED_BOARDED
+            7 -> LiftStatus.DENIED_BOARDED
             null -> null
             else -> throw RuntimeException(
-                "LiftStatus should be CheckedIn, Boarded, NoShow, GoShow, Offloaded, " +
-                    "VoluntaryDeniedBoarded, or DeniedBoarded, but it is: ${ctx.WORD().text}"
+                "LiftStatus should be 0 -> Default, 1 -> CheckedIn, 2 -> Boarded, 3 -> NoShow, 4 -> GoShow, 5 -> Offloaded, " +
+                    "6 -> VoluntaryDeniedBoarded, or 7 -> DeniedBoarded, but it is: ${ctx.INTEGER().text}"
             )
         }
     }
@@ -299,10 +299,10 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
     }
 
     override fun visitBookingTime(ctx: BookingTimeContext): LocalTime {
-        return if (ctx.INTEGER().text.length == 5) { // 9:35:10 AM -> 93510  10:35:10 AM -> 103510
-            LocalTime.parse(ctx.INTEGER().text, timePatternHmmss)
-        } else {
-            LocalTime.parse(ctx.INTEGER().text, timePatternHHmmss)
+        return when (ctx.INTEGER().text.length) { // 9:35:10 AM -> 93510  10:35:10 AM -> 103510
+            5 -> LocalTime.parse(ctx.INTEGER().text, timePatternHmmss)
+            6 -> LocalTime.parse(ctx.INTEGER().text, timePatternHHmmss)
+            else -> LocalTime.parse(ctx.INTEGER().text, timePatternHHmm)
         }
     }
 
@@ -347,12 +347,12 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
 
     override fun visitRateOfExchange(ctx: RateOfExchangeContext): BigDecimal {
         val result = ctx.NUMBER()?.text ?: ctx.INTEGER().text
-        return result.replace(COMMA, PERIOD).toBigDecimal()
+        return result.toBigDecimal()
     }
 
     override fun visitSpoBasePrice(ctx: SpoBasePriceContext): BigDecimal {
         val result = ctx.NUMBER()?.text ?: ctx.INTEGER().text
-        return result.replace(COMMA, PERIOD).toBigDecimal()
+        return result.toBigDecimal()
     }
 
     override fun visitPromoIdentifier(ctx: PromoIdentifierContext): Boolean {
@@ -361,12 +361,12 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
 
     override fun visitDiscount(ctx: DiscountContext): BigDecimal {
         val result = ctx.NUMBER()?.text ?: ctx.INTEGER().text
-        return result.replace(COMMA, PERIOD).toBigDecimal()
+        return result.toBigDecimal()
     }
 
     override fun visitDynamicPriceAdjustment(ctx: DynamicPriceAdjustmentContext): BigDecimal {
         val result = ctx.NUMBER()?.text ?: ctx.INTEGER().text
-        return result.replace(COMMA, PERIOD).toBigDecimal()
+        return result.toBigDecimal()
     }
 
     override fun visitPriceAdjustmentApplied(ctx: PriceAdjustmentAppliedContext): Boolean {
@@ -375,16 +375,16 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
 
     override fun visitSalesPrice(ctx: SalesPriceContext): BigDecimal {
         val result = ctx.NUMBER()?.text ?: ctx.INTEGER().text
-        return result.replace(COMMA, PERIOD).toBigDecimal()
+        return result.toBigDecimal()
     }
 
     override fun visitTax(ctx: TaxContext): BigDecimal {
         val result = ctx.NUMBER()?.text ?: ctx.INTEGER().text
-        return result.replace(COMMA, PERIOD).toBigDecimal()
+        return result.toBigDecimal()
     }
 
     override fun visitTotalAmount(ctx: TotalAmountContext): BigDecimal {
         val result = ctx.NUMBER()?.text ?: ctx.INTEGER().text
-        return result.replace(COMMA, PERIOD).toBigDecimal()
+        return result.toBigDecimal()
     }
 }
