@@ -27,7 +27,7 @@ import com.kambr.parser.onex.tursys.generated.TurSysParser.LiftStatusContext
 import com.kambr.parser.onex.tursys.generated.TurSysParser.PassengerTypeContext
 import com.kambr.parser.onex.tursys.generated.TurSysParser.PnrContext
 import com.kambr.parser.onex.tursys.generated.TurSysParser.PriceAdjustmentAppliedContext
-import com.kambr.parser.onex.tursys.generated.TurSysParser.PromoIdentifierContext
+// import com.kambr.parser.onex.tursys.generated.TurSysParser.PromoIdentifierContext
 import com.kambr.parser.onex.tursys.generated.TurSysParser.RateOfExchangeContext
 import com.kambr.parser.onex.tursys.generated.TurSysParser.SalesPriceContext
 import com.kambr.parser.onex.tursys.generated.TurSysParser.SalesSourceContext
@@ -90,7 +90,6 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
         var currency: String? = null
         var rateOfExchange: BigDecimal? = null
         var spoBasePrice: BigDecimal? = null
-        var promoIdentifier: Boolean? = null
         var discount: BigDecimal? = null
         var dynamicPriceAdjustment: BigDecimal? = null
         var priceAdjustmentApplied: Boolean? = null
@@ -117,7 +116,6 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
                 is CurrencyContext -> currency = visitCurrency(child)
                 is RateOfExchangeContext -> rateOfExchange = visitRateOfExchange(child)
                 is SpoBasePriceContext -> spoBasePrice = visitSpoBasePrice(child)
-                is PromoIdentifierContext -> promoIdentifier = visitPromoIdentifier(child)
                 is DiscountContext -> discount = visitDiscount(child)
                 is DynamicPriceAdjustmentContext -> dynamicPriceAdjustment = visitDynamicPriceAdjustment(child)
                 is PriceAdjustmentAppliedContext -> priceAdjustmentApplied = visitPriceAdjustmentApplied(child)
@@ -139,8 +137,8 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
             bookingStatusCode = bookingStatusCode!!,
             bookingDate = bookingDate!!,
             bookingTime = bookingTime!!,
-            ticketingDate = ticketingDate!!,
-            ticketingTime = ticketingTime!!,
+            ticketingDate = ticketingDate,
+            ticketingTime = ticketingTime,
             cancellationDate = cancellationDate,
             agentCode = agentCode!!,
             salesSource = salesSource!!,
@@ -148,7 +146,6 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
             currency = currency!!,
             rateOfExchange = rateOfExchange!!,
             spoBasePrice = spoBasePrice!!,
-            promoIdentifier = promoIdentifier!!,
             discount = discount!!,
             dynamicPriceAdjustment = dynamicPriceAdjustment!!,
             priceAdjustmentApplied = priceAdjustmentApplied!!,
@@ -306,15 +303,16 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
         }
     }
 
-    override fun visitTicketingDate(ctx: TicketingDateContext): LocalDate {
-        return LocalDate.parse(ctx.INTEGER().text, datePattern)
+    override fun visitTicketingDate(ctx: TicketingDateContext): LocalDate? {
+        return if (nonNull(ctx.INTEGER())) LocalDate.parse(ctx.INTEGER().text, datePattern) else null
     }
 
-    override fun visitTicketingTime(ctx: TicketingTimeContext): LocalTime {
-        return if (ctx.INTEGER().text.length == 5) { // 9:35:10 AM -> 93510  10:35:10 AM -> 103510
-            LocalTime.parse(ctx.INTEGER().text, timePatternHmmss)
-        } else {
-            LocalTime.parse(ctx.INTEGER().text, timePatternHHmmss)
+    override fun visitTicketingTime(ctx: TicketingTimeContext): LocalTime? {
+        return when (ctx.INTEGER()?.text?.length) {
+            6 -> LocalTime.parse(ctx.INTEGER().text, timePatternHHmmss) // 10:35:10 AM -> 103510
+            5 -> LocalTime.parse(ctx.INTEGER().text, timePatternHmmss) // 9:35:10 AM -> 93510
+            null -> null
+            else -> throw RuntimeException("Time format is ambiguous, can't be parsed until file is fixed.")
         }
     }
 
@@ -355,9 +353,9 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
         return result.toBigDecimal()
     }
 
-    override fun visitPromoIdentifier(ctx: PromoIdentifierContext): Boolean {
-        return ctx.INTEGER().text == "1"
-    }
+    // override fun visitPromoIdentifier(ctx: PromoIdentifierContext): Boolean {
+    //     return ctx.INTEGER().text == "1"
+    // }
 
     override fun visitDiscount(ctx: DiscountContext): BigDecimal {
         val result = ctx.NUMBER()?.text ?: ctx.INTEGER().text
