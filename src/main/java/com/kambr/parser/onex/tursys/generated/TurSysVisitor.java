@@ -193,12 +193,6 @@ public interface TurSysVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSpoBasePrice(TurSysParser.SpoBasePriceContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link TurSysParser#promoIdentifier}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPromoIdentifier(TurSysParser.PromoIdentifierContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link TurSysParser#discount}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

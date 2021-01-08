@@ -16,7 +16,7 @@ row
 : segment+ pnr couponIdentificationCode fareBasisCode bookingTypeCode
 bookingStatusCode bookingDate bookingTime ticketingDate ticketingTime
 cancellationDate agentCode salesSource passengerType currency rateOfExchange
-spoBasePrice promoIdentifier discount dynamicPriceAdjustment priceAdjustmentApplied
+spoBasePrice discount dynamicPriceAdjustment priceAdjustmentApplied
 salesPrice tax totalAmount NEW_LINE?
 ;
 
@@ -58,7 +58,7 @@ seatAssignment
 ;
 
 liftStatus
-: WORD? SEPARATOR
+: INTEGER? SEPARATOR
 ;
 
 boardingSequence
@@ -94,11 +94,11 @@ bookingTime
 ;
 
 ticketingDate
-: INTEGER SEPARATOR
+: INTEGER? SEPARATOR
 ;
 
 ticketingTime
-: INTEGER SEPARATOR
+: INTEGER? SEPARATOR
 ;
 
 cancellationDate
@@ -127,10 +127,6 @@ rateOfExchange
 
 spoBasePrice
 : (NUMBER | INTEGER) SEPARATOR
-;
-
-promoIdentifier
-: INTEGER SEPARATOR
 ;
 
 discount
@@ -162,7 +158,7 @@ INTEGER
 ;
 
 NUMBER
-: '-'? [0-9]+ (',' [0-9]+)?
+: '-'? [0-9]+ '.' [0-9]+
 ;
 
 WORD

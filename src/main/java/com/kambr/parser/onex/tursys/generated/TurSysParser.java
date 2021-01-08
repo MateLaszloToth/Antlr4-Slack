@@ -5,8 +5,11 @@ package com.kambr.parser.onex.tursys.generated;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.misc.*;
 import org.antlr.v4.runtime.tree.*;
 import java.util.List;
+import java.util.Iterator;
+import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class TurSysParser extends Parser {
@@ -26,9 +29,9 @@ public class TurSysParser extends Parser {
 		RULE_bookingDate = 19, RULE_bookingTime = 20, RULE_ticketingDate = 21, 
 		RULE_ticketingTime = 22, RULE_cancellationDate = 23, RULE_agentCode = 24, 
 		RULE_salesSource = 25, RULE_passengerType = 26, RULE_currency = 27, RULE_rateOfExchange = 28, 
-		RULE_spoBasePrice = 29, RULE_promoIdentifier = 30, RULE_discount = 31, 
-		RULE_dynamicPriceAdjustment = 32, RULE_priceAdjustmentApplied = 33, RULE_salesPrice = 34, 
-		RULE_tax = 35, RULE_totalAmount = 36;
+		RULE_spoBasePrice = 29, RULE_discount = 30, RULE_dynamicPriceAdjustment = 31, 
+		RULE_priceAdjustmentApplied = 32, RULE_salesPrice = 33, RULE_tax = 34, 
+		RULE_totalAmount = 35;
 	private static String[] makeRuleNames() {
 		return new String[] {
 			"file", "header", "row", "segment", "departureDate", "carrierCode", "flightNumber", 
@@ -37,8 +40,8 @@ public class TurSysParser extends Parser {
 			"fareBasisCode", "bookingTypeCode", "bookingStatusCode", "bookingDate", 
 			"bookingTime", "ticketingDate", "ticketingTime", "cancellationDate", 
 			"agentCode", "salesSource", "passengerType", "currency", "rateOfExchange", 
-			"spoBasePrice", "promoIdentifier", "discount", "dynamicPriceAdjustment", 
-			"priceAdjustmentApplied", "salesPrice", "tax", "totalAmount"
+			"spoBasePrice", "discount", "dynamicPriceAdjustment", "priceAdjustmentApplied", 
+			"salesPrice", "tax", "totalAmount"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -134,23 +137,23 @@ public class TurSysParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(74);
+			setState(72);
 			header();
-			setState(76); 
+			setState(74); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(75);
+				setState(73);
 				row();
 				}
 				}
-				setState(78); 
+				setState(76); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( _la==INTEGER || _la==SEPARATOR );
-			setState(80);
+			setState(78);
 			match(EOF);
 			}
 		}
@@ -193,27 +196,27 @@ public class TurSysParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(86);
+			setState(84);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					setState(82);
+					setState(80);
 					match(WORD);
-					setState(83);
+					setState(81);
 					match(SEPARATOR);
 					}
 					} 
 				}
-				setState(88);
+				setState(86);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
 			}
-			setState(89);
+			setState(87);
 			match(WORD);
-			setState(90);
+			setState(88);
 			match(NEW_LINE);
 			}
 		}
@@ -277,9 +280,6 @@ public class TurSysParser extends Parser {
 		public SpoBasePriceContext spoBasePrice() {
 			return getRuleContext(SpoBasePriceContext.class,0);
 		}
-		public PromoIdentifierContext promoIdentifier() {
-			return getRuleContext(PromoIdentifierContext.class,0);
-		}
 		public DiscountContext discount() {
 			return getRuleContext(DiscountContext.class,0);
 		}
@@ -323,72 +323,70 @@ public class TurSysParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(93); 
+			setState(91); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(92);
+				setState(90);
 				segment();
 				}
 				}
-				setState(95); 
+				setState(93); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( _la==INTEGER || _la==SEPARATOR );
-			setState(97);
+			setState(95);
 			pnr();
-			setState(98);
+			setState(96);
 			couponIdentificationCode();
-			setState(99);
+			setState(97);
 			fareBasisCode();
-			setState(100);
+			setState(98);
 			bookingTypeCode();
-			setState(101);
+			setState(99);
 			bookingStatusCode();
-			setState(102);
+			setState(100);
 			bookingDate();
-			setState(103);
+			setState(101);
 			bookingTime();
-			setState(104);
+			setState(102);
 			ticketingDate();
-			setState(105);
+			setState(103);
 			ticketingTime();
-			setState(106);
+			setState(104);
 			cancellationDate();
-			setState(107);
+			setState(105);
 			agentCode();
-			setState(108);
+			setState(106);
 			salesSource();
-			setState(109);
+			setState(107);
 			passengerType();
-			setState(110);
+			setState(108);
 			currency();
-			setState(111);
+			setState(109);
 			rateOfExchange();
-			setState(112);
+			setState(110);
 			spoBasePrice();
-			setState(113);
-			promoIdentifier();
-			setState(114);
+			setState(111);
 			discount();
-			setState(115);
+			setState(112);
 			dynamicPriceAdjustment();
-			setState(116);
+			setState(113);
 			priceAdjustmentApplied();
-			setState(117);
+			setState(114);
 			salesPrice();
-			setState(118);
+			setState(115);
 			tax();
-			setState(119);
+			setState(116);
 			totalAmount();
-			setState(121);
+			setState(118);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==NEW_LINE) {
 				{
-				setState(120);
+				setState(117);
 				match(NEW_LINE);
 				}
 			}
@@ -454,25 +452,25 @@ public class TurSysParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(123);
+			setState(120);
 			departureDate();
-			setState(124);
+			setState(121);
 			carrierCode();
-			setState(125);
+			setState(122);
 			flightNumber();
-			setState(126);
+			setState(123);
 			origin();
-			setState(127);
+			setState(124);
 			destination();
-			setState(128);
+			setState(125);
 			flightPath();
-			setState(129);
+			setState(126);
 			cabinCode();
-			setState(130);
+			setState(127);
 			seatAssignment();
-			setState(131);
+			setState(128);
 			liftStatus();
-			setState(132);
+			setState(129);
 			boardingSequence();
 			}
 		}
@@ -508,17 +506,17 @@ public class TurSysParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(135);
+			setState(132);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==INTEGER) {
 				{
-				setState(134);
+				setState(131);
 				match(INTEGER);
 				}
 			}
 
-			setState(137);
+			setState(134);
 			match(SEPARATOR);
 			}
 		}
@@ -554,17 +552,17 @@ public class TurSysParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(140);
+			setState(137);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==WORD) {
 				{
-				setState(139);
+				setState(136);
 				match(WORD);
 				}
 			}
 
-			setState(142);
+			setState(139);
 			match(SEPARATOR);
 			}
 		}
@@ -599,9 +597,9 @@ public class TurSysParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(144);
+			setState(141);
 			match(INTEGER);
-			setState(145);
+			setState(142);
 			match(SEPARATOR);
 			}
 		}
@@ -637,17 +635,17 @@ public class TurSysParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(148);
+			setState(145);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==WORD) {
 				{
-				setState(147);
+				setState(144);
 				match(WORD);
 				}
 			}
 
-			setState(150);
+			setState(147);
 			match(SEPARATOR);
 			}
 		}
@@ -683,17 +681,17 @@ public class TurSysParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(153);
+			setState(150);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==WORD) {
 				{
-				setState(152);
+				setState(149);
 				match(WORD);
 				}
 			}
 
-			setState(155);
+			setState(152);
 			match(SEPARATOR);
 			}
 		}
@@ -729,17 +727,17 @@ public class TurSysParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(158);
+			setState(155);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==WORD) {
 				{
-				setState(157);
+				setState(154);
 				match(WORD);
 				}
 			}
 
-			setState(160);
+			setState(157);
 			match(SEPARATOR);
 			}
 		}
@@ -775,17 +773,17 @@ public class TurSysParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(163);
+			setState(160);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==WORD) {
 				{
-				setState(162);
+				setState(159);
 				match(WORD);
 				}
 			}
 
-			setState(165);
+			setState(162);
 			match(SEPARATOR);
 			}
 		}
@@ -821,17 +819,17 @@ public class TurSysParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(168);
+			setState(165);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==WORD) {
 				{
-				setState(167);
+				setState(164);
 				match(WORD);
 				}
 			}
 
-			setState(170);
+			setState(167);
 			match(SEPARATOR);
 			}
 		}
@@ -848,7 +846,7 @@ public class TurSysParser extends Parser {
 
 	public static class LiftStatusContext extends ParserRuleContext {
 		public TerminalNode SEPARATOR() { return getToken(TurSysParser.SEPARATOR, 0); }
-		public TerminalNode WORD() { return getToken(TurSysParser.WORD, 0); }
+		public TerminalNode INTEGER() { return getToken(TurSysParser.INTEGER, 0); }
 		public LiftStatusContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -867,17 +865,17 @@ public class TurSysParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(173);
+			setState(170);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==WORD) {
+			if (_la==INTEGER) {
 				{
-				setState(172);
-				match(WORD);
+				setState(169);
+				match(INTEGER);
 				}
 			}
 
-			setState(175);
+			setState(172);
 			match(SEPARATOR);
 			}
 		}
@@ -913,17 +911,17 @@ public class TurSysParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(178);
+			setState(175);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==INTEGER) {
 				{
-				setState(177);
+				setState(174);
 				match(INTEGER);
 				}
 			}
 
-			setState(180);
+			setState(177);
 			match(SEPARATOR);
 			}
 		}
@@ -958,9 +956,9 @@ public class TurSysParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(182);
+			setState(179);
 			match(WORD);
-			setState(183);
+			setState(180);
 			match(SEPARATOR);
 			}
 		}
@@ -995,9 +993,9 @@ public class TurSysParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(185);
+			setState(182);
 			match(INTEGER);
-			setState(186);
+			setState(183);
 			match(SEPARATOR);
 			}
 		}
@@ -1032,9 +1030,9 @@ public class TurSysParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(188);
+			setState(185);
 			match(WORD);
-			setState(189);
+			setState(186);
 			match(SEPARATOR);
 			}
 		}
@@ -1069,9 +1067,9 @@ public class TurSysParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(191);
+			setState(188);
 			match(INTEGER);
-			setState(192);
+			setState(189);
 			match(SEPARATOR);
 			}
 		}
@@ -1106,9 +1104,9 @@ public class TurSysParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(194);
+			setState(191);
 			match(WORD);
-			setState(195);
+			setState(192);
 			match(SEPARATOR);
 			}
 		}
@@ -1143,9 +1141,9 @@ public class TurSysParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(197);
+			setState(194);
 			match(INTEGER);
-			setState(198);
+			setState(195);
 			match(SEPARATOR);
 			}
 		}
@@ -1180,9 +1178,9 @@ public class TurSysParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(200);
+			setState(197);
 			match(INTEGER);
-			setState(201);
+			setState(198);
 			match(SEPARATOR);
 			}
 		}
@@ -1198,8 +1196,8 @@ public class TurSysParser extends Parser {
 	}
 
 	public static class TicketingDateContext extends ParserRuleContext {
-		public TerminalNode INTEGER() { return getToken(TurSysParser.INTEGER, 0); }
 		public TerminalNode SEPARATOR() { return getToken(TurSysParser.SEPARATOR, 0); }
+		public TerminalNode INTEGER() { return getToken(TurSysParser.INTEGER, 0); }
 		public TicketingDateContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1214,12 +1212,21 @@ public class TurSysParser extends Parser {
 	public final TicketingDateContext ticketingDate() throws RecognitionException {
 		TicketingDateContext _localctx = new TicketingDateContext(_ctx, getState());
 		enterRule(_localctx, 42, RULE_ticketingDate);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+			setState(201);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			if (_la==INTEGER) {
+				{
+				setState(200);
+				match(INTEGER);
+				}
+			}
+
 			setState(203);
-			match(INTEGER);
-			setState(204);
 			match(SEPARATOR);
 			}
 		}
@@ -1235,8 +1242,8 @@ public class TurSysParser extends Parser {
 	}
 
 	public static class TicketingTimeContext extends ParserRuleContext {
-		public TerminalNode INTEGER() { return getToken(TurSysParser.INTEGER, 0); }
 		public TerminalNode SEPARATOR() { return getToken(TurSysParser.SEPARATOR, 0); }
+		public TerminalNode INTEGER() { return getToken(TurSysParser.INTEGER, 0); }
 		public TicketingTimeContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1251,12 +1258,21 @@ public class TurSysParser extends Parser {
 	public final TicketingTimeContext ticketingTime() throws RecognitionException {
 		TicketingTimeContext _localctx = new TicketingTimeContext(_ctx, getState());
 		enterRule(_localctx, 44, RULE_ticketingTime);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(206);
-			match(INTEGER);
-			setState(207);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			if (_la==INTEGER) {
+				{
+				setState(205);
+				match(INTEGER);
+				}
+			}
+
+			setState(208);
 			match(SEPARATOR);
 			}
 		}
@@ -1292,17 +1308,17 @@ public class TurSysParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(210);
+			setState(211);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==INTEGER) {
 				{
-				setState(209);
+				setState(210);
 				match(INTEGER);
 				}
 			}
 
-			setState(212);
+			setState(213);
 			match(SEPARATOR);
 			}
 		}
@@ -1337,9 +1353,9 @@ public class TurSysParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(214);
-			match(INTEGER);
 			setState(215);
+			match(INTEGER);
+			setState(216);
 			match(SEPARATOR);
 			}
 		}
@@ -1374,9 +1390,9 @@ public class TurSysParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(217);
-			match(WORD);
 			setState(218);
+			match(WORD);
+			setState(219);
 			match(SEPARATOR);
 			}
 		}
@@ -1411,9 +1427,9 @@ public class TurSysParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(220);
-			match(WORD);
 			setState(221);
+			match(WORD);
+			setState(222);
 			match(SEPARATOR);
 			}
 		}
@@ -1448,9 +1464,9 @@ public class TurSysParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(223);
-			match(WORD);
 			setState(224);
+			match(WORD);
+			setState(225);
 			match(SEPARATOR);
 			}
 		}
@@ -1487,7 +1503,7 @@ public class TurSysParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(226);
+			setState(227);
 			_la = _input.LA(1);
 			if ( !(_la==INTEGER || _la==NUMBER) ) {
 			_errHandler.recoverInline(this);
@@ -1497,7 +1513,7 @@ public class TurSysParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(227);
+			setState(228);
 			match(SEPARATOR);
 			}
 		}
@@ -1534,7 +1550,7 @@ public class TurSysParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(229);
+			setState(230);
 			_la = _input.LA(1);
 			if ( !(_la==INTEGER || _la==NUMBER) ) {
 			_errHandler.recoverInline(this);
@@ -1544,44 +1560,7 @@ public class TurSysParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(230);
-			match(SEPARATOR);
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class PromoIdentifierContext extends ParserRuleContext {
-		public TerminalNode INTEGER() { return getToken(TurSysParser.INTEGER, 0); }
-		public TerminalNode SEPARATOR() { return getToken(TurSysParser.SEPARATOR, 0); }
-		public PromoIdentifierContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_promoIdentifier; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof TurSysVisitor ) return ((TurSysVisitor<? extends T>)visitor).visitPromoIdentifier(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final PromoIdentifierContext promoIdentifier() throws RecognitionException {
-		PromoIdentifierContext _localctx = new PromoIdentifierContext(_ctx, getState());
-		enterRule(_localctx, 60, RULE_promoIdentifier);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(232);
-			match(INTEGER);
-			setState(233);
+			setState(231);
 			match(SEPARATOR);
 			}
 		}
@@ -1613,12 +1592,12 @@ public class TurSysParser extends Parser {
 
 	public final DiscountContext discount() throws RecognitionException {
 		DiscountContext _localctx = new DiscountContext(_ctx, getState());
-		enterRule(_localctx, 62, RULE_discount);
+		enterRule(_localctx, 60, RULE_discount);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(235);
+			setState(233);
 			_la = _input.LA(1);
 			if ( !(_la==INTEGER || _la==NUMBER) ) {
 			_errHandler.recoverInline(this);
@@ -1628,7 +1607,7 @@ public class TurSysParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(236);
+			setState(234);
 			match(SEPARATOR);
 			}
 		}
@@ -1660,12 +1639,12 @@ public class TurSysParser extends Parser {
 
 	public final DynamicPriceAdjustmentContext dynamicPriceAdjustment() throws RecognitionException {
 		DynamicPriceAdjustmentContext _localctx = new DynamicPriceAdjustmentContext(_ctx, getState());
-		enterRule(_localctx, 64, RULE_dynamicPriceAdjustment);
+		enterRule(_localctx, 62, RULE_dynamicPriceAdjustment);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(238);
+			setState(236);
 			_la = _input.LA(1);
 			if ( !(_la==INTEGER || _la==NUMBER) ) {
 			_errHandler.recoverInline(this);
@@ -1675,7 +1654,7 @@ public class TurSysParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(239);
+			setState(237);
 			match(SEPARATOR);
 			}
 		}
@@ -1706,13 +1685,13 @@ public class TurSysParser extends Parser {
 
 	public final PriceAdjustmentAppliedContext priceAdjustmentApplied() throws RecognitionException {
 		PriceAdjustmentAppliedContext _localctx = new PriceAdjustmentAppliedContext(_ctx, getState());
-		enterRule(_localctx, 66, RULE_priceAdjustmentApplied);
+		enterRule(_localctx, 64, RULE_priceAdjustmentApplied);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(241);
+			setState(239);
 			match(INTEGER);
-			setState(242);
+			setState(240);
 			match(SEPARATOR);
 			}
 		}
@@ -1744,12 +1723,12 @@ public class TurSysParser extends Parser {
 
 	public final SalesPriceContext salesPrice() throws RecognitionException {
 		SalesPriceContext _localctx = new SalesPriceContext(_ctx, getState());
-		enterRule(_localctx, 68, RULE_salesPrice);
+		enterRule(_localctx, 66, RULE_salesPrice);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(244);
+			setState(242);
 			_la = _input.LA(1);
 			if ( !(_la==INTEGER || _la==NUMBER) ) {
 			_errHandler.recoverInline(this);
@@ -1759,7 +1738,7 @@ public class TurSysParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(245);
+			setState(243);
 			match(SEPARATOR);
 			}
 		}
@@ -1791,12 +1770,12 @@ public class TurSysParser extends Parser {
 
 	public final TaxContext tax() throws RecognitionException {
 		TaxContext _localctx = new TaxContext(_ctx, getState());
-		enterRule(_localctx, 70, RULE_tax);
+		enterRule(_localctx, 68, RULE_tax);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(247);
+			setState(245);
 			_la = _input.LA(1);
 			if ( !(_la==INTEGER || _la==NUMBER) ) {
 			_errHandler.recoverInline(this);
@@ -1806,7 +1785,7 @@ public class TurSysParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(248);
+			setState(246);
 			match(SEPARATOR);
 			}
 		}
@@ -1837,12 +1816,12 @@ public class TurSysParser extends Parser {
 
 	public final TotalAmountContext totalAmount() throws RecognitionException {
 		TotalAmountContext _localctx = new TotalAmountContext(_ctx, getState());
-		enterRule(_localctx, 72, RULE_totalAmount);
+		enterRule(_localctx, 70, RULE_totalAmount);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(250);
+			setState(248);
 			_la = _input.LA(1);
 			if ( !(_la==INTEGER || _la==NUMBER) ) {
 			_errHandler.recoverInline(this);
@@ -1866,79 +1845,80 @@ public class TurSysParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\7\u00ff\4\2\t\2\4"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\7\u00fd\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
 		"\4\32\t\32\4\33\t\33\4\34\t\34\4\35\t\35\4\36\t\36\4\37\t\37\4 \t \4!"+
-		"\t!\4\"\t\"\4#\t#\4$\t$\4%\t%\4&\t&\3\2\3\2\6\2O\n\2\r\2\16\2P\3\2\3\2"+
-		"\3\3\3\3\7\3W\n\3\f\3\16\3Z\13\3\3\3\3\3\3\3\3\4\6\4`\n\4\r\4\16\4a\3"+
-		"\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4"+
-		"\3\4\3\4\3\4\3\4\3\4\3\4\5\4|\n\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5"+
-		"\3\5\3\5\3\6\5\6\u008a\n\6\3\6\3\6\3\7\5\7\u008f\n\7\3\7\3\7\3\b\3\b\3"+
-		"\b\3\t\5\t\u0097\n\t\3\t\3\t\3\n\5\n\u009c\n\n\3\n\3\n\3\13\5\13\u00a1"+
-		"\n\13\3\13\3\13\3\f\5\f\u00a6\n\f\3\f\3\f\3\r\5\r\u00ab\n\r\3\r\3\r\3"+
-		"\16\5\16\u00b0\n\16\3\16\3\16\3\17\5\17\u00b5\n\17\3\17\3\17\3\20\3\20"+
-		"\3\20\3\21\3\21\3\21\3\22\3\22\3\22\3\23\3\23\3\23\3\24\3\24\3\24\3\25"+
-		"\3\25\3\25\3\26\3\26\3\26\3\27\3\27\3\27\3\30\3\30\3\30\3\31\5\31\u00d5"+
-		"\n\31\3\31\3\31\3\32\3\32\3\32\3\33\3\33\3\33\3\34\3\34\3\34\3\35\3\35"+
-		"\3\35\3\36\3\36\3\36\3\37\3\37\3\37\3 \3 \3 \3!\3!\3!\3\"\3\"\3\"\3#\3"+
-		"#\3#\3$\3$\3$\3%\3%\3%\3&\3&\3&\2\2\'\2\4\6\b\n\f\16\20\22\24\26\30\32"+
-		"\34\36 \"$&(*,.\60\62\64\668:<>@BDFHJ\2\3\3\2\3\4\2\u00e7\2L\3\2\2\2\4"+
-		"X\3\2\2\2\6_\3\2\2\2\b}\3\2\2\2\n\u0089\3\2\2\2\f\u008e\3\2\2\2\16\u0092"+
-		"\3\2\2\2\20\u0096\3\2\2\2\22\u009b\3\2\2\2\24\u00a0\3\2\2\2\26\u00a5\3"+
-		"\2\2\2\30\u00aa\3\2\2\2\32\u00af\3\2\2\2\34\u00b4\3\2\2\2\36\u00b8\3\2"+
-		"\2\2 \u00bb\3\2\2\2\"\u00be\3\2\2\2$\u00c1\3\2\2\2&\u00c4\3\2\2\2(\u00c7"+
-		"\3\2\2\2*\u00ca\3\2\2\2,\u00cd\3\2\2\2.\u00d0\3\2\2\2\60\u00d4\3\2\2\2"+
-		"\62\u00d8\3\2\2\2\64\u00db\3\2\2\2\66\u00de\3\2\2\28\u00e1\3\2\2\2:\u00e4"+
-		"\3\2\2\2<\u00e7\3\2\2\2>\u00ea\3\2\2\2@\u00ed\3\2\2\2B\u00f0\3\2\2\2D"+
-		"\u00f3\3\2\2\2F\u00f6\3\2\2\2H\u00f9\3\2\2\2J\u00fc\3\2\2\2LN\5\4\3\2"+
-		"MO\5\6\4\2NM\3\2\2\2OP\3\2\2\2PN\3\2\2\2PQ\3\2\2\2QR\3\2\2\2RS\7\2\2\3"+
-		"S\3\3\2\2\2TU\7\5\2\2UW\7\7\2\2VT\3\2\2\2WZ\3\2\2\2XV\3\2\2\2XY\3\2\2"+
-		"\2Y[\3\2\2\2ZX\3\2\2\2[\\\7\5\2\2\\]\7\6\2\2]\5\3\2\2\2^`\5\b\5\2_^\3"+
-		"\2\2\2`a\3\2\2\2a_\3\2\2\2ab\3\2\2\2bc\3\2\2\2cd\5\36\20\2de\5 \21\2e"+
-		"f\5\"\22\2fg\5$\23\2gh\5&\24\2hi\5(\25\2ij\5*\26\2jk\5,\27\2kl\5.\30\2"+
-		"lm\5\60\31\2mn\5\62\32\2no\5\64\33\2op\5\66\34\2pq\58\35\2qr\5:\36\2r"+
-		"s\5<\37\2st\5> \2tu\5@!\2uv\5B\"\2vw\5D#\2wx\5F$\2xy\5H%\2y{\5J&\2z|\7"+
-		"\6\2\2{z\3\2\2\2{|\3\2\2\2|\7\3\2\2\2}~\5\n\6\2~\177\5\f\7\2\177\u0080"+
-		"\5\16\b\2\u0080\u0081\5\20\t\2\u0081\u0082\5\22\n\2\u0082\u0083\5\24\13"+
-		"\2\u0083\u0084\5\26\f\2\u0084\u0085\5\30\r\2\u0085\u0086\5\32\16\2\u0086"+
-		"\u0087\5\34\17\2\u0087\t\3\2\2\2\u0088\u008a\7\3\2\2\u0089\u0088\3\2\2"+
-		"\2\u0089\u008a\3\2\2\2\u008a\u008b\3\2\2\2\u008b\u008c\7\7\2\2\u008c\13"+
-		"\3\2\2\2\u008d\u008f\7\5\2\2\u008e\u008d\3\2\2\2\u008e\u008f\3\2\2\2\u008f"+
-		"\u0090\3\2\2\2\u0090\u0091\7\7\2\2\u0091\r\3\2\2\2\u0092\u0093\7\3\2\2"+
-		"\u0093\u0094\7\7\2\2\u0094\17\3\2\2\2\u0095\u0097\7\5\2\2\u0096\u0095"+
-		"\3\2\2\2\u0096\u0097\3\2\2\2\u0097\u0098\3\2\2\2\u0098\u0099\7\7\2\2\u0099"+
-		"\21\3\2\2\2\u009a\u009c\7\5\2\2\u009b\u009a\3\2\2\2\u009b\u009c\3\2\2"+
-		"\2\u009c\u009d\3\2\2\2\u009d\u009e\7\7\2\2\u009e\23\3\2\2\2\u009f\u00a1"+
-		"\7\5\2\2\u00a0\u009f\3\2\2\2\u00a0\u00a1\3\2\2\2\u00a1\u00a2\3\2\2\2\u00a2"+
-		"\u00a3\7\7\2\2\u00a3\25\3\2\2\2\u00a4\u00a6\7\5\2\2\u00a5\u00a4\3\2\2"+
-		"\2\u00a5\u00a6\3\2\2\2\u00a6\u00a7\3\2\2\2\u00a7\u00a8\7\7\2\2\u00a8\27"+
-		"\3\2\2\2\u00a9\u00ab\7\5\2\2\u00aa\u00a9\3\2\2\2\u00aa\u00ab\3\2\2\2\u00ab"+
-		"\u00ac\3\2\2\2\u00ac\u00ad\7\7\2\2\u00ad\31\3\2\2\2\u00ae\u00b0\7\5\2"+
-		"\2\u00af\u00ae\3\2\2\2\u00af\u00b0\3\2\2\2\u00b0\u00b1\3\2\2\2\u00b1\u00b2"+
-		"\7\7\2\2\u00b2\33\3\2\2\2\u00b3\u00b5\7\3\2\2\u00b4\u00b3\3\2\2\2\u00b4"+
-		"\u00b5\3\2\2\2\u00b5\u00b6\3\2\2\2\u00b6\u00b7\7\7\2\2\u00b7\35\3\2\2"+
-		"\2\u00b8\u00b9\7\5\2\2\u00b9\u00ba\7\7\2\2\u00ba\37\3\2\2\2\u00bb\u00bc"+
-		"\7\3\2\2\u00bc\u00bd\7\7\2\2\u00bd!\3\2\2\2\u00be\u00bf\7\5\2\2\u00bf"+
-		"\u00c0\7\7\2\2\u00c0#\3\2\2\2\u00c1\u00c2\7\3\2\2\u00c2\u00c3\7\7\2\2"+
-		"\u00c3%\3\2\2\2\u00c4\u00c5\7\5\2\2\u00c5\u00c6\7\7\2\2\u00c6\'\3\2\2"+
-		"\2\u00c7\u00c8\7\3\2\2\u00c8\u00c9\7\7\2\2\u00c9)\3\2\2\2\u00ca\u00cb"+
-		"\7\3\2\2\u00cb\u00cc\7\7\2\2\u00cc+\3\2\2\2\u00cd\u00ce\7\3\2\2\u00ce"+
-		"\u00cf\7\7\2\2\u00cf-\3\2\2\2\u00d0\u00d1\7\3\2\2\u00d1\u00d2\7\7\2\2"+
-		"\u00d2/\3\2\2\2\u00d3\u00d5\7\3\2\2\u00d4\u00d3\3\2\2\2\u00d4\u00d5\3"+
-		"\2\2\2\u00d5\u00d6\3\2\2\2\u00d6\u00d7\7\7\2\2\u00d7\61\3\2\2\2\u00d8"+
-		"\u00d9\7\3\2\2\u00d9\u00da\7\7\2\2\u00da\63\3\2\2\2\u00db\u00dc\7\5\2"+
-		"\2\u00dc\u00dd\7\7\2\2\u00dd\65\3\2\2\2\u00de\u00df\7\5\2\2\u00df\u00e0"+
-		"\7\7\2\2\u00e0\67\3\2\2\2\u00e1\u00e2\7\5\2\2\u00e2\u00e3\7\7\2\2\u00e3"+
-		"9\3\2\2\2\u00e4\u00e5\t\2\2\2\u00e5\u00e6\7\7\2\2\u00e6;\3\2\2\2\u00e7"+
-		"\u00e8\t\2\2\2\u00e8\u00e9\7\7\2\2\u00e9=\3\2\2\2\u00ea\u00eb\7\3\2\2"+
-		"\u00eb\u00ec\7\7\2\2\u00ec?\3\2\2\2\u00ed\u00ee\t\2\2\2\u00ee\u00ef\7"+
-		"\7\2\2\u00efA\3\2\2\2\u00f0\u00f1\t\2\2\2\u00f1\u00f2\7\7\2\2\u00f2C\3"+
-		"\2\2\2\u00f3\u00f4\7\3\2\2\u00f4\u00f5\7\7\2\2\u00f5E\3\2\2\2\u00f6\u00f7"+
-		"\t\2\2\2\u00f7\u00f8\7\7\2\2\u00f8G\3\2\2\2\u00f9\u00fa\t\2\2\2\u00fa"+
-		"\u00fb\7\7\2\2\u00fbI\3\2\2\2\u00fc\u00fd\t\2\2\2\u00fdK\3\2\2\2\20PX"+
-		"a{\u0089\u008e\u0096\u009b\u00a0\u00a5\u00aa\u00af\u00b4\u00d4";
+		"\t!\4\"\t\"\4#\t#\4$\t$\4%\t%\3\2\3\2\6\2M\n\2\r\2\16\2N\3\2\3\2\3\3\3"+
+		"\3\7\3U\n\3\f\3\16\3X\13\3\3\3\3\3\3\3\3\4\6\4^\n\4\r\4\16\4_\3\4\3\4"+
+		"\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3"+
+		"\4\3\4\3\4\3\4\5\4y\n\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3"+
+		"\6\5\6\u0087\n\6\3\6\3\6\3\7\5\7\u008c\n\7\3\7\3\7\3\b\3\b\3\b\3\t\5\t"+
+		"\u0094\n\t\3\t\3\t\3\n\5\n\u0099\n\n\3\n\3\n\3\13\5\13\u009e\n\13\3\13"+
+		"\3\13\3\f\5\f\u00a3\n\f\3\f\3\f\3\r\5\r\u00a8\n\r\3\r\3\r\3\16\5\16\u00ad"+
+		"\n\16\3\16\3\16\3\17\5\17\u00b2\n\17\3\17\3\17\3\20\3\20\3\20\3\21\3\21"+
+		"\3\21\3\22\3\22\3\22\3\23\3\23\3\23\3\24\3\24\3\24\3\25\3\25\3\25\3\26"+
+		"\3\26\3\26\3\27\5\27\u00cc\n\27\3\27\3\27\3\30\5\30\u00d1\n\30\3\30\3"+
+		"\30\3\31\5\31\u00d6\n\31\3\31\3\31\3\32\3\32\3\32\3\33\3\33\3\33\3\34"+
+		"\3\34\3\34\3\35\3\35\3\35\3\36\3\36\3\36\3\37\3\37\3\37\3 \3 \3 \3!\3"+
+		"!\3!\3\"\3\"\3\"\3#\3#\3#\3$\3$\3$\3%\3%\3%\2\2&\2\4\6\b\n\f\16\20\22"+
+		"\24\26\30\32\34\36 \"$&(*,.\60\62\64\668:<>@BDFH\2\3\3\2\3\4\2\u00e8\2"+
+		"J\3\2\2\2\4V\3\2\2\2\6]\3\2\2\2\bz\3\2\2\2\n\u0086\3\2\2\2\f\u008b\3\2"+
+		"\2\2\16\u008f\3\2\2\2\20\u0093\3\2\2\2\22\u0098\3\2\2\2\24\u009d\3\2\2"+
+		"\2\26\u00a2\3\2\2\2\30\u00a7\3\2\2\2\32\u00ac\3\2\2\2\34\u00b1\3\2\2\2"+
+		"\36\u00b5\3\2\2\2 \u00b8\3\2\2\2\"\u00bb\3\2\2\2$\u00be\3\2\2\2&\u00c1"+
+		"\3\2\2\2(\u00c4\3\2\2\2*\u00c7\3\2\2\2,\u00cb\3\2\2\2.\u00d0\3\2\2\2\60"+
+		"\u00d5\3\2\2\2\62\u00d9\3\2\2\2\64\u00dc\3\2\2\2\66\u00df\3\2\2\28\u00e2"+
+		"\3\2\2\2:\u00e5\3\2\2\2<\u00e8\3\2\2\2>\u00eb\3\2\2\2@\u00ee\3\2\2\2B"+
+		"\u00f1\3\2\2\2D\u00f4\3\2\2\2F\u00f7\3\2\2\2H\u00fa\3\2\2\2JL\5\4\3\2"+
+		"KM\5\6\4\2LK\3\2\2\2MN\3\2\2\2NL\3\2\2\2NO\3\2\2\2OP\3\2\2\2PQ\7\2\2\3"+
+		"Q\3\3\2\2\2RS\7\5\2\2SU\7\7\2\2TR\3\2\2\2UX\3\2\2\2VT\3\2\2\2VW\3\2\2"+
+		"\2WY\3\2\2\2XV\3\2\2\2YZ\7\5\2\2Z[\7\6\2\2[\5\3\2\2\2\\^\5\b\5\2]\\\3"+
+		"\2\2\2^_\3\2\2\2_]\3\2\2\2_`\3\2\2\2`a\3\2\2\2ab\5\36\20\2bc\5 \21\2c"+
+		"d\5\"\22\2de\5$\23\2ef\5&\24\2fg\5(\25\2gh\5*\26\2hi\5,\27\2ij\5.\30\2"+
+		"jk\5\60\31\2kl\5\62\32\2lm\5\64\33\2mn\5\66\34\2no\58\35\2op\5:\36\2p"+
+		"q\5<\37\2qr\5> \2rs\5@!\2st\5B\"\2tu\5D#\2uv\5F$\2vx\5H%\2wy\7\6\2\2x"+
+		"w\3\2\2\2xy\3\2\2\2y\7\3\2\2\2z{\5\n\6\2{|\5\f\7\2|}\5\16\b\2}~\5\20\t"+
+		"\2~\177\5\22\n\2\177\u0080\5\24\13\2\u0080\u0081\5\26\f\2\u0081\u0082"+
+		"\5\30\r\2\u0082\u0083\5\32\16\2\u0083\u0084\5\34\17\2\u0084\t\3\2\2\2"+
+		"\u0085\u0087\7\3\2\2\u0086\u0085\3\2\2\2\u0086\u0087\3\2\2\2\u0087\u0088"+
+		"\3\2\2\2\u0088\u0089\7\7\2\2\u0089\13\3\2\2\2\u008a\u008c\7\5\2\2\u008b"+
+		"\u008a\3\2\2\2\u008b\u008c\3\2\2\2\u008c\u008d\3\2\2\2\u008d\u008e\7\7"+
+		"\2\2\u008e\r\3\2\2\2\u008f\u0090\7\3\2\2\u0090\u0091\7\7\2\2\u0091\17"+
+		"\3\2\2\2\u0092\u0094\7\5\2\2\u0093\u0092\3\2\2\2\u0093\u0094\3\2\2\2\u0094"+
+		"\u0095\3\2\2\2\u0095\u0096\7\7\2\2\u0096\21\3\2\2\2\u0097\u0099\7\5\2"+
+		"\2\u0098\u0097\3\2\2\2\u0098\u0099\3\2\2\2\u0099\u009a\3\2\2\2\u009a\u009b"+
+		"\7\7\2\2\u009b\23\3\2\2\2\u009c\u009e\7\5\2\2\u009d\u009c\3\2\2\2\u009d"+
+		"\u009e\3\2\2\2\u009e\u009f\3\2\2\2\u009f\u00a0\7\7\2\2\u00a0\25\3\2\2"+
+		"\2\u00a1\u00a3\7\5\2\2\u00a2\u00a1\3\2\2\2\u00a2\u00a3\3\2\2\2\u00a3\u00a4"+
+		"\3\2\2\2\u00a4\u00a5\7\7\2\2\u00a5\27\3\2\2\2\u00a6\u00a8\7\5\2\2\u00a7"+
+		"\u00a6\3\2\2\2\u00a7\u00a8\3\2\2\2\u00a8\u00a9\3\2\2\2\u00a9\u00aa\7\7"+
+		"\2\2\u00aa\31\3\2\2\2\u00ab\u00ad\7\3\2\2\u00ac\u00ab\3\2\2\2\u00ac\u00ad"+
+		"\3\2\2\2\u00ad\u00ae\3\2\2\2\u00ae\u00af\7\7\2\2\u00af\33\3\2\2\2\u00b0"+
+		"\u00b2\7\3\2\2\u00b1\u00b0\3\2\2\2\u00b1\u00b2\3\2\2\2\u00b2\u00b3\3\2"+
+		"\2\2\u00b3\u00b4\7\7\2\2\u00b4\35\3\2\2\2\u00b5\u00b6\7\5\2\2\u00b6\u00b7"+
+		"\7\7\2\2\u00b7\37\3\2\2\2\u00b8\u00b9\7\3\2\2\u00b9\u00ba\7\7\2\2\u00ba"+
+		"!\3\2\2\2\u00bb\u00bc\7\5\2\2\u00bc\u00bd\7\7\2\2\u00bd#\3\2\2\2\u00be"+
+		"\u00bf\7\3\2\2\u00bf\u00c0\7\7\2\2\u00c0%\3\2\2\2\u00c1\u00c2\7\5\2\2"+
+		"\u00c2\u00c3\7\7\2\2\u00c3\'\3\2\2\2\u00c4\u00c5\7\3\2\2\u00c5\u00c6\7"+
+		"\7\2\2\u00c6)\3\2\2\2\u00c7\u00c8\7\3\2\2\u00c8\u00c9\7\7\2\2\u00c9+\3"+
+		"\2\2\2\u00ca\u00cc\7\3\2\2\u00cb\u00ca\3\2\2\2\u00cb\u00cc\3\2\2\2\u00cc"+
+		"\u00cd\3\2\2\2\u00cd\u00ce\7\7\2\2\u00ce-\3\2\2\2\u00cf\u00d1\7\3\2\2"+
+		"\u00d0\u00cf\3\2\2\2\u00d0\u00d1\3\2\2\2\u00d1\u00d2\3\2\2\2\u00d2\u00d3"+
+		"\7\7\2\2\u00d3/\3\2\2\2\u00d4\u00d6\7\3\2\2\u00d5\u00d4\3\2\2\2\u00d5"+
+		"\u00d6\3\2\2\2\u00d6\u00d7\3\2\2\2\u00d7\u00d8\7\7\2\2\u00d8\61\3\2\2"+
+		"\2\u00d9\u00da\7\3\2\2\u00da\u00db\7\7\2\2\u00db\63\3\2\2\2\u00dc\u00dd"+
+		"\7\5\2\2\u00dd\u00de\7\7\2\2\u00de\65\3\2\2\2\u00df\u00e0\7\5\2\2\u00e0"+
+		"\u00e1\7\7\2\2\u00e1\67\3\2\2\2\u00e2\u00e3\7\5\2\2\u00e3\u00e4\7\7\2"+
+		"\2\u00e49\3\2\2\2\u00e5\u00e6\t\2\2\2\u00e6\u00e7\7\7\2\2\u00e7;\3\2\2"+
+		"\2\u00e8\u00e9\t\2\2\2\u00e9\u00ea\7\7\2\2\u00ea=\3\2\2\2\u00eb\u00ec"+
+		"\t\2\2\2\u00ec\u00ed\7\7\2\2\u00ed?\3\2\2\2\u00ee\u00ef\t\2\2\2\u00ef"+
+		"\u00f0\7\7\2\2\u00f0A\3\2\2\2\u00f1\u00f2\7\3\2\2\u00f2\u00f3\7\7\2\2"+
+		"\u00f3C\3\2\2\2\u00f4\u00f5\t\2\2\2\u00f5\u00f6\7\7\2\2\u00f6E\3\2\2\2"+
+		"\u00f7\u00f8\t\2\2\2\u00f8\u00f9\7\7\2\2\u00f9G\3\2\2\2\u00fa\u00fb\t"+
+		"\2\2\2\u00fbI\3\2\2\2\22NV_x\u0086\u008b\u0093\u0098\u009d\u00a2\u00a7"+
+		"\u00ac\u00b1\u00cb\u00d0\u00d5";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

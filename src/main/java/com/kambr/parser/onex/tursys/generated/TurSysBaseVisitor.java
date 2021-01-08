@@ -229,13 +229,6 @@ public class TurSysBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitPromoIdentifier(TurSysParser.PromoIdentifierContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
 	@Override public T visitDiscount(TurSysParser.DiscountContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
