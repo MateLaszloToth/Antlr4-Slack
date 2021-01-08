@@ -267,7 +267,7 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
 
     override fun visitBookingTypeCode(ctx: BookingTypeCodeContext): BookingTypeCode {
         return when (ctx.INTEGER().text.toInt()) {
-            1 -> BookingTypeCode.ONE_WAY
+            0, 1 -> BookingTypeCode.ONE_WAY
             2 -> BookingTypeCode.ROUND_TRIP
             3 -> BookingTypeCode.MULTI_CITY
             4 -> BookingTypeCode.OPEN_JAW
