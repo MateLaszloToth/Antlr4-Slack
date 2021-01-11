@@ -24,6 +24,8 @@ class TurSysParserTest {
         }
         val tursys = TursysParser.parse(charStream!!)
 
+        Assert.assrt(3 == tursys.size)
+
         // Record 1
         Assert.assrt(tursys[0].segments.size == 1)
         Assert.assrt(tursys[0].segments[0].departureDate.toString() == "2020-10-20")
@@ -40,12 +42,12 @@ class TurSysParserTest {
         Assert.assrt(tursys[0].couponIdentificationCode == "1656015")
         Assert.assrt(tursys[0].fareBasisCode == "FLEX")
         Assert.assrt(tursys[0].bookingTypeCode.value == 3)
-        Assert.assrt(tursys[0].bookingStatusCode.value == "HK")
+        Assert.assrt(tursys[0].bookingStatusCode.value == "XX")
         Assert.assrt(tursys[0].bookingDate.toString() == "2020-10-21")
         Assert.assrt(tursys[0].bookingTime.toString() == "13:00")
         Assert.assrt(tursys[0].ticketingDate.toString() == "2020-10-21")
         Assert.assrt(tursys[0].ticketingTime.toString() == "14:27:24")
-        Assert.assrt(tursys[0].cancellationDate == null)
+        Assert.assrt(tursys[0].cancellationDate!!.toString() == "2020-10-22")
         Assert.assrt(tursys[0].agentCode == "2")
         Assert.assrt(tursys[0].salesSource == "BO")
         Assert.assrt(tursys[0].passengerType.value == "CHD")
@@ -83,7 +85,7 @@ class TurSysParserTest {
         Assert.assrt(tursys[1].segments[1].liftStatus == null)
         Assert.assrt(tursys[1].segments[1].boardingSequence == 0)
         Assert.assrt(tursys[1].pnr == "HBQ38Y")
-        Assert.assrt(tursys[1].couponIdentificationCode == "1656015")
+        Assert.assrt(tursys[1].couponIdentificationCode == "1656014")
         Assert.assrt(tursys[1].fareBasisCode == "FLEX")
         Assert.assrt(tursys[1].bookingTypeCode.value == 3)
         Assert.assrt(tursys[1].bookingStatusCode.value == "HK")
