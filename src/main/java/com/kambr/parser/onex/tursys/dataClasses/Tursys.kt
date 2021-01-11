@@ -28,19 +28,4 @@ data class Tursys (
     val salesPrice: BigDecimal,
     val tax: BigDecimal,
     val totalAmount: BigDecimal
-) {
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as Tursys
-
-        if (couponIdentificationCode != other.couponIdentificationCode) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        return couponIdentificationCode.hashCode()
-    }
-}
+)
