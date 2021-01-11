@@ -38,12 +38,7 @@ class MySpoBaseVisitor : SpoBaseVisitor<Any>() {
         for (child in ctx.children) {
             when (child) {
                 is HeaderContext -> {}
-                is RowContext -> {
-                    val spoGlobal = visitRow(child)
-
-                    if (!spoGlobal.poolingEnabled)
-                        spoList.add(spoGlobal)
-                }
+                is RowContext -> spoList.add(visitRow(child))
             }
         }
         return spoList

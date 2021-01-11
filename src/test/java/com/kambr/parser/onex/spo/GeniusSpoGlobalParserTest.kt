@@ -25,7 +25,6 @@ class GeniusSpoGlobalParserTest {
         }
         val spoGlobalRecords: List<SpoGlobal> = GeniusSpoGlobalParser.parse(charStream!!)
 
-        // There are four rows in the test-file.csv, but two of them have pooling enabled, which should be ignored by the parser.
         Assert.assrt(spoGlobalRecords.size == 2)
 
         Assert.assrt(spoGlobalRecords[0].departureDate.toString() == "2020-12-07")
