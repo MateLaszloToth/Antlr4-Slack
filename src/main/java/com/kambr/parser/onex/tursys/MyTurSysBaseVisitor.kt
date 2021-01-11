@@ -55,12 +55,21 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
     }
 
     override fun visitFile(ctx: FileContext): List<Tursys> {
-        val tursysList: MutableList<Tursys> = mutableListOf()
+        val tursysMap: HashMap<String, Tursys> = hashMapOf()
         for (child in ctx.children) {
             when (child) {
                 is TurSysParser.HeaderContext -> {
                 }
-                is TurSysParser.RowContext -> tursysList.add(visitRow(child))
+                is TurSysParser.RowContext -> {
+                    val newTursys = visitRow(child)
+                    val storedTursys = tursysMap[newTursys.couponIdentificationCode]
+                    if (storedTursys == null) {
+                        tursysMap[newTursys.couponIdentificationCode] = newTursys
+                    } else {
+                        if (newTursys.bookingStatusCode == BookingStatusCode.CANCELLED)
+                            tursysMap[newTursys.couponIdentificationCode] = newTursys
+                    }
+                }
                 !is TerminalNode -> {
                     throw RuntimeException(
                         "Unexpected children of FileContext. Content is: ${child.text}\nParse tree: ${child.toStringTree()}"
@@ -69,7 +78,7 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
             }
         }
 
-        return tursysList
+        return tursysMap.values.toList()
     }
 
     override fun visitRow(ctx: TurSysParser.RowContext): Tursys {
