@@ -147,7 +147,7 @@ class MySyncLowFareBaseVisitor : SyncLowFareBaseVisitor<Any>() {
     }
 
     override fun visitPnrIdentifier(ctx: PnrIdentifierContext): String {
-        return ctx.NUMBER().text
+        return ctx.NUMBER()?.text ?: ctx.WORD().text
     }
 
     override fun visitAgencyCode(ctx: AgencyCodeContext): Long {

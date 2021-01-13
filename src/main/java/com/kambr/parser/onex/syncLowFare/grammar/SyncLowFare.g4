@@ -59,7 +59,7 @@ flightID
 ;
 
 pnrIdentifier
-: NUMBER SEPARATOR
+: (NUMBER | WORD) SEPARATOR
 ;
 
 agencyCode
@@ -97,7 +97,6 @@ DATE
 NUMBER
 : '-'? [0-9]+ ('.' [0-9]+)?
 ;
-
 
 WORD
 :  (([0-9] | ' ' | '(' | ')' | '_' | '&' | '-' | '.')* [a-zA-Z]+ ([0-9] | ' ' | '(' | ')' | '_' | '&' | '-' | '.')*)+
