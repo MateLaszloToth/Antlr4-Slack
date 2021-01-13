@@ -33,7 +33,7 @@ class GeniusSyncLowFareParserTest {
         Assert.assrt("04:00" == geniusLowFares[0].departureTime.toString())
         Assert.assrt("09:10" == geniusLowFares[0].arrivalTime.toString())
         Assert.assrt(74435995.toLong() == geniusLowFares[0].flightID)
-        Assert.assrt("220138D636" == geniusLowFares[0].passengerNameRecordID)
+        Assert.assrt("B220138D636A" == geniusLowFares[0].passengerNameRecordID)
         Assert.assrt(1000203.toLong() == geniusLowFares[0].agencyID)
         Assert.assrt("AIRTUERK (WEB)" == geniusLowFares[0].agencyName)
         Assert.assrt(2 == geniusLowFares[0].seatsSold)
