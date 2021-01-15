@@ -55,19 +55,19 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
     }
 
     override fun visitFile(ctx: FileContext): List<Tursys> {
-        val tursysMap: HashMap<String, Tursys> = hashMapOf()
+        val tursysMap: HashMap<Pair<String, List<Segment>>, Tursys> = hashMapOf()
         for (child in ctx.children) {
             when (child) {
                 is TurSysParser.HeaderContext -> {
                 }
                 is TurSysParser.RowContext -> {
                     val newTursys = visitRow(child)
-                    val storedTursys = tursysMap[newTursys.couponIdentificationCode]
+                    val storedTursys = tursysMap[Pair(newTursys.couponIdentificationCode, newTursys.segments)]
                     if (storedTursys == null) {
-                        tursysMap[newTursys.couponIdentificationCode] = newTursys
+                        tursysMap[Pair(newTursys.couponIdentificationCode, newTursys.segments)] = newTursys
                     } else {
                         if (newTursys.bookingStatusCode == BookingStatusCode.CANCELLED)
-                            tursysMap[newTursys.couponIdentificationCode] = newTursys
+                            tursysMap[Pair(newTursys.couponIdentificationCode, newTursys.segments)] = newTursys
                     }
                 }
                 !is TerminalNode -> {

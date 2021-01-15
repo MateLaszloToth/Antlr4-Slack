@@ -22,7 +22,7 @@ class TurSysParserTest {
         } catch (e: IOException) {
             logger.error(e.localizedMessage)
         }
-        val tursys = TursysParser.parse(charStream!!)
+        val tursys = TursysParser.parse(charStream!!).sortedBy { it.segments.size }
 
         Assert.assrt(3 == tursys.size)
 
