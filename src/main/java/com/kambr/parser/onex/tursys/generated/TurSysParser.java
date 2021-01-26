@@ -1,4 +1,4 @@
-// Generated from TurSys.g4 by ANTLR 4.8
+// Generated from TurSys.g4 by ANTLR 4.9.1
 
 package com.kambr.parser.onex.tursys.generated;
 
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class TurSysParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.8", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.9.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -1670,8 +1670,9 @@ public class TurSysParser extends Parser {
 	}
 
 	public static class PriceAdjustmentAppliedContext extends ParserRuleContext {
-		public TerminalNode INTEGER() { return getToken(TurSysParser.INTEGER, 0); }
 		public TerminalNode SEPARATOR() { return getToken(TurSysParser.SEPARATOR, 0); }
+		public TerminalNode NUMBER() { return getToken(TurSysParser.NUMBER, 0); }
+		public TerminalNode INTEGER() { return getToken(TurSysParser.INTEGER, 0); }
 		public PriceAdjustmentAppliedContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1686,11 +1687,20 @@ public class TurSysParser extends Parser {
 	public final PriceAdjustmentAppliedContext priceAdjustmentApplied() throws RecognitionException {
 		PriceAdjustmentAppliedContext _localctx = new PriceAdjustmentAppliedContext(_ctx, getState());
 		enterRule(_localctx, 64, RULE_priceAdjustmentApplied);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(239);
-			match(INTEGER);
+			_la = _input.LA(1);
+			if ( !(_la==INTEGER || _la==NUMBER) ) {
+			_errHandler.recoverInline(this);
+			}
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
 			setState(240);
 			match(SEPARATOR);
 			}
@@ -1914,7 +1924,7 @@ public class TurSysParser extends Parser {
 		"\2\u00e49\3\2\2\2\u00e5\u00e6\t\2\2\2\u00e6\u00e7\7\7\2\2\u00e7;\3\2\2"+
 		"\2\u00e8\u00e9\t\2\2\2\u00e9\u00ea\7\7\2\2\u00ea=\3\2\2\2\u00eb\u00ec"+
 		"\t\2\2\2\u00ec\u00ed\7\7\2\2\u00ed?\3\2\2\2\u00ee\u00ef\t\2\2\2\u00ef"+
-		"\u00f0\7\7\2\2\u00f0A\3\2\2\2\u00f1\u00f2\7\3\2\2\u00f2\u00f3\7\7\2\2"+
+		"\u00f0\7\7\2\2\u00f0A\3\2\2\2\u00f1\u00f2\t\2\2\2\u00f2\u00f3\7\7\2\2"+
 		"\u00f3C\3\2\2\2\u00f4\u00f5\t\2\2\2\u00f5\u00f6\7\7\2\2\u00f6E\3\2\2\2"+
 		"\u00f7\u00f8\t\2\2\2\u00f8\u00f9\7\7\2\2\u00f9G\3\2\2\2\u00fa\u00fb\t"+
 		"\2\2\2\u00fbI\3\2\2\2\22NV_x\u0086\u008b\u0093\u0098\u009d\u00a2\u00a7"+
