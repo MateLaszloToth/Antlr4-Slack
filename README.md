@@ -2,7 +2,7 @@
 Antlr is a parser generator tool. You can read about it on it's [offical website](https://www.antlr.org/). 
 
 ## Genius Sync Parser
-This project is created to parse SYNC files provided by the Genius pss. It consists of four main parts,  
+This project is created to parse files provided by various psses. Each parser's folder consists of four main parts,  
 the grammar, the generated files(lexer, tokenizer, parser, visitors), and the manual implementation of the visitors,  
 and the data classes.
 
