@@ -5,7 +5,7 @@ package com.kambr.parser.oney.json.generated;
 }
 
 json
-   : value
+   : value+
    ;
 
 object
@@ -34,7 +34,7 @@ value
 
 
 STRING
-   : '"' (ESC | SAFECODEPOINT)* '"'
+   : (ESC | SAFECODEPOINT)+
    ;
 
 
@@ -48,7 +48,7 @@ fragment HEX
    : [0-9a-fA-F]
    ;
 fragment SAFECODEPOINT
-   : ~ ["\\\u0000-\u001F]
+   : ~ ([,{}:"\\\u0000-\u001F] | '[' | ']')
    ;
 
 
@@ -70,5 +70,5 @@ fragment EXP
 // \- since - means "range" inside [...]
 
 WS
-   : [ \t\n\r] + -> skip
+   : [ "\t\n\r]+ -> skip
    ;

@@ -1,7 +1,7 @@
 package com.kambr.parser.oney.json
 
 import java.time.LocalDate
-import java.time.LocalDateTime
+import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeFormatter.BASIC_ISO_DATE
 
@@ -10,22 +10,22 @@ object ExtensionFunctions {
     /**
      * Converts an Any object to LocalDate, when the string representation of the ANy object has the format: yyyyMMdd
      */
-    fun Any.toLocalDate() : LocalDate {
-        return LocalDate.parse(this.toString(), BASIC_ISO_DATE )
+    fun Any.toLocalDate(): LocalDate {
+        return LocalDate.parse(this.toString(), BASIC_ISO_DATE)
     }
 
     /**
-     * Converts an Any object to LocalDateTime, when the string representation of the ANy object has the format: yyyyMMdd
+     * Converts an Any object to LocalTime, when the string representation of the Any object has the format: HHmm (hour 0-24)
      */
-    fun Any.toLocalDateTime() : LocalDateTime {
+    fun Any.toLocalTime(): LocalTime {
         val formatter = DateTimeFormatter.ofPattern("HHmm")
-        return LocalDateTime.parse(this.toString(), formatter)
+        return LocalTime.parse(this.toString(), formatter)
     }
 
     /**
-     *
+     * Converts an Any object to String and then Int
      */
-    fun Any.toInteger() : Int {
+    fun Any.toInteger(): Int {
         return this.toString().toInt()
     }
 }
