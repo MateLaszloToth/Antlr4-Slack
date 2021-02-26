@@ -1,4 +1,4 @@
-// Generated from TurSys.g4 by ANTLR 4.9.1
+// Generated from CSV.g4 by ANTLR 4.9.1
 
 package com.kambr.parser.onex.tursys.generated;
 
@@ -12,14 +12,14 @@ import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
-public class TurSysLexer extends Lexer {
+public class CSVLexer extends Lexer {
 	static { RuntimeMetaData.checkVersion("4.9.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		INTEGER=1, NUMBER=2, WORD=3, NEW_LINE=4, SEPARATOR=5;
+		T__0=1, T__1=2, T__2=3, T__3=4, TEXT=5;
 	public static String[] channelNames = {
 		"DEFAULT_TOKEN_CHANNEL", "HIDDEN"
 	};
@@ -30,20 +30,20 @@ public class TurSysLexer extends Lexer {
 
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"INTEGER", "NUMBER", "WORD", "NEW_LINE", "SEPARATOR"
+			"T__0", "T__1", "T__2", "T__3", "TEXT"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, null, null, null, null, "'|'"
+			null, "','", "'|'", "'\r'", "'\n'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "INTEGER", "NUMBER", "WORD", "NEW_LINE", "SEPARATOR"
+			null, null, null, null, null, "TEXT"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -81,13 +81,13 @@ public class TurSysLexer extends Lexer {
 	}
 
 
-	public TurSysLexer(CharStream input) {
+	public CSVLexer(CharStream input) {
 		super(input);
 		_interp = new LexerATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 
 	@Override
-	public String getGrammarFileName() { return "TurSys.g4"; }
+	public String getGrammarFileName() { return "CSV.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -105,24 +105,14 @@ public class TurSysLexer extends Lexer {
 	public ATN getATN() { return _ATN; }
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\2\7<\b\1\4\2\t\2\4"+
-		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\6\2\17\n\2\r\2\16\2\20\3\3\5\3\24\n"+
-		"\3\3\3\6\3\27\n\3\r\3\16\3\30\3\3\3\3\6\3\35\n\3\r\3\16\3\36\3\4\7\4\""+
-		"\n\4\f\4\16\4%\13\4\3\4\6\4(\n\4\r\4\16\4)\3\4\7\4-\n\4\f\4\16\4\60\13"+
-		"\4\6\4\62\n\4\r\4\16\4\63\3\5\5\5\67\n\5\3\5\3\5\3\6\3\6\2\2\7\3\3\5\4"+
-		"\7\5\t\6\13\7\3\2\5\3\2\62;\5\2//\62;aa\4\2C\\c|\2D\2\3\3\2\2\2\2\5\3"+
-		"\2\2\2\2\7\3\2\2\2\2\t\3\2\2\2\2\13\3\2\2\2\3\16\3\2\2\2\5\23\3\2\2\2"+
-		"\7\61\3\2\2\2\t\66\3\2\2\2\13:\3\2\2\2\r\17\t\2\2\2\16\r\3\2\2\2\17\20"+
-		"\3\2\2\2\20\16\3\2\2\2\20\21\3\2\2\2\21\4\3\2\2\2\22\24\7/\2\2\23\22\3"+
-		"\2\2\2\23\24\3\2\2\2\24\26\3\2\2\2\25\27\t\2\2\2\26\25\3\2\2\2\27\30\3"+
-		"\2\2\2\30\26\3\2\2\2\30\31\3\2\2\2\31\32\3\2\2\2\32\34\7\60\2\2\33\35"+
-		"\t\2\2\2\34\33\3\2\2\2\35\36\3\2\2\2\36\34\3\2\2\2\36\37\3\2\2\2\37\6"+
-		"\3\2\2\2 \"\t\3\2\2! \3\2\2\2\"%\3\2\2\2#!\3\2\2\2#$\3\2\2\2$\'\3\2\2"+
-		"\2%#\3\2\2\2&(\t\4\2\2\'&\3\2\2\2()\3\2\2\2)\'\3\2\2\2)*\3\2\2\2*.\3\2"+
-		"\2\2+-\t\3\2\2,+\3\2\2\2-\60\3\2\2\2.,\3\2\2\2./\3\2\2\2/\62\3\2\2\2\60"+
-		".\3\2\2\2\61#\3\2\2\2\62\63\3\2\2\2\63\61\3\2\2\2\63\64\3\2\2\2\64\b\3"+
-		"\2\2\2\65\67\7\17\2\2\66\65\3\2\2\2\66\67\3\2\2\2\678\3\2\2\289\7\f\2"+
-		"\29\n\3\2\2\2:;\7~\2\2;\f\3\2\2\2\16\2\20\23\30\36!#),.\63\66\2";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\2\7\32\b\1\4\2\t\2"+
+		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\3\2\3\3\3\3\3\4\3\4\3\5\3\5\3\6\6"+
+		"\6\27\n\6\r\6\16\6\30\2\2\7\3\3\5\4\7\5\t\6\13\7\3\2\3\7\2\f\f\17\17$"+
+		"$..~~\2\32\2\3\3\2\2\2\2\5\3\2\2\2\2\7\3\2\2\2\2\t\3\2\2\2\2\13\3\2\2"+
+		"\2\3\r\3\2\2\2\5\17\3\2\2\2\7\21\3\2\2\2\t\23\3\2\2\2\13\26\3\2\2\2\r"+
+		"\16\7.\2\2\16\4\3\2\2\2\17\20\7~\2\2\20\6\3\2\2\2\21\22\7\17\2\2\22\b"+
+		"\3\2\2\2\23\24\7\f\2\2\24\n\3\2\2\2\25\27\n\2\2\2\26\25\3\2\2\2\27\30"+
+		"\3\2\2\2\30\26\3\2\2\2\30\31\3\2\2\2\31\f\3\2\2\2\4\2\30\2";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
