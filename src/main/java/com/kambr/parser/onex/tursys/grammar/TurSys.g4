@@ -138,7 +138,7 @@ dynamicPriceAdjustment
 ;
 
 priceAdjustmentApplied
-: INTEGER SEPARATOR
+: (NUMBER | INTEGER) SEPARATOR
 ;
 
 salesPrice

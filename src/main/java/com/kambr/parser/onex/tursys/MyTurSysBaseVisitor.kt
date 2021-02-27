@@ -377,7 +377,8 @@ class MyTurSysBaseVisitor : TurSysBaseVisitor<Any>() {
     }
 
     override fun visitPriceAdjustmentApplied(ctx: PriceAdjustmentAppliedContext): Boolean {
-        return ctx.INTEGER().text == "1"
+        val result = ctx.NUMBER()?.text?.toBigDecimal() ?: ctx.INTEGER().text.toBigDecimal()
+        return result == BigDecimal.ONE
     }
 
     override fun visitSalesPrice(ctx: SalesPriceContext): BigDecimal {
