@@ -32,6 +32,9 @@ value
    | 'null'
    ;
 
+WS
+   : [ "\t\n\r]+ -> skip
+   ;
 
 STRING
    : (ESC | SAFECODEPOINT)+
@@ -69,6 +72,3 @@ fragment EXP
 
 // \- since - means "range" inside [...]
 
-WS
-   : [ "\t\n\r]+ -> skip
-   ;

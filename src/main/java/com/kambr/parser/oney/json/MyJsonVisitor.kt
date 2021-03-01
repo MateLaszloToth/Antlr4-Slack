@@ -8,7 +8,7 @@ import com.kambr.parser.oney.json.generated.JSONParser.PairContext
 import com.kambr.parser.oney.json.generated.JSONParser.ValueContext
 import org.antlr.v4.runtime.tree.TerminalNode
 
-class LegDataVisitor : JSONBaseVisitor<Any>() {
+class MyJsonVisitor : JSONBaseVisitor<Any>() {
 
     override fun visitJson(ctx: JsonContext): List<Any> {
         val legDataList = mutableListOf<Any>()
@@ -60,7 +60,7 @@ class LegDataVisitor : JSONBaseVisitor<Any>() {
         return when (val child = ctx.getChild(0)) { // Value has only one child
             is ObjectContext -> visitObject(child)
             is ArrayContext -> visitArray(child)
-            is TerminalNode -> child.text
+            is TerminalNode -> child.text.trim()
             else -> throw RuntimeException(
                 "Unexpected children of JsonContext. Content is: ${child.text}\nParse tree: ${child.toStringTree()}"
             )

@@ -13,7 +13,7 @@ object LegDataParser {
         val jsonTokenStream = CommonTokenStream(jsonLexer)
         val jsonParser = JSONParser(jsonTokenStream)
         val jsonContext = jsonParser.json()
-        val jsonRows = LegDataVisitor().visit(jsonContext) as List<*>
+        val jsonRows = MyJsonVisitor().visit(jsonContext) as List<*>
         val legDataList = mutableListOf<LegData>()
         jsonRows.forEach { row ->
             if (row != null)

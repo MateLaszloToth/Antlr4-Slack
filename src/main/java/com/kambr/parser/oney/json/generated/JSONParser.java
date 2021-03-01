@@ -1,4 +1,4 @@
-// Generated from JSON.g4 by ANTLR 4.8
+// Generated from JSON.g4 by ANTLR 4.9.1
 
 package com.kambr.parser.oney.json.generated;
 
@@ -13,14 +13,14 @@ import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class JSONParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.8", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.9.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		STRING=10, NUMBER=11, WS=12;
+		WS=10, STRING=11, NUMBER=12;
 	public static final int
 		RULE_json = 0, RULE_object = 1, RULE_pair = 2, RULE_array = 3, RULE_value = 4;
 	private static String[] makeRuleNames() {
@@ -39,8 +39,8 @@ public class JSONParser extends Parser {
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, null, null, null, null, null, null, null, null, null, "STRING", 
-			"NUMBER", "WS"
+			null, null, null, null, null, null, null, null, null, null, "WS", "STRING", 
+			"NUMBER"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -439,11 +439,11 @@ public class JSONParser extends Parser {
 		"\7\3\2\2\22\27\5\6\4\2\23\24\7\4\2\2\24\26\5\6\4\2\25\23\3\2\2\2\26\31"+
 		"\3\2\2\2\27\25\3\2\2\2\27\30\3\2\2\2\30\32\3\2\2\2\31\27\3\2\2\2\32\33"+
 		"\7\5\2\2\33\37\3\2\2\2\34\35\7\3\2\2\35\37\7\5\2\2\36\21\3\2\2\2\36\34"+
-		"\3\2\2\2\37\5\3\2\2\2 !\7\f\2\2!\"\7\6\2\2\"#\5\n\6\2#\7\3\2\2\2$%\7\7"+
+		"\3\2\2\2\37\5\3\2\2\2 !\7\r\2\2!\"\7\6\2\2\"#\5\n\6\2#\7\3\2\2\2$%\7\7"+
 		"\2\2%*\5\n\6\2&\'\7\4\2\2\')\5\n\6\2(&\3\2\2\2),\3\2\2\2*(\3\2\2\2*+\3"+
 		"\2\2\2+-\3\2\2\2,*\3\2\2\2-.\7\b\2\2.\62\3\2\2\2/\60\7\7\2\2\60\62\7\b"+
-		"\2\2\61$\3\2\2\2\61/\3\2\2\2\62\t\3\2\2\2\63;\7\f\2\2\64;\7\r\2\2\65;"+
-		"\5\4\3\2\66;\5\b\5\2\67;\7\t\2\28;\7\n\2\29;\7\13\2\2:\63\3\2\2\2:\64"+
+		"\2\2\61$\3\2\2\2\61/\3\2\2\2\62\t\3\2\2\2\63;\7\r\2\2\64;\7\16\2\2\65"+
+		";\5\4\3\2\66;\5\b\5\2\67;\7\t\2\28;\7\n\2\29;\7\13\2\2:\63\3\2\2\2:\64"+
 		"\3\2\2\2:\65\3\2\2\2:\66\3\2\2\2:\67\3\2\2\2:8\3\2\2\2:9\3\2\2\2;\13\3"+
 		"\2\2\2\b\17\27\36*\61:";
 	public static final ATN _ATN =

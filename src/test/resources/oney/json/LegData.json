@@ -1,0 +1,61 @@
+{
+  "legDepartureDate" : "20210111",
+  "carrierCode" : "PDM",
+  "operationalSuffix" : null,
+  "flightNumber" : "1113",
+  "departureStation" : "BGO",
+  "arrivalStation" : "OSL",
+  "departureTime" : "1200",
+  "arrivalTime" : "1255",
+  "overNights" : 0,
+  "serviceType" : "J",
+  "equipmentType" : "320",
+  "equipmentVersion" : null,
+  "baseCurrencyCode" : "NOK",
+  "aircraftSaleableCapacity" : 186,
+  "aircraftAuthorizedCapacity" : 186,
+  "cabinDetails" : [
+    {
+      "cabinCode" : "ECONOMY",
+      "cabinSaleableCapacity" : 186,
+      "cabinAuthorizedCapacity" : 186,
+      "cabinBlock" : 0,
+      "blockSpaceDetails" : []
+    }
+  ]
+}
+{
+  "legDepartureDate" : "20210222",
+  "carrierCode" : "PDM",
+  "operationalSuffix" : "1y",
+  "flightNumber" : "1111",
+  "departureStation" : "MUC",
+  "arrivalStation" : "OSL",
+  "departureTime" : "0600",
+  "arrivalTime" : "1105",
+  "overNights" : 0,
+  "serviceType" : "J",
+  "equipmentType" : "737-800",
+  "equipmentVersion" : "AVE",
+  "baseCurrencyCode" : "NOK",
+  "aircraftSaleableCapacity" : 186,
+  "aircraftAuthorizedCapacity" : 186,
+  "cabinDetails" : [
+    {
+      "cabinCode" : "ECONOMY",
+      "cabinSaleableCapacity" : 186,
+      "cabinAuthorizedCapacity" : 186,
+      "cabinBlock" : 0,
+      "blockSpaceDetails" : [
+        {
+          "codeShareBlock" : 1,
+          "protectedSeats" : 3
+        },
+        {
+          "codeShareBlock" : 2,
+          "protectedSeats" : 4
+        }
+      ]
+    }
+  ]
+}

@@ -17,7 +17,7 @@ class CabinDetails(cabinObject: HashMap<String, Any>) {
     init {
         (cabinObject[BLOCK_SPACE_DETAILS.value] as List<*>).forEach { item ->
             if (item != null) {
-                blockSpaceDetails.add(BlockSpaceDetails(item as HashMap<String, Int>))
+                blockSpaceDetails.add(BlockSpaceDetails(item as HashMap<String, String>))
             }
         }
     }
