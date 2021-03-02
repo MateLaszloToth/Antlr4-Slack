@@ -56,18 +56,23 @@ repositories {
 }
 
 dependencies {
+    def versionJunit = "5.7.0"
+    def versionJunitPlatform = "1.7.0"
+
 
     implementation 'org.antlr:antlr4:4.8-1'
     implementation 'org.antlr:antlr4-runtime:4.8-1'
     implementation 'com.google.guava:guava:28.1-jre'
     implementation 'com.kambr:kambr-logger:0.7.3'
 
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
-
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 
-
+    // Junit
+    testImplementation(enforcedPlatform("org.junit:junit-bom:$versionJunit")) // JUnit 5 BOM
+    testImplementation("org.junit.platform:junit-platform-engine:$versionJunitPlatform")
+    testRuntimeOnly("org.junit.platform:junit-platform-commons:$versionJunitPlatform")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:$versionJunit")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:$versionJunit")
 }
 
 application {

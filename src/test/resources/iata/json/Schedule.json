@@ -1,0 +1,19 @@
+{
+  "flightKey" : {
+    "departureDate" : "20210101",
+    "airlineCode" : "PDM",
+    "operationalSuffix" : null,
+    "flightNumber" : "1111",
+    "cityPair" : "MUCOSL"
+  },
+  "flightLegs" : [
+    {
+      "departureDate" : "20210101",
+      "airlineCode" : "PDM",
+      "operationalSuffix" : "1y",
+      "flightNumber" : "1111",
+      "departureAirport" : "MUC",
+      "arrivalAirport" : "OSL"
+    }
+  ]
+}
