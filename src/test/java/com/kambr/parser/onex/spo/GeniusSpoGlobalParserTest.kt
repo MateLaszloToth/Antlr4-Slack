@@ -11,7 +11,7 @@ import java.io.IOException
 class GeniusSpoGlobalParserTest {
 
     companion object {
-        const val FILE_PATH = "src/test/resources/spo/test-file.csv"
+        const val FILE_PATH = "src/test/resources/onex/spo/test-file.csv"
         val logger = Logger(this::class.java)
     }
 

@@ -1,11 +1,11 @@
-package com.kambr.parser.oney.json
+package com.kambr.parser.iata.json
 
-import com.kambr.parser.oney.json.generated.JSONBaseVisitor
-import com.kambr.parser.oney.json.generated.JSONParser.ArrayContext
-import com.kambr.parser.oney.json.generated.JSONParser.JsonContext
-import com.kambr.parser.oney.json.generated.JSONParser.ObjectContext
-import com.kambr.parser.oney.json.generated.JSONParser.PairContext
-import com.kambr.parser.oney.json.generated.JSONParser.ValueContext
+import com.kambr.parser.iata.json.generated.JSONBaseVisitor
+import com.kambr.parser.iata.json.generated.JSONParser.ArrayContext
+import com.kambr.parser.iata.json.generated.JSONParser.JsonContext
+import com.kambr.parser.iata.json.generated.JSONParser.ObjectContext
+import com.kambr.parser.iata.json.generated.JSONParser.PairContext
+import com.kambr.parser.iata.json.generated.JSONParser.ValueContext
 import org.antlr.v4.runtime.tree.TerminalNode
 
 class MyJsonVisitor : JSONBaseVisitor<Any>() {

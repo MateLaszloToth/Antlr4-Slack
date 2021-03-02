@@ -1,6 +1,6 @@
 // Generated from JSON.g4 by ANTLR 4.9.1
 
-package com.kambr.parser.oney.json.generated;
+package com.kambr.parser.iata.json.generated;
 
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 

@@ -1,11 +1,11 @@
-package com.kambr.parser.oney.json.dataClasses.legData
+package com.kambr.parser.iata.json.dataClasses.legData
 
-import com.kambr.parser.oney.json.ExtensionFunctions.toInteger
-import com.kambr.parser.oney.json.dataClasses.legData.FieldNames.BLOCK_SPACE_DETAILS
-import com.kambr.parser.oney.json.dataClasses.legData.FieldNames.CABIN_AUTHORIZED_CAPACITY
-import com.kambr.parser.oney.json.dataClasses.legData.FieldNames.CABIN_BLOCK
-import com.kambr.parser.oney.json.dataClasses.legData.FieldNames.CABIN_CODE
-import com.kambr.parser.oney.json.dataClasses.legData.FieldNames.CABIN_SALEABLE_CAPACITY
+import com.kambr.parser.iata.json.ExtensionFunctions.toInteger
+import com.kambr.parser.iata.json.dataClasses.legData.FieldNames.BLOCK_SPACE_DETAILS
+import com.kambr.parser.iata.json.dataClasses.legData.FieldNames.CABIN_AUTHORIZED_CAPACITY
+import com.kambr.parser.iata.json.dataClasses.legData.FieldNames.CABIN_BLOCK
+import com.kambr.parser.iata.json.dataClasses.legData.FieldNames.CABIN_CODE
+import com.kambr.parser.iata.json.dataClasses.legData.FieldNames.CABIN_SALEABLE_CAPACITY
 
 class CabinDetails(cabinObject: HashMap<String, Any>) {
     var cabinCode: String = cabinObject[CABIN_CODE.value] as String

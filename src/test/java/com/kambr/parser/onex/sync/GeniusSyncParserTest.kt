@@ -11,7 +11,7 @@ import java.io.IOException
 class GeniusSyncParserTest {
 
     companion object {
-        const val FILE_PATH = "src/test/resources/sync/test-file.txt"
+        const val FILE_PATH = "src/test/resources/onex/sync/test-file.txt"
         val logger = Logger(this::class.java)
     }
 

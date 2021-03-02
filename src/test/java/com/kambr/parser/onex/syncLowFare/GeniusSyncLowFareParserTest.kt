@@ -9,7 +9,7 @@ import java.io.IOException
 
 class GeniusSyncLowFareParserTest {
     companion object {
-        const val FILE_PATH = "src/test/resources/syncLowFare/test-file.txt"
+        const val FILE_PATH = "src/test/resources/onex/syncLowFare/test-file.txt"
         val logger = Logger(this::class.java)
     }
 

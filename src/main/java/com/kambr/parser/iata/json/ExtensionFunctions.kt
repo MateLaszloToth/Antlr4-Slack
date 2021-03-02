@@ -1,4 +1,4 @@
-package com.kambr.parser.oney.json
+package com.kambr.parser.iata.json
 
 import java.time.LocalDate
 import java.time.LocalTime

@@ -1,8 +1,8 @@
-package com.kambr.parser.oney.json
+package com.kambr.parser.iata.json
 
-import com.kambr.parser.oney.json.dataClasses.legData.LegData
-import com.kambr.parser.oney.json.generated.JSONLexer
-import com.kambr.parser.oney.json.generated.JSONParser
+import com.kambr.parser.iata.json.dataClasses.legData.LegData
+import com.kambr.parser.iata.json.generated.JSONLexer
+import com.kambr.parser.iata.json.generated.JSONParser
 import org.antlr.v4.runtime.CharStream
 import org.antlr.v4.runtime.CommonTokenStream
 

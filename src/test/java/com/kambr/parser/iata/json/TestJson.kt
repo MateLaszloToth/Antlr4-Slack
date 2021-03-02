@@ -1,4 +1,4 @@
-package com.kambr.parser.oney.json
+package com.kambr.parser.iata.json
 
 import com.kambr.kambrlogger.Logger
 import org.antlr.v4.runtime.CharStream
@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Assertions.assertEquals
 
 class TestJson {
     companion object {
-        const val LEG_DATA_FILE_PATH = "src/test/resources/oney/json/LegData.json"
-        const val SCHEDULE_FILE_PATH = "src/test/resources/oney/json/Schedule.json"
+        const val LEG_DATA_FILE_PATH = "src/test/resources/iata/json/LegData.json"
+        const val SCHEDULE_FILE_PATH = "src/test/resources/iata/json/Schedule.json"
         val logger = Logger(this::class.java)
     }
 

@@ -1,7 +1,7 @@
-package com.kambr.parser.oney.json
+package com.kambr.parser.iata.json
 
 import com.kambr.kambrlogger.Logger
-import com.kambr.parser.oney.json.dataClasses.legData.LegData
+import com.kambr.parser.iata.json.dataClasses.legData.LegData
 import org.antlr.v4.runtime.CharStream
 import org.antlr.v4.runtime.CharStreams
 import java.io.File
