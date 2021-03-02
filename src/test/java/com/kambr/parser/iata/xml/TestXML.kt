@@ -1,15 +1,15 @@
 package com.kambr.parser.oney.xml
 
 import org.junit.jupiter.api.Test
-import com.kambr.parser.oney.xml.IATAOrderSalesInformationNotifRQParser.parseIATAOrderSalesInfo
-import com.kambr.parser.oney.xml.IATAServiceStatusChangeNotifRQParser.parseIATAServiceStatusChange
+import com.kambr.parser.iata.xml.IATAOrderSalesInformationNotifRQParser.parseIATAOrderSalesInfo
+import com.kambr.parser.iata.xml.IATAServiceStatusChangeNotifRQParser.parseIATAServiceStatusChange
 import org.junit.jupiter.api.Assertions.assertEquals
 
 class TestXML {
 
     companion object {
-        const val IATA_ORDER_SALES_INFORMATION_FILE = "src/test/resources/oney/xml/L1WYFPB_OSIN.xml"
-        const val IATA_SERVICE_STATUS_CHANGE_FILE = "src/test/resources/oney/xml/L1WYFPB_SSCN.xml"
+        const val IATA_ORDER_SALES_INFORMATION_FILE = "src/test/resources/iata/xml/L1WYFPB_OSIN.xml"
+        const val IATA_SERVICE_STATUS_CHANGE_FILE = "src/test/resources/iata/xml/L1WYFPB_SSCN.xml"
     }
 
     @Test

@@ -1,4 +1,4 @@
-package com.kambr.parser.oney.xml
+package com.kambr.parser.iata.xml
 
 import java.io.File
 import java.io.InputStream

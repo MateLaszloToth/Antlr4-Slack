@@ -1,7 +1,7 @@
-package com.kambr.parser.oney.xml
+package com.kambr.parser.iata.xml
 
-import com.kambr.parser.oney.xml.IATAOrderSalesInformationNotifRQParser.parseIATAOrderSalesInfo
-import com.kambr.parser.oney.xml.IATAServiceStatusChangeNotifRQParser.parseIATAServiceStatusChange
+import com.kambr.parser.iata.xml.IATAOrderSalesInformationNotifRQParser.parseIATAOrderSalesInfo
+import com.kambr.parser.iata.xml.IATAServiceStatusChangeNotifRQParser.parseIATAServiceStatusChange
 
 const val IATA_ORDER_SALES_INFORMATION_FILE = ""
 const val IATA_SERVICE_STATUS_CHANGE_FILE = ""

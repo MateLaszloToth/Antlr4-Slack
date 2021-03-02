@@ -1,7 +1,7 @@
-package com.kambr.parser.oney.xml
+package com.kambr.parser.iata.xml
 
-import com.kambr.parser.oney.xml.JAXBMiscellaneous.getObjectFromXML
-import com.kambr.parser.oney.xml.iata.orderSalesInformationNotifRQ.IATAOrderSalesInformationNotifRQ
+import com.kambr.parser.iata.xml.JAXBMiscellaneous.getObjectFromXML
+import com.kambr.parser.iata.xml.orderSalesInformationNotifRQ.IATAOrderSalesInformationNotifRQ
 
 object IATAOrderSalesInformationNotifRQParser {
 

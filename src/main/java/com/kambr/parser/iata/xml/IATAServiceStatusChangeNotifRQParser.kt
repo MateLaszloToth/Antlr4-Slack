@@ -1,6 +1,7 @@
-package com.kambr.parser.oney.xml
+package com.kambr.parser.iata.xml
 
-import com.kambr.parser.oney.xml.iata.serviceStatusChangeNotifRQ.IATAServiceStatusChangeNotifRQ
+import com.kambr.parser.iata.xml.serviceStatusChangeNotifRQ.IATAServiceStatusChangeNotifRQ
+
 
 object IATAServiceStatusChangeNotifRQParser {
 
