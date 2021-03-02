@@ -1,8 +1,6 @@
-package com.kambr.parser.oney.xml
+package com.kambr.parser.iata.xml
 
 import org.junit.jupiter.api.Test
-import com.kambr.parser.iata.xml.IATAOrderSalesInformationNotifRQParser.parseIATAOrderSalesInfo
-import com.kambr.parser.iata.xml.IATAServiceStatusChangeNotifRQParser.parseIATAServiceStatusChange
 import org.junit.jupiter.api.Assertions.assertEquals
 
 class TestXML {

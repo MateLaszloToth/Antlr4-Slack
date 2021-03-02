@@ -13,10 +13,10 @@ import java.io.IOException
 
 fun main() {
     val directory = "" // change to the directory from where you want to parse all files of specific type
-    val syncFileName = """SYNC_[0-9]+_[0-9]+\.txt""".toRegex()
-    val spoGlobalFileName = ".*SpoGlobal.*".toRegex()
+//    val syncFileName = """SYNC_[0-9]+_[0-9]+\.txt""".toRegex()
+//    val spoGlobalFileName = ".*SpoGlobal.*".toRegex()
     val tursysFileName = "TURSYS.*".toRegex()
-    val syncLowareFileName = """SYNC_LOWFARE_SALES_[0-9]+_[0-9]+\.txt""".toRegex()
+//    val syncLowareFileName = """SYNC_LOWFARE_SALES_[0-9]+_[0-9]+\.txt""".toRegex()
     // val syncLogger = Logger(GeniusSyncParser::class.java)
     // val spoLogger = Logger(GeniusSpoGlobalParser::class.java)
     val tursysLogger = Logger(TursysParser::class.java)
