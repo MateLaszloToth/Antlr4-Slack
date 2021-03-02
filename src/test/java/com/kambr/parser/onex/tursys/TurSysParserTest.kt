@@ -10,7 +10,7 @@ import java.io.IOException
 class TurSysParserTest {
 
     companion object {
-        const val FILE_PATH = "src/test/resources/tursys/test-file.csv"
+        const val FILE_PATH = "src/test/resources/onex/tursys/test-file.csv"
         val logger = Logger(this::class.java)
     }
 
