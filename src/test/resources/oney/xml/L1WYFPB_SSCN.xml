@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<IATA_ServiceStatusChangeNotifRQ xmlns="http://www.iata.org/IATA/2015/00/2020.2/IATA_ServiceStatusChangeNotifRQ">
+    <Party>
+        <Sender>
+            <Corporation>
+                <CorporateCodeText>WEB</CorporateCodeText>
+                <CorporateID>1</CorporateID>
+                <IATA_Number>1</IATA_Number>
+                <Name>pamlong</Name>
+            </Corporation>
+        </Sender>
+    </Party>
+    <PayloadAttributes>
+        <Timestamp>2021-01-08T10:10:25.328</Timestamp>
+        <VersionNumber>20.2</VersionNumber>
+    </PayloadAttributes>
+    <Request>
+        <Order>
+            <OrderID>L1WYFPB</OrderID>
+            <OrderItem>
+                <OrderItemID>OIL1WYFPB1</OrderItemID>
+                <Service>
+                    <DeliveryProvider>
+                        <ID>PDM</ID>
+                        <Name>PDM</Name>
+                    </DeliveryProvider>
+                    <DeliveryStatusCode>READY TO PROCEED</DeliveryStatusCode>
+                    <ServiceID>SV932d7d32-5199-11eb-9e7a-0b16c6b22ad2-1</ServiceID>
+                </Service>
+            </OrderItem>
+            <OrderItem>
+                <OrderItemID>OIL1WYFPB2</OrderItemID>
+                <Service>
+                    <DeliveryProvider>
+                        <ID>PDM</ID>
+                        <Name>PDM</Name>
+                    </DeliveryProvider>
+                    <DeliveryStatusCode>READY TO PROCEED</DeliveryStatusCode>
+                    <ServiceID>SV82537364-2efe-11eb-a1b5-bf2259e69a31</ServiceID>
+                </Service>
+            </OrderItem>
+            <OrderItem>
+                <OrderItemID>OIL1WYFPB3</OrderItemID>
+                <Service>
+                    <DeliveryProvider>
+                        <ID>PDM</ID>
+                        <Name>PDM</Name>
+                    </DeliveryProvider>
+                    <DeliveryStatusCode>READY TO PROCEED</DeliveryStatusCode>
+                    <ServiceID>SV9ae61d21-5199-11eb-9e7a-11b4f272b0eb</ServiceID>
+                </Service>
+            </OrderItem>
+            <OrderVersionNumber>1</OrderVersionNumber>
+        </Order>
+    </Request>
+</IATA_ServiceStatusChangeNotifRQ>
