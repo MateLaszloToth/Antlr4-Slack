@@ -1,10 +1,10 @@
-package com.kambr.parser.oney.json.dataClasses.schedule
+package com.kambr.parser.iata.json.dataClasses.schedule
 
-import com.kambr.parser.oney.json.ExtensionFunctions.toLocalDate
-import com.kambr.parser.oney.json.dataClasses.schedule.FiledNames.CITY_PAIR
-import com.kambr.parser.oney.json.dataClasses.schedule.FiledNames.DEPARTURE_DATE
-import com.kambr.parser.oney.json.dataClasses.schedule.FiledNames.FLIGHT_NUMBER
-import com.kambr.parser.oney.json.dataClasses.schedule.FiledNames.OPERATIONAL_SUFFIX
+import com.kambr.parser.iata.json.ExtensionFunctions.toLocalDate
+import com.kambr.parser.iata.json.dataClasses.schedule.FiledNames.CITY_PAIR
+import com.kambr.parser.iata.json.dataClasses.schedule.FiledNames.DEPARTURE_DATE
+import com.kambr.parser.iata.json.dataClasses.schedule.FiledNames.FLIGHT_NUMBER
+import com.kambr.parser.iata.json.dataClasses.schedule.FiledNames.OPERATIONAL_SUFFIX
 import java.time.LocalDate
 
 class FlightKey(flightKey: HashMap<String, Any>) {

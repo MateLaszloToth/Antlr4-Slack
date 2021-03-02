@@ -1,9 +1,9 @@
-package com.kambr.parser.oney.json.dataClasses.legData
+package com.kambr.parser.iata.json.dataClasses.legData
 
-import com.kambr.parser.oney.json.ExtensionFunctions.toInteger
-import com.kambr.parser.oney.json.ExtensionFunctions.toLocalDate
-import com.kambr.parser.oney.json.ExtensionFunctions.toLocalTime
-import com.kambr.parser.oney.json.dataClasses.legData.FieldNames.*
+import com.kambr.parser.iata.json.ExtensionFunctions.toInteger
+import com.kambr.parser.iata.json.ExtensionFunctions.toLocalDate
+import com.kambr.parser.iata.json.ExtensionFunctions.toLocalTime
+import com.kambr.parser.iata.json.dataClasses.legData.FieldNames.*
 import java.time.LocalDate
 import java.time.LocalTime
 

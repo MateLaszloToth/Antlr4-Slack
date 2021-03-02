@@ -1,4 +1,4 @@
-package com.kambr.parser.oney.json.dataClasses.schedule
+package com.kambr.parser.iata.json.dataClasses.schedule
 
 enum class FiledNames(val value: String) {
     FLIGHT_KEY("flightKey"),

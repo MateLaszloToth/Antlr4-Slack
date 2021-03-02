@@ -1,4 +1,4 @@
-package com.kambr.parser.oney.json
+package com.kambr.parser.iata.json
 
 import com.kambr.kambrlogger.Logger
 import org.antlr.v4.runtime.CharStream

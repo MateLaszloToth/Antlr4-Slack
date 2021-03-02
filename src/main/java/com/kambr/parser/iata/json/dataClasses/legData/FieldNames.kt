@@ -1,4 +1,4 @@
-package com.kambr.parser.oney.json.dataClasses.legData
+package com.kambr.parser.iata.json.dataClasses.legData
 
 enum class FieldNames(val value: String) {
     LEG_DEPARTURE_DATE("legDepartureDate"),
