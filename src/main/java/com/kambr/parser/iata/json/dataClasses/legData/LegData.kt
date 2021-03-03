@@ -7,6 +7,7 @@ import com.kambr.parser.iata.json.dataClasses.legData.FieldNames.*
 import java.time.LocalDate
 import java.time.LocalTime
 
+@Suppress("UNCHECKED_CAST")
 class LegData(row: HashMap<String, Any>) {
     var legDepartureDate: LocalDate = row[LEG_DEPARTURE_DATE.value]!!.toLocalDate()
     var carrierCode: String = row[CARRIER_CODE.value] as String

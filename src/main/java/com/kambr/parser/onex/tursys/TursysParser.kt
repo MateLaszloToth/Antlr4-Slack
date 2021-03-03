@@ -6,6 +6,7 @@ import com.kambr.parser.onex.tursys.generated.CSVParser
 import org.antlr.v4.runtime.CharStream
 import org.antlr.v4.runtime.CommonTokenStream
 
+@Suppress("UNCHECKED_CAST")
 object TursysParser {
 
     @JvmStatic

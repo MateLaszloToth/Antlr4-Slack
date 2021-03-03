@@ -4,6 +4,7 @@ import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeFormatter.BASIC_ISO_DATE
+import java.time.format.DateTimeFormatter.ofPattern
 
 object ExtensionFunctions {
 
@@ -18,7 +19,7 @@ object ExtensionFunctions {
      * Converts an Any object to LocalTime, when the string representation of the Any object has the format: HHmm (hour 0-24)
      */
     fun Any.toLocalTime(): LocalTime {
-        val formatter = DateTimeFormatter.ofPattern("HHmm")
+        val formatter = ofPattern("HHmm")
         return LocalTime.parse(this.toString(), formatter)
     }
 

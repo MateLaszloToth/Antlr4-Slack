@@ -3,6 +3,7 @@ package com.kambr.parser.iata.json
 import com.kambr.kambrlogger.Logger
 import org.antlr.v4.runtime.CharStream
 import org.antlr.v4.runtime.CharStreams
+import org.antlr.v4.runtime.CharStreams.fromFileName
 import org.junit.jupiter.api.Test
 import java.io.IOException
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -25,11 +26,11 @@ class TestJson {
     fun test_legData_parser() {
         var charStream: CharStream? = null
         try {
-            charStream = CharStreams.fromFileName(LEG_DATA_FILE_PATH)
+            charStream = fromFileName(LEG_DATA_FILE_PATH)
         } catch (e: IOException) {
             logger.error(e.localizedMessage)
         }
-        val jsonObject = LegDataParser.parse(charStream!!)
+        val jsonObject = parseIATALegData(charStream!!)
 
         val record1 = jsonObject[0]
 
@@ -76,11 +77,11 @@ class TestJson {
     fun test_schedule_parser() {
         var charStream: CharStream? = null
         try {
-            charStream = CharStreams.fromFileName(SCHEDULE_FILE_PATH)
+            charStream = fromFileName(SCHEDULE_FILE_PATH)
         } catch (e: IOException) {
             logger.error(e.localizedMessage)
         }
-        val jsonObject = ScheduleParser.parse(charStream!!)
+        val jsonObject = parseIATASchedule(charStream!!)
 
         val record1 = jsonObject[0]
         assertEquals("2021-01-01", record1.flightKey.departureDate.toString())

@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<IATA_OrderSalesInformationNotifRQ xmlns="http://www.iata.org/IATA/2015/00/2020.2/IATA_OrderSalesInformationNotifRQ">
+    <Party>
+        <Sender>
+            <Corporation>
+                <CorporateCodeText>WEB</CorporateCodeText>
+                <CorporateID>1</CorporateID>
+                <IATA_Number>1</IATA_Number>
+                <Name>pamlong</Name>
+            </Corporation>
+        </Sender>
+    </Party>
+    <PayloadAttributes>
+        <Timestamp>2021-01-08T10:09:40.615</Timestamp>
+        <VersionNumber>20.2</VersionNumber>
+    </PayloadAttributes>
+    <Request>
+        <DataLists>
+            <BaggageAllowanceList>
+                <BaggageAllowance>
+                    <BaggageAllowanceID>BA1</BaggageAllowanceID>
+                    <PieceAllowance>
+                        <ApplicablePartyText>Adult</ApplicablePartyText>
+                        <PieceDimensionAllowance>
+                            <BaggageDimensionCategory>Linear</BaggageDimensionCategory>
+                            <MaxMeasure UnitCode="CENTIMETER">0</MaxMeasure>
+                        </PieceDimensionAllowance>
+                        <PieceDimensionAllowance>
+                            <BaggageDimensionCategory>HEIGHT</BaggageDimensionCategory>
+                            <MaxMeasure UnitCode="CENTIMETER">0</MaxMeasure>
+                        </PieceDimensionAllowance>
+                        <PieceDimensionAllowance>
+                            <BaggageDimensionCategory>LENGTH</BaggageDimensionCategory>
+                            <MaxMeasure UnitCode="CENTIMETER">0</MaxMeasure>
+                        </PieceDimensionAllowance>
+                        <PieceDimensionAllowance>
+                            <BaggageDimensionCategory>WIDTH</BaggageDimensionCategory>
+                            <MaxMeasure UnitCode="CENTIMETER">0</MaxMeasure>
+                        </PieceDimensionAllowance>
+                        <PieceWeightAllowance>
+                            <MaximumWeightMeasure UnitCode="KG">21</MaximumWeightMeasure>
+                        </PieceWeightAllowance>
+                        <TotalQty>1</TotalQty>
+                    </PieceAllowance>
+                    <TypeCode>Checked</TypeCode>
+                    <WeightAllowance>
+                        <ApplicablePartyText>Adult</ApplicablePartyText>
+                        <MaximumWeightMeasure UnitCode="KG">21</MaximumWeightMeasure>
+                    </WeightAllowance>
+                </BaggageAllowance>
+            </BaggageAllowanceList>
+            <ContactInfoList>
+                <ContactInfo>
+                    <ContactInfoID>C215ea541-179e-47f6-ba59-0001351dffc2</ContactInfoID>
+                    <ContactPurposeText>Primary</ContactPurposeText>
+                    <EmailAddress>
+                        <EmailAddressText>philipp@pribas.com</EmailAddressText>
+                    </EmailAddress>
+                    <Individual>
+                        <GivenName>ARNULF</GivenName>
+                        <IndividualID>IN215ea541-179e-47f6-ba59-0001351dffc2</IndividualID>
+                        <Surname>PRIBAS</Surname>
+                        <TitleName>MR</TitleName>
+                    </Individual>
+                    <Phone>
+                        <PhoneNumber>491234567</PhoneNumber>
+                    </Phone>
+                    <PostalAddress>
+                        <CityName>BAD CAMBERG</CityName>
+                        <CountryCode>DE</CountryCode>
+                        <PostalCode>65520</PostalCode>
+                        <StreetText>OTTO-HAHN-STR. 18</StreetText>
+                    </PostalAddress>
+                </ContactInfo>
+                <ContactInfo>
+                    <ContactInfoID>Cf99fa03f-0757-461b-8261-59dcd1804252</ContactInfoID>
+                    <ContactPurposeText>Invoice</ContactPurposeText>
+                    <EmailAddress>
+                        <EmailAddressText>philipp@pribas.com</EmailAddressText>
+                    </EmailAddress>
+                    <Individual>
+                        <GivenName>ARNULF</GivenName>
+                        <IndividualID>INf99fa03f-0757-461b-8261-59dcd1804252</IndividualID>
+                        <Surname>PRIBAS</Surname>
+                        <TitleName>MR</TitleName>
+                    </Individual>
+                    <Phone>
+                        <PhoneNumber>491234567</PhoneNumber>
+                    </Phone>
+                    <PostalAddress>
+                        <CityName>BAD CAMBERG</CityName>
+                        <CountryCode>DE</CountryCode>
+                        <PostalCode>65520</PostalCode>
+                        <StreetText>OTTO-HAHN-STR. 18</StreetText>
+                    </PostalAddress>
+                </ContactInfo>
+            </ContactInfoList>
+            <OriginDestList>
+                <OriginDest>
+                    <DestCode>BGO</DestCode>
+                    <OriginCode>OSL</OriginCode>
+                    <OriginDestID>OD1</OriginDestID>
+                    <PaxJourneyRefID>JRN1</PaxJourneyRefID>
+                </OriginDest>
+            </OriginDestList>
+            <PaxJourneyList>
+                <PaxJourney>
+                    <Duration>P0Y0M0DT0H55M0.000S</Duration>
+                    <PaxJourneyID>JRN1</PaxJourneyID>
+                    <PaxSegmentRefID>SEG932d7d32-5199-11eb-9e7a-0b16c6b22ad2</PaxSegmentRefID>
+                </PaxJourney>
+            </PaxJourneyList>
+            <PaxList>
+                <Pax>
+                    <Individual>
+                        <GenderCode>M</GenderCode>
+                        <GivenName>AAA</GivenName>
+                        <IndividualID>IN1</IndividualID>
+                        <Surname>LASTNAME</Surname>
+                        <TitleName>MR</TitleName>
+                    </Individual>
+                    <PaxID>PX1</PaxID>
+                    <PTC>ADT</PTC>
+                </Pax>
+            </PaxList>
+            <PaxSegmentList>
+                <PaxSegment>
+                    <Arrival>
+                        <AircraftScheduledDateTime>2021-01-13T09:55:00</AircraftScheduledDateTime>
+                        <IATA_LocationCode>BGO</IATA_LocationCode>
+                    </Arrival>
+                    <DatedOperatingLeg>
+                        <Arrival>
+                            <AircraftScheduledDateTime>2021-01-13T09:55:00</AircraftScheduledDateTime>
+                            <IATA_LocationCode>BGO</IATA_LocationCode>
+                        </Arrival>
+                        <CarrierAircraftType>
+                            <CarrierAircraftTypeCode>320</CarrierAircraftTypeCode>
+                        </CarrierAircraftType>
+                        <DatedOperatingLegID>DOL932d7d36-5199-11eb-9e7a-b3ed40092367</DatedOperatingLegID>
+                        <Dep>
+                            <AircraftScheduledDateTime>2021-01-13T09:00:00</AircraftScheduledDateTime>
+                            <IATA_LocationCode>OSL</IATA_LocationCode>
+                        </Dep>
+                    </DatedOperatingLeg>
+                    <Dep>
+                        <AircraftScheduledDateTime>2021-01-13T09:00:00</AircraftScheduledDateTime>
+                        <IATA_LocationCode>OSL</IATA_LocationCode>
+                    </Dep>
+                    <Duration>P0Y0M0DT0H55M0.000S</Duration>
+                    <MarketingCarrierInfo>
+                        <CarrierDesigCode>PDM</CarrierDesigCode>
+                        <MarketingCarrierFlightNumberText>1112</MarketingCarrierFlightNumberText>
+                        <RBD_Code>WEB</RBD_Code>
+                    </MarketingCarrierInfo>
+                    <OperatingCarrierInfo>
+                        <CarrierDesigCode>PDM</CarrierDesigCode>
+                        <OperatingCarrierFlightNumberText>1112</OperatingCarrierFlightNumberText>
+                    </OperatingCarrierInfo>
+                    <PaxSegmentID>SEG932d7d32-5199-11eb-9e7a-0b16c6b22ad2</PaxSegmentID>
+                </PaxSegment>
+            </PaxSegmentList>
+            <PriceClassList>
+                <PriceClass>
+                    <CabinType>
+                        <CabinTypeName>WEB</CabinTypeName>
+                    </CabinType>
+                    <FareBasisCode>WEB</FareBasisCode>
+                    <Name>ALLIN</Name>
+                    <PriceClassID>PC1</PriceClassID>
+                </PriceClass>
+            </PriceClassList>
+            <ServiceDefinitionList>
+                <ServiceDefinition>
+                    <Desc>
+                        <DescText>VGML</DescText>
+                    </Desc>
+                    <Name>VGML</Name>
+                    <OwnerCode>PDM</OwnerCode>
+                    <RFISC>MEAL</RFISC>
+                    <ServiceCode>VGML</ServiceCode>
+                    <ServiceDefinitionID>SVD9ae61d21-5199-11eb-9e7a-11b4f272b0eb</ServiceDefinitionID>
+                </ServiceDefinition>
+                <ServiceDefinition>
+                    <Desc>
+                        <DescText>7B</DescText>
+                    </Desc>
+                    <Name>SEAT</Name>
+                    <OwnerCode>PDM</OwnerCode>
+                    <ServiceDefinitionID>SVD82537364-2efe-11eb-a1b5-bf2259e69a31</ServiceDefinitionID>
+                </ServiceDefinition>
+                <ServiceDefinition>
+                    <Desc>
+                        <DescText>BaggageAllowance Checked Bags</DescText>
+                    </Desc>
+                    <Name>BaggageAllowanceChecked</Name>
+                    <OwnerCode>PDM</OwnerCode>
+                    <ServiceDefinitionAssociation>
+                        <BaggageAllowanceRef>
+                            <BaggageAllowanceRefID>BA1</BaggageAllowanceRefID>
+                        </BaggageAllowanceRef>
+                    </ServiceDefinitionAssociation>
+                    <ServiceDefinitionID>SVD1</ServiceDefinitionID>
+                </ServiceDefinition>
+            </ServiceDefinitionList>
+        </DataLists>
+        <Order>
+            <OrderID>L1WYFPB</OrderID>
+            <OrderItem>
+                <FareDetail>
+                    <FareComponent>
+                        <CabinType>
+                            <CabinTypeName>WEB</CabinTypeName>
+                        </CabinType>
+                        <FareBasisCode>WEB</FareBasisCode>
+                        <PaxSegmentRefID>SEG932d7d32-5199-11eb-9e7a-0b16c6b22ad2</PaxSegmentRefID>
+                        <PriceClassRefID>PC1</PriceClassRefID>
+                    </FareComponent>
+                    <FarePriceType>
+                        <FarePriceTypeCode>NET FARE</FarePriceTypeCode>
+                        <Price>
+                            <BaseAmount>160.00</BaseAmount>
+                            <TaxSummary>
+                                <Tax>
+                                    <Amount CurCode="EUR">7.11</Amount>
+                                    <TaxCode>NO;G2</TaxCode>
+                                </Tax>
+                                <Tax>
+                                    <Amount CurCode="EUR">10.62</Amount>
+                                    <TaxCode>NO;ZN</TaxCode>
+                                </Tax>
+                                <Tax>
+                                    <Amount CurCode="EUR">2.13</Amount>
+                                    <TaxCode>NO;NV</TaxCode>
+                                </Tax>
+                                <TotalTaxAmount CurCode="EUR">19.86</TotalTaxAmount>
+                            </TaxSummary>
+                            <TotalAmount CurCode="EUR">179.86</TotalAmount>
+                        </Price>
+                    </FarePriceType>
+                    <PaxRefID>PX1</PaxRefID>
+                    <StatisticalCodeText>DOMESTIC</StatisticalCodeText>
+                </FareDetail>
+                <OrderItemID>OIL1WYFPB1</OrderItemID>
+                <OwnerCode>PDM</OwnerCode>
+                <Price>
+                    <BaseAmount CurCode="EUR">160.00</BaseAmount>
+                    <TaxSummary>
+                        <Tax>
+                            <Amount CurCode="EUR">7.11</Amount>
+                            <TaxCode>NO;G2</TaxCode>
+                        </Tax>
+                        <Tax>
+                            <Amount CurCode="EUR">10.62</Amount>
+                            <TaxCode>NO;ZN</TaxCode>
+                        </Tax>
+                        <Tax>
+                            <Amount CurCode="EUR">2.13</Amount>
+                            <TaxCode>NO;NV</TaxCode>
+                        </Tax>
+                    </TaxSummary>
+                    <TotalAmount CurCode="EUR">179.86</TotalAmount>
+                </Price>
+                <Service>
+                    <ActionCode>Add</ActionCode>
+                    <Bag/>
+                    <DeliveryProvider>
+                        <ID>PDM</ID>
+                        <Name>PDM</Name>
+                    </DeliveryProvider>
+                    <DeliveryStatusCode>READY TO PROCEED</DeliveryStatusCode>
+                    <InternalValue>
+                        <BaseAmount CurCode="EUR">160.00</BaseAmount>
+                        <TaxSummary>
+                            <Tax>
+                                <Amount CurCode="EUR">7.11</Amount>
+                                <TaxCode>NO;G2</TaxCode>
+                            </Tax>
+                            <Tax>
+                                <Amount CurCode="EUR">10.62</Amount>
+                                <TaxCode>NO;ZN</TaxCode>
+                            </Tax>
+                            <Tax>
+                                <Amount CurCode="EUR">2.13</Amount>
+                                <TaxCode>NO;NV</TaxCode>
+                            </Tax>
+                        </TaxSummary>
+                        <TotalAmount CurCode="EUR">179.86</TotalAmount>
+                    </InternalValue>
+                    <PaxRefID>PX1</PaxRefID>
+                    <ServiceAssociations>
+                        <PaxSegmentRef>
+                            <PaxSegmentRefID>SEG932d7d32-5199-11eb-9e7a-0b16c6b22ad2</PaxSegmentRefID>
+                        </PaxSegmentRef>
+                    </ServiceAssociations>
+                    <ServiceID>SV932d7d32-5199-11eb-9e7a-0b16c6b22ad2-1</ServiceID>
+                    <UnchangedInd>false</UnchangedInd>
+                </Service>
+                <Service>
+                    <ActionCode>Add</ActionCode>
+                    <Bag/>
+                    <DeliveryProvider>
+                        <ID>PDM</ID>
+                        <Name>PDM</Name>
+                    </DeliveryProvider>
+                    <DeliveryStatusCode>READY TO PROCEED</DeliveryStatusCode>
+                    <InternalValue>
+                        <TotalAmount CurCode="EUR">0</TotalAmount>
+                    </InternalValue>
+                    <PaxRefID>PX1</PaxRefID>
+                    <ServiceAssociations>
+                        <ServiceDefinitionRef>
+                            <ServiceDefinitionRefFlightAssociations>
+                                <PaxSegmentRef>
+                                    <PaxSegmentRefID>SEG932d7d32-5199-11eb-9e7a-0b16c6b22ad2</PaxSegmentRefID>
+                                </PaxSegmentRef>
+                            </ServiceDefinitionRefFlightAssociations>
+                            <ServiceDefinitionRefID>SVD1</ServiceDefinitionRefID>
+                        </ServiceDefinitionRef>
+                    </ServiceAssociations>
+                    <ServiceID>SV1</ServiceID>
+                    <UnchangedInd>false</UnchangedInd>
+                </Service>
+            </OrderItem>
+            <OrderItem>
+                <FareDetail>
+                    <FarePriceType>
+                        <FarePriceTypeCode>ANCILLARY TAX BREAKDOWN</FarePriceTypeCode>
+                        <Price>
+                            <BaseAmount CurCode="EUR">12.00</BaseAmount>
+                            <TaxSummary>
+                                <Tax>
+                                    <Amount CurCode="EUR">3.00</Amount>
+                                    <TaxCode>NO;ZN</TaxCode>
+                                </Tax>
+                                <TotalTaxAmount CurCode="EUR">3.00</TotalTaxAmount>
+                            </TaxSummary>
+                            <TotalAmount CurCode="EUR">15.00</TotalAmount>
+                        </Price>
+                    </FarePriceType>
+                </FareDetail>
+                <OrderItemID>OIL1WYFPB2</OrderItemID>
+                <OwnerCode>PDM</OwnerCode>
+                <Price>
+                    <BaseAmount CurCode="EUR">12.00</BaseAmount>
+                    <TotalAmount CurCode="EUR">15.00</TotalAmount>
+                </Price>
+                <Service>
+                    <ActionCode>Add</ActionCode>
+                    <Bag/>
+                    <DeliveryProvider>
+                        <ID>PDM</ID>
+                        <Name>PDM</Name>
+                    </DeliveryProvider>
+                    <DeliveryStatusCode>READY TO PROCEED</DeliveryStatusCode>
+                    <InternalValue>
+                        <BaseAmount CurCode="EUR">12.00</BaseAmount>
+                        <TotalAmount CurCode="EUR">15.00</TotalAmount>
+                    </InternalValue>
+                    <PaxRefID>PX1</PaxRefID>
+                    <ServiceAssociations>
+                        <ServiceDefinitionRef>
+                            <ServiceDefinitionRefFlightAssociations>
+                                <PaxSegmentRef>
+                                    <PaxSegmentRefID>SEG932d7d32-5199-11eb-9e7a-0b16c6b22ad2</PaxSegmentRefID>
+                                </PaxSegmentRef>
+                            </ServiceDefinitionRefFlightAssociations>
+                            <ServiceDefinitionRefID>SVD82537364-2efe-11eb-a1b5-bf2259e69a31</ServiceDefinitionRefID>
+                        </ServiceDefinitionRef>
+                    </ServiceAssociations>
+                    <ServiceID>SV82537364-2efe-11eb-a1b5-bf2259e69a31</ServiceID>
+                    <UnchangedInd>false</UnchangedInd>
+                </Service>
+            </OrderItem>
+            <OrderItem>
+                <FareDetail>
+                    <FarePriceType>
+                        <FarePriceTypeCode>ANCILLARY TAX BREAKDOWN</FarePriceTypeCode>
+                        <Price>
+                            <BaseAmount CurCode="EUR">9.52</BaseAmount>
+                            <TaxSummary>
+                                <Tax>
+                                    <Amount CurCode="EUR">0.48</Amount>
+                                    <TaxCode>NO;ZN</TaxCode>
+                                </Tax>
+                                <TotalTaxAmount CurCode="EUR">0.48</TotalTaxAmount>
+                            </TaxSummary>
+                            <TotalAmount CurCode="EUR">10.00</TotalAmount>
+                        </Price>
+                    </FarePriceType>
+                </FareDetail>
+                <OrderItemID>OIL1WYFPB3</OrderItemID>
+                <OwnerCode>PDM</OwnerCode>
+                <Price>
+                    <BaseAmount CurCode="EUR">9.52</BaseAmount>
+                    <TotalAmount CurCode="EUR">10.00</TotalAmount>
+                </Price>
+                <Service>
+                    <ActionCode>Add</ActionCode>
+                    <Bag/>
+                    <DeliveryProvider>
+                        <ID>PDM</ID>
+                        <Name>PDM</Name>
+                    </DeliveryProvider>
+                    <DeliveryStatusCode>READY TO PROCEED</DeliveryStatusCode>
+                    <InternalValue>
+                        <BaseAmount CurCode="EUR">9.52</BaseAmount>
+                        <TotalAmount CurCode="EUR">10.00</TotalAmount>
+                    </InternalValue>
+                    <PaxRefID>PX1</PaxRefID>
+                    <ServiceAssociations>
+                        <ServiceDefinitionRef>
+                            <ServiceDefinitionRefFlightAssociations>
+                                <PaxSegmentRef>
+                                    <PaxSegmentRefID>SEG932d7d32-5199-11eb-9e7a-0b16c6b22ad2</PaxSegmentRefID>
+                                </PaxSegmentRef>
+                            </ServiceDefinitionRefFlightAssociations>
+                            <ServiceDefinitionRefID>SVD9ae61d21-5199-11eb-9e7a-11b4f272b0eb</ServiceDefinitionRefID>
+                        </ServiceDefinitionRef>
+                    </ServiceAssociations>
+                    <ServiceID>SV9ae61d21-5199-11eb-9e7a-11b4f272b0eb</ServiceID>
+                    <UnchangedInd>false</UnchangedInd>
+                </Service>
+            </OrderItem>
+            <OrderVersionNumber>1</OrderVersionNumber>
+            <OwnerCode>PDM</OwnerCode>
+            <PaymentInfo>
+                <Amount CurCode="EUR">201.38</Amount>
+                <Payer>
+                    <PayerName>
+                        <IndividualName>
+                            <Surname>PRIBAS</Surname>
+                        </IndividualName>
+                    </PayerName>
+                </Payer>
+                <PaymentCommitmentDateTime>2021-01-08T11:09:39</PaymentCommitmentDateTime>
+                <PaymentMethod>
+                    <Cash/>
+                </PaymentMethod>
+                <PaymentRefID></PaymentRefID>
+                <PaymentTrx>
+                    <TrxID>036d1654-048b-4c93-832d-5da53ee9510d</TrxID>
+                </PaymentTrx>
+                <TypeCode>CA</TypeCode>
+            </PaymentInfo>
+            <StatusCode>OPENED</StatusCode>
+            <TotalPrice>
+                <BaseAmount CurCode="EUR">181.52</BaseAmount>
+                <TaxSummary>
+                    <Tax>
+                        <Amount CurCode="EUR">7.11</Amount>
+                        <TaxCode>NO;G2</TaxCode>
+                    </Tax>
+                    <Tax>
+                        <Amount CurCode="EUR">10.62</Amount>
+                        <TaxCode>NO;ZN</TaxCode>
+                    </Tax>
+                    <Tax>
+                        <Amount CurCode="EUR">2.13</Amount>
+                        <TaxCode>NO;NV</TaxCode>
+                    </Tax>
+                    <Tax>
+                        <Amount CurCode="EUR">3.00</Amount>
+                        <TaxCode>NO;ZN</TaxCode>
+                    </Tax>
+                    <Tax>
+                        <Amount CurCode="EUR">0.48</Amount>
+                        <TaxCode>NO;ZN</TaxCode>
+                    </Tax>
+                    <TotalTaxAmount CurCode="EUR">23.34</TotalTaxAmount>
+                </TaxSummary>
+                <TotalAmount CurCode="EUR">204.86</TotalAmount>
+            </TotalPrice>
+        </Order>
+    </Request>
+</IATA_OrderSalesInformationNotifRQ>

@@ -7,6 +7,7 @@ import com.kambr.parser.iata.json.dataClasses.legData.FieldNames.CABIN_BLOCK
 import com.kambr.parser.iata.json.dataClasses.legData.FieldNames.CABIN_CODE
 import com.kambr.parser.iata.json.dataClasses.legData.FieldNames.CABIN_SALEABLE_CAPACITY
 
+@Suppress("UNCHECKED_CAST")
 class CabinDetails(cabinObject: HashMap<String, Any>) {
     var cabinCode: String = cabinObject[CABIN_CODE.value] as String
     var cabinSaleableCapacity: Int = cabinObject[CABIN_SALEABLE_CAPACITY.value]!!.toInteger()
