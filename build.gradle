@@ -10,7 +10,7 @@ plugins {
 
 configurations {
     version versionDetails().lastTag
-    group 'com.kambr.parser'
+    group 'com.kambr'
 }
 
 java {
@@ -23,7 +23,7 @@ java {
 publishing {
     publications {
         myPublication(MavenPublication) {
-            artifactId = '1x'
+            artifactId = 'parser'
 
             from components.java
         }
