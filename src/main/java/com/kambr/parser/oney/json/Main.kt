@@ -10,7 +10,7 @@ import java.io.IOException
 class Main
 
 fun main() {
-    val directory = "/Users/matetoth/Desktop/Flyr/flyr_export/" // change to the directory from where you want to parse all files of specific type
+    val directory = "" // change to the directory from where you want to parse all files of specific type
     val legDataFilePattern = "legData\\.json".toRegex()
 //    val scheduleFilePattern = "schedule\\.json".toRegex()
 

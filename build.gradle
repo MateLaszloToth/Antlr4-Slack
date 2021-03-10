@@ -10,7 +10,7 @@ plugins {
 
 configurations {
     version versionDetails().lastTag
-    group 'com.kambr.parser'
+    group 'com.kambr'
 }
 
 java {
@@ -23,7 +23,7 @@ java {
 publishing {
     publications {
         myPublication(MavenPublication) {
-            artifactId = '1x'
+            artifactId = 'parser'
 
             from components.java
         }
@@ -75,7 +75,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClassName = 'com.kambr.parser.onex.sync.GeniusSyncParser'
+    mainClass.set('com.kambr.parser.onex.sync.GeniusSyncParser')
 }
 
 test {
@@ -86,7 +86,6 @@ compileKotlin {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    kotlinOptions.useIR = true
 }
 compileTestKotlin {
     kotlinOptions {
