@@ -1,10 +1,6 @@
 package com.kambr.parser.onex
 
 import com.kambr.kambrlogger.Logger
-import com.kambr.parser.onex.spo.GeniusSpoGlobalParser
-import com.kambr.parser.onex.sync.GeniusSyncParser
-import com.kambr.parser.onex.syncLowFare.GeniusSyncLowFareParser
-import com.kambr.parser.onex.syncLowFare.generated.SyncLowFareParser
 import com.kambr.parser.onex.tursys.TursysParser
 import org.antlr.v4.runtime.CharStream
 import org.antlr.v4.runtime.CharStreams
