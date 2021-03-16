@@ -85,9 +85,8 @@ class TestJson {
         val record1 = jsonObject[0]
         assertEquals("2021-01-01", record1.flightKey.departureDate.toString())
         assertEquals("PDM", record1.flightKey.airlineCode)
-        assertEquals(null, record1.flightKey.operationalSuffix)
-        assertEquals("1111", record1.flightKey.flightNumber)
-        assertEquals("MUCOSL", record1.flightKey.cityPair)
+        assertEquals("OSLLYR1114", record1.flightKey.flightLine)
+        assertEquals("OSLTOSLYR", record1.flightKey.flightPath)
 
         assertEquals("2021-01-01", record1.flightLegs[0].departureDate.toString())
         assertEquals("PDM", record1.flightLegs[0].airlineCode)

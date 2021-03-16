@@ -3,8 +3,8 @@
     "departureDate" : "20210101",
     "airlineCode" : "PDM",
     "operationalSuffix" : null,
-    "flightNumber" : "1111",
-    "cityPair" : "MUCOSL"
+    "flightLine" : "OSLLYR1114",
+    "flightPath" : "OSLTOSLYR"
   },
   "flightLegs" : [
     {
