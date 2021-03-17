@@ -4,11 +4,13 @@ enum class FiledNames(val value: String) {
     FLIGHT_KEY("flightKey"),
     DEPARTURE_DATE("departureDate"),
     AIRLINE_CODE("airlineCode"),
-    OPERATIONAL_SUFFIX("operationalSuffix"),
-    FLIGHT_NUMBER("flightNumber"),
-    CITY_PAIR("cityPair"),
+    FLIGHT_PATH("flightPath"),
+    FLIGHT_LINE("flightLine"),
+
 
     FLIGHT_LEGS("flightLegs"),
+    OPERATIONAL_SUFFIX("operationalSuffix"),
+    FLIGHT_NUMBER("flightNumber"),
     DEPARTURE_AIRPORT("departureAirport"),
     ARRIVAL_AIRPORT("arrivalAirport"),
 }
