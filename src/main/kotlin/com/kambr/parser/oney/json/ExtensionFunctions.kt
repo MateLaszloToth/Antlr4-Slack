@@ -5,7 +5,7 @@ import java.time.LocalTime
 import java.time.format.DateTimeFormatter.BASIC_ISO_DATE
 import java.time.format.DateTimeFormatter.ofPattern
 
-object ExtensionFunctions {
+internal object ExtensionFunctions {
 
     /**
      * Converts an Any object to LocalDate, when the string representation of the ANy object has the format: yyyyMMdd
