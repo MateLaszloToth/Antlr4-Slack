@@ -1,5 +1,6 @@
 package com.kambr.parser.oney.xml
 
+import java.io.ByteArrayInputStream
 import java.io.File
 import java.io.InputStream
 import javax.xml.XMLConstants
@@ -11,7 +12,24 @@ import javax.xml.validation.SchemaFactory
 
 object JAXBMiscellaneous {
 
-    fun getObjectFromXML(xmlFilePath: String, clazz: Class<*>): Any? {
+    /**
+     * Pribas sends multiple xml root elements in one file. Each line is an xml root element.
+     * Solution: Read line by line and parse line by line.
+     */
+    fun getObjectFromFileWithXMLRootElementOnEachLine(xmlFilePath: String, clazz: Class<*>): List<Any> {
+        val xmlInputFactory = XMLInputFactory.newInstance()
+        xmlInputFactory.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, false)
+        xmlInputFactory.setProperty(XMLInputFactory.SUPPORT_DTD, false)
+        val unmarshaller = getUnmarshallerByClass(clazz, validateSchema = false)
+        val xmlObjects = mutableListOf<Any>()
+        File(xmlFilePath).bufferedReader().forEachLine { line ->
+            val xmlStreamReader = xmlInputFactory.createXMLStreamReader(ByteArrayInputStream(line.toByteArray()))
+            xmlObjects.add(unmarshaller.unmarshal(xmlStreamReader))
+        }
+        return xmlObjects
+    }
+
+    fun getObjectFromXML(xmlFilePath: String, clazz: Class<*>): Any {
         val xmlInputFactory = XMLInputFactory.newInstance()
         xmlInputFactory.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, false)
         xmlInputFactory.setProperty(XMLInputFactory.SUPPORT_DTD, false)
