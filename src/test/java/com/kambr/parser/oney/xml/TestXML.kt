@@ -12,32 +12,24 @@ class TestXML {
 
     @Test
     fun test_iata_order_sales_information() {
-        val orderSalesInfo = parseIATAOrderSalesInfo(IATA_ORDER_SALES_INFORMATION_FILE)
+        val orderSalesInfoList = parseIATAOrderSalesInfo(IATA_ORDER_SALES_INFORMATION_FILE)
+
+        assertEquals(2, orderSalesInfoList.size)
+
+        val orderSalesInfo = orderSalesInfoList[0]
 
         assertEquals("WEB", orderSalesInfo.party.sender.corporation.corporateCodeText)
-        assertEquals("2021-01-08T10:09:40.615", orderSalesInfo.payloadAttributes.timestamp.toLocalDateTime().toString())
+        assertEquals("2021-03-16T12:47:05.495", orderSalesInfo.payloadAttributes.timestamp.toLocalDateTime().toString())
 
-        val baggageAllowance = orderSalesInfo.request.dataLists.baggageAllowanceList.baggageAllowance
+        assertEquals(null, orderSalesInfo.request.dataLists.baggageAllowanceList)
 
-        assertEquals(1, baggageAllowance.size)
-        assertEquals("BA1", baggageAllowance[0].baggageAllowanceID)
-        assertEquals("Adult", baggageAllowance[0].pieceAllowance[0].applicablePartyText)
-        assertEquals(4, baggageAllowance[0].pieceAllowance[0].pieceDimensionAllowance.size)
-        assertEquals(
-            "Linear",
-            baggageAllowance[0].pieceAllowance[0].pieceDimensionAllowance[0].baggageDimensionCategory
-        )
-        assertEquals("Checked", baggageAllowance[0].typeCode.value())
-        assertEquals(2, orderSalesInfo.request.dataLists.contactInfoList.contactInfo.size)
-        assertEquals(
-            "C215ea541-179e-47f6-ba59-0001351dffc2",
-            orderSalesInfo.request.dataLists.contactInfoList.contactInfo[0].contactInfoID
-        )
-        assertEquals(1, orderSalesInfo.request.dataLists.originDestList.originDest.size)
-        assertEquals("BGO", orderSalesInfo.request.dataLists.originDestList.originDest[0].destCode)
-        assertEquals("LASTNAME", orderSalesInfo.request.dataLists.paxList.pax[0].individual.surname)
+        assertEquals(1, orderSalesInfo.request.dataLists.paxList.pax.size)
+        assertEquals("ADT", orderSalesInfo.request.dataLists.paxList.pax[0].ptc)
+
         assertEquals(1, orderSalesInfo.request.order.size)
-        assertEquals("L1WYFPB", orderSalesInfo.request.order[0].orderID)
+        assertEquals(5, orderSalesInfo.request.order[0].orderItem.size)
+        assertEquals("OIL3TBULW1", orderSalesInfo.request.order[0].orderItem[0].orderItemID)
+        assertEquals("L3TBULW", orderSalesInfo.request.order[0].orderID)
     }
 
     @Test
