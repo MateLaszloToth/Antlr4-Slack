@@ -4,7 +4,6 @@ import com.kambr.parser.oney.json.ExtensionFunctions.toInteger
 import com.kambr.parser.oney.json.ExtensionFunctions.toLocalDate
 import com.kambr.parser.oney.json.ExtensionFunctions.toLocalTime
 import com.kambr.parser.oney.json.dataClasses.flightSeatPrice.FieldNames.DEPARTURE_DATE
-import com.kambr.parser.oney.json.dataClasses.flightSeatPrice.SeatDetails
 import java.text.DecimalFormat
 import java.time.LocalDate
 
@@ -16,7 +15,7 @@ class FlightSeatPrice {
     val baseCurrencyCode: String
     val changedByUserID: String
     val cabinDetails: List<CabinDetails>
-    val seatDetails: List<SeatDetails>
+
 
 
     constructor(row: HashMap<String, Any>) {
@@ -27,7 +26,6 @@ class FlightSeatPrice {
         baseCurrencyCode = row[FieldNames.BASE_CURRENCY_CODE.value] as String
         changedByUserID = row[FieldNames.CHANGED_BY_USER.value] as String
         cabinDetails = row[FieldNames.CABIN_DETAILS.value] as List<CabinDetails>
-        seatDetails = row[FieldNames.SEAT_DETAILS.value] as List<SeatDetails>
     }
 
     constructor(
@@ -38,7 +36,6 @@ class FlightSeatPrice {
             baseCurrencyCode: String,
             changedByUserID: String,
             cabinDetails: List<CabinDetails>,
-            seatDetails: List<SeatDetails>,
     ) {
         this.departureDate = departureDate
         this.carrierCode = carrierCode
@@ -47,7 +44,6 @@ class FlightSeatPrice {
         this.baseCurrencyCode = baseCurrencyCode
         this.changedByUserID = changedByUserID
         this.cabinDetails = cabinDetails
-        this.seatDetails = seatDetails
     }
 
     override fun equals(other: Any?): Boolean {
@@ -63,7 +59,6 @@ class FlightSeatPrice {
         if (baseCurrencyCode != other.baseCurrencyCode) return false
         if (changedByUserID != other.changedByUserID) return false
         if (cabinDetails != other.cabinDetails) return false
-        if (seatDetails != other.seatDetails) return false
 
         return true
     }
@@ -76,12 +71,11 @@ class FlightSeatPrice {
         result = 31 * result + baseCurrencyCode.hashCode()
         result = 31 * result + changedByUserID.hashCode()
         result = 31 * result + cabinDetails.hashCode()
-        result = 31 * result + seatDetails.hashCode()
         return result
     }
 
     override fun toString(): String {
-        return "FlightSeatPrice(departureDate=$departureDate, carrierCode='$carrierCode', flightLine='$flightLine', flightPath='$flightPath', baseCurrencyCode='$baseCurrencyCode', changedByUserID='$changedByUserID', cabinDetails=$cabinDetails, seatDetails=$seatDetails)"
+        return "FlightSeatPrice(departureDate=$departureDate, carrierCode='$carrierCode', flightLine='$flightLine', flightPath='$flightPath', baseCurrencyCode='$baseCurrencyCode', changedByUserID='$changedByUserID', cabinDetails=$cabinDetails)"
     }
 
 
