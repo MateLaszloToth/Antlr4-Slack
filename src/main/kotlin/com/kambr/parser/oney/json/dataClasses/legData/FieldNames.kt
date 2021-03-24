@@ -14,14 +14,14 @@ enum class FieldNames(val value: String) {
     EQUIPMENT_TYPE("equipmentType"),
     EQUIPMENT_VERSION("equipmentVersion"),
     BASE_CURRENCY_CODE("baseCurrencyCode"),
-    AIRCRAFT_SALEABLE_CAPACITY("aircraftSaleableCapacity"),
     AIRCRAFT_AUTHORIZED_CAPACITY("aircraftAuthorizedCapacity"),
+    AIRCRAFT_CAPACITY("aircraftCapacity"),
     CABIN_DETAILS("cabinDetails"),
     BLOCK_SPACE_DETAILS("blockSpaceDetails"),
     CODE_SHARE_BLOCK("codeShareBlock"),
     PROTECTED_SEATS("protectedSeats"),
     CABIN_CODE("cabinCode"),
-    CABIN_SALEABLE_CAPACITY("cabinSaleableCapacity"),
     CABIN_AUTHORIZED_CAPACITY("cabinAuthorizedCapacity"),
+    CABIN_CAPACITY("cabinCapacity"),
     CABIN_BLOCK("cabinBlock")
 }

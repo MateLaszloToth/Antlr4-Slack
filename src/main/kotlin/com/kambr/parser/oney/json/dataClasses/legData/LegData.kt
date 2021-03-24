@@ -22,8 +22,8 @@ class LegData {
     val equipmentType: String?
     val equipmentVersion: String?
     val baseCurrencyCode: String
-    val aircraftSaleableCapacity: Int
     val aircraftAuthorizedCapacity: Int
+    val aircraftCapacity: Int
     val cabins: List<CabinDetails>
 
     constructor(row: HashMap<String, Any>) {
@@ -48,8 +48,8 @@ class LegData {
             else
                 row[EQUIPMENT_VERSION.value] as String
         baseCurrencyCode = row[BASE_CURRENCY_CODE.value] as String
-        aircraftSaleableCapacity = row[AIRCRAFT_SALEABLE_CAPACITY.value]!!.toInteger()
         aircraftAuthorizedCapacity = row[AIRCRAFT_AUTHORIZED_CAPACITY.value]!!.toInteger()
+        aircraftCapacity = row[AIRCRAFT_CAPACITY.value]!!.toInteger()
 
         val tempCabins = mutableListOf<CabinDetails>()
         (row[CABIN_DETAILS.value] as List<*>).forEach { cabin ->
@@ -91,8 +91,8 @@ class LegData {
         this.equipmentType = equipmentType
         this.equipmentVersion = equipmentVersion
         this.baseCurrencyCode = baseCurrencyCode
-        this.aircraftSaleableCapacity = aircraftSaleableCapacity
-        this.aircraftAuthorizedCapacity = aircraftAuthorizedCapacity
+        this.aircraftAuthorizedCapacity = aircraftSaleableCapacity
+        this.aircraftCapacity = aircraftAuthorizedCapacity
         this.cabins = cabins
     }
 
@@ -115,8 +115,8 @@ class LegData {
         if (equipmentType != other.equipmentType) return false
         if (equipmentVersion != other.equipmentVersion) return false
         if (baseCurrencyCode != other.baseCurrencyCode) return false
-        if (aircraftSaleableCapacity != other.aircraftSaleableCapacity) return false
         if (aircraftAuthorizedCapacity != other.aircraftAuthorizedCapacity) return false
+        if (aircraftCapacity != other.aircraftCapacity) return false
         if (cabins != other.cabins) return false
 
         return true
@@ -136,13 +136,13 @@ class LegData {
         result = 31 * result + (equipmentType?.hashCode() ?: 0)
         result = 31 * result + (equipmentVersion?.hashCode() ?: 0)
         result = 31 * result + baseCurrencyCode.hashCode()
-        result = 31 * result + aircraftSaleableCapacity
         result = 31 * result + aircraftAuthorizedCapacity
+        result = 31 * result + aircraftCapacity
         result = 31 * result + cabins.hashCode()
         return result
     }
 
     override fun toString(): String {
-        return "LegData(legDepartureDate=$legDepartureDate, carrierCode='$carrierCode', operationalSuffix=$operationalSuffix, flightNumber='$flightNumber', departureStation='$departureStation', arrivalStation='$arrivalStation', departureTime=$departureTime, arrivalTime=$arrivalTime, overNights=$overNights, serviceType='$serviceType', equipmentType=$equipmentType, equipmentVersion=$equipmentVersion, baseCurrencyCode='$baseCurrencyCode', aircraftSaleableCapacity=$aircraftSaleableCapacity, aircraftAuthorizedCapacity=$aircraftAuthorizedCapacity, cabins=$cabins)"
+        return "LegData(legDepartureDate=$legDepartureDate, carrierCode='$carrierCode', operationalSuffix=$operationalSuffix, flightNumber='$flightNumber', departureStation='$departureStation', arrivalStation='$arrivalStation', departureTime=$departureTime, arrivalTime=$arrivalTime, overNights=$overNights, serviceType='$serviceType', equipmentType=$equipmentType, equipmentVersion=$equipmentVersion, baseCurrencyCode='$baseCurrencyCode', aircraftSaleableCapacity=$aircraftAuthorizedCapacity, aircraftAuthorizedCapacity=$aircraftCapacity, cabins=$cabins)"
     }
 }
