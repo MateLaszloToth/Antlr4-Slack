@@ -8,21 +8,14 @@ import com.kambr.parser.oney.json.dataClasses.legData.FieldNames.CABIN_CODE
 import com.kambr.parser.oney.json.dataClasses.legData.FieldNames.CABIN_AUTHORIZED_CAPACITY
 
 @Suppress("UNCHECKED_CAST")
-class CabinDetails {
-    val cabinCode: String
-    val cabinAuthorizedCapacity: Int
-    val cabinCapacity: Int
-    val cabinBlock: Int
+class CabinDetails(cabinObject: HashMap<String, Any>) {
+    val cabinCode: String = cabinObject[CABIN_CODE.value] as String
+    val cabinAuthorizedCapacity: Int = cabinObject[CABIN_AUTHORIZED_CAPACITY.value]!!.toInteger()
+    val cabinCapacity: Int = cabinObject[CABIN_CAPACITY.value]!!.toInteger()
+    val cabinBlock: Int = cabinObject[CABIN_BLOCK.value]!!.toInteger()
     val blockSpaceDetails: List<BlockSpaceDetails>
 
-    constructor(
-        cabinObject: HashMap<String, Any>
-    ) {
-        cabinCode = cabinObject[CABIN_CODE.value] as String
-        cabinAuthorizedCapacity = cabinObject[CABIN_AUTHORIZED_CAPACITY.value]!!.toInteger()
-        cabinCapacity = cabinObject[CABIN_CAPACITY.value]!!.toInteger()
-        cabinBlock = cabinObject[CABIN_BLOCK.value]!!.toInteger()
-
+    init {
         val tempBlockSpaceDetails = mutableListOf<BlockSpaceDetails>()
         (cabinObject[BLOCK_SPACE_DETAILS.value] as List<*>).forEach { item ->
             if (item != null) {
@@ -30,20 +23,6 @@ class CabinDetails {
             }
         }
         blockSpaceDetails = tempBlockSpaceDetails
-    }
-
-    constructor(
-        cabinCode: String,
-        cabinSaleableCapacity: Int,
-        cabinAuthorizedCapacity: Int,
-        cabinBlock: Int,
-        blockSpaceDetails: List<BlockSpaceDetails>
-    ) {
-        this.cabinCode = cabinCode
-        this.cabinAuthorizedCapacity = cabinSaleableCapacity
-        this.cabinCapacity = cabinAuthorizedCapacity
-        this.cabinBlock = cabinBlock
-        this.blockSpaceDetails = blockSpaceDetails
     }
 
     override fun equals(other: Any?): Boolean {
@@ -71,6 +50,6 @@ class CabinDetails {
     }
 
     override fun toString(): String {
-        return "CabinDetails(cabinCode='$cabinCode', cabinSaleableCapacity=$cabinAuthorizedCapacity, cabinAuthorizedCapacity=$cabinCapacity, cabinBlock=$cabinBlock, blockSpaceDetails=$blockSpaceDetails)"
+        return "CabinDetails(cabinCode='$cabinCode', cabinAuthorizedCapacity=$cabinAuthorizedCapacity, cabinCapacity=$cabinCapacity, cabinBlock=$cabinBlock, blockSpaceDetails=$blockSpaceDetails)"
     }
 }
