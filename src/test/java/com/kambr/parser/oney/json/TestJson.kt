@@ -7,14 +7,12 @@ import org.junit.jupiter.api.Test
 import java.io.IOException
 import org.junit.jupiter.api.Assertions.assertEquals
 
-
 class TestJson {
     companion object {
         const val LEG_DATA_FILE_PATH = "src/test/resources/oney/json/LegData.json"
         const val SCHEDULE_FILE_PATH = "src/test/resources/oney/json/Schedule.json"
         val logger = Logger(this::class.java)
     }
-
 
     /**
      * Test cases:
@@ -47,11 +45,11 @@ class TestJson {
         assertEquals(null, record1.equipmentVersion)
         assertEquals("NOK", record1.baseCurrencyCode)
         assertEquals(186, record1.aircraftAuthorizedCapacity)
-        assertEquals(186, record1.aircraftCapacity)
+        assertEquals(185, record1.aircraftCapacity)
         assertEquals(1, record1.cabins.size)
         assertEquals("ECONOMY", record1.cabins[0].cabinCode)
         assertEquals(186, record1.cabins[0].cabinAuthorizedCapacity)
-        assertEquals(186, record1.cabins[0].cabinCapacity)
+        assertEquals(184, record1.cabins[0].cabinCapacity)
         assertEquals(0, record1.cabins[0].cabinBlock)
         assertEquals(0, record1.cabins[0].blockSpaceDetails.size)
 
@@ -63,7 +61,6 @@ class TestJson {
         assertEquals(3, record2.cabins[0].blockSpaceDetails[0].protectedSeats)
         assertEquals(2, record2.cabins[0].blockSpaceDetails[1].codeShareBlock)
         assertEquals(4, record2.cabins[0].blockSpaceDetails[1].protectedSeats)
-
     }
 
     /**
