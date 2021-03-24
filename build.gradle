@@ -53,6 +53,11 @@ repositories {
     }
 }
 
+configurations.all {
+    resolutionStrategy.force "org.antlr:antlr4-runtime:4.9.1"
+    resolutionStrategy.force "org.antlr:antlr4-tool:4.9.1"
+}
+
 dependencies {
     def versionJunit = "5.7.0"
     def versionJunitPlatform = "1.7.0"
