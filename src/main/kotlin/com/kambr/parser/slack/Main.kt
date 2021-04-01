@@ -38,9 +38,13 @@ fun main() {
                 "\n"
 
 
-    val conversation = parseSlackConversation(rawConversation)
+    val conversationWithVisitor = parseSlackConversationWithVisitor(rawConversation)
 
-    conversation.forEach { message ->  message.text.forEach {   println(it) } }
+    val conversationWithListener = parseSlackConversationWithListener(rawConversation)
+
+    println(conversationWithListener)
+
+//    conversationWithVisitor.forEach { message ->  message.text.forEach {   println(it) } }
 
     println("Done")
 }

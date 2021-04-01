@@ -26,6 +26,6 @@ WORD: ~[ \t\n:]+;
 
 fragment DIGIT: [0-9]; // can be used in lexer rules only
 
-WHITE_SPACE: [\t\n] -> skip;
+WHITE_SPACE: [\t] -> skip;
 
 NL: '\n' ;

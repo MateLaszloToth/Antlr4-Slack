@@ -105,6 +105,14 @@ public class SlackParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_conversation; }
 		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof SlackListener ) ((SlackListener)listener).enterConversation(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof SlackListener ) ((SlackListener)listener).exitConversation(this);
+		}
+		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SlackVisitor ) return ((SlackVisitor<? extends T>)visitor).visitConversation(this);
 			else return visitor.visitChildren(this);
@@ -161,6 +169,14 @@ public class SlackParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_message; }
 		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof SlackListener ) ((SlackListener)listener).enterMessage(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof SlackListener ) ((SlackListener)listener).exitMessage(this);
+		}
+		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SlackVisitor ) return ((SlackVisitor<? extends T>)visitor).visitMessage(this);
 			else return visitor.visitChildren(this);
@@ -203,6 +219,14 @@ public class SlackParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_sender; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof SlackListener ) ((SlackListener)listener).enterSender(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof SlackListener ) ((SlackListener)listener).exitSender(this);
+		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SlackVisitor ) return ((SlackVisitor<? extends T>)visitor).visitSender(this);
@@ -272,6 +296,14 @@ public class SlackParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_text; }
 		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof SlackListener ) ((SlackListener)listener).enterText(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof SlackListener ) ((SlackListener)listener).exitText(this);
+		}
+		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SlackVisitor ) return ((SlackVisitor<? extends T>)visitor).visitText(this);
 			else return visitor.visitChildren(this);
@@ -332,15 +364,15 @@ public class SlackParser extends Parser {
 
 	public static class SentenceContext extends ParserRuleContext {
 		public TerminalNode NL() { return getToken(SlackParser.NL, 0); }
-		public List<TerminalNode> WORD() { return getTokens(SlackParser.WORD); }
-		public TerminalNode WORD(int i) {
-			return getToken(SlackParser.WORD, i);
-		}
 		public List<EmojiContext> emoji() {
 			return getRuleContexts(EmojiContext.class);
 		}
 		public EmojiContext emoji(int i) {
 			return getRuleContext(EmojiContext.class,i);
+		}
+		public List<TerminalNode> WORD() { return getTokens(SlackParser.WORD); }
+		public TerminalNode WORD(int i) {
+			return getToken(SlackParser.WORD, i);
 		}
 		public List<TimeContext> time() {
 			return getRuleContexts(TimeContext.class);
@@ -352,6 +384,14 @@ public class SlackParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_sentence; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof SlackListener ) ((SlackListener)listener).enterSentence(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof SlackListener ) ((SlackListener)listener).exitSentence(this);
+		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SlackVisitor ) return ((SlackVisitor<? extends T>)visitor).visitSentence(this);
@@ -374,22 +414,22 @@ public class SlackParser extends Parser {
 				setState(48);
 				_errHandler.sync(this);
 				switch (_input.LA(1)) {
-				case WORD:
-					{
-					setState(44);
-					match(WORD);
-					}
-					break;
 				case T__0:
 					{
-					setState(45);
+					setState(44);
 					match(T__0);
 					}
 					break;
 				case T__2:
 					{
-					setState(46);
+					setState(45);
 					emoji();
+					}
+					break;
+				case WORD:
+					{
+					setState(46);
+					match(WORD);
 					}
 					break;
 				case CLOCK:
@@ -427,6 +467,14 @@ public class SlackParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_emoji; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof SlackListener ) ((SlackListener)listener).enterEmoji(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof SlackListener ) ((SlackListener)listener).exitEmoji(this);
+		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SlackVisitor ) return ((SlackVisitor<? extends T>)visitor).visitEmoji(this);
@@ -487,6 +535,14 @@ public class SlackParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_time; }
 		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof SlackListener ) ((SlackListener)listener).enterTime(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof SlackListener ) ((SlackListener)listener).exitTime(this);
+		}
+		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SlackVisitor ) return ((SlackVisitor<? extends T>)visitor).visitTime(this);
 			else return visitor.visitChildren(this);
@@ -533,6 +589,14 @@ public class SlackParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_amORpm; }
 		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof SlackListener ) ((SlackListener)listener).enterAmORpm(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof SlackListener ) ((SlackListener)listener).exitAmORpm(this);
+		}
+		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SlackVisitor ) return ((SlackVisitor<? extends T>)visitor).visitAmORpm(this);
 			else return visitor.visitChildren(this);
@@ -573,7 +637,7 @@ public class SlackParser extends Parser {
 		"\2\2\2\34 \7\b\2\2\35\36\7\3\2\2\36\37\7\b\2\2\37!\7\4\2\2 \35\3\2\2\2"+
 		"!\"\3\2\2\2\" \3\2\2\2\"#\3\2\2\2#\7\3\2\2\2$%\5\16\b\2%&\7\n\2\2&)\3"+
 		"\2\2\2\')\5\n\6\2($\3\2\2\2(\'\3\2\2\2)*\3\2\2\2*(\3\2\2\2*+\3\2\2\2+"+
-		",\3\2\2\2,-\7\n\2\2-\t\3\2\2\2.\63\7\b\2\2/\63\7\3\2\2\60\63\5\f\7\2\61"+
+		",\3\2\2\2,-\7\n\2\2-\t\3\2\2\2.\63\7\3\2\2/\63\5\f\7\2\60\63\7\b\2\2\61"+
 		"\63\5\16\b\2\62.\3\2\2\2\62/\3\2\2\2\62\60\3\2\2\2\62\61\3\2\2\2\63\64"+
 		"\3\2\2\2\64\62\3\2\2\2\64\65\3\2\2\2\65\66\3\2\2\2\66\67\7\n\2\2\67\13"+
 		"\3\2\2\28<\7\5\2\29:\7\b\2\2:=\7\5\2\2;=\7\6\2\2<9\3\2\2\2<;\3\2\2\2="+
