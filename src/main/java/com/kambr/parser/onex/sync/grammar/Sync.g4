@@ -1,7 +1,7 @@
 grammar Sync;
 
 @header {
-package package com.kambr.parser.onex.sync.generated;
+package com.kambr.parser.onex.sync.generated;
 }
 
 flightRecords
