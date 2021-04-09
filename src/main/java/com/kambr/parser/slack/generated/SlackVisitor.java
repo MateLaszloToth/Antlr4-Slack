@@ -31,6 +31,12 @@ public interface SlackVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSender(SlackParser.SenderContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link SlackParser#time}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTime(SlackParser.TimeContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link SlackParser#text}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -43,21 +49,15 @@ public interface SlackVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSentence(SlackParser.SentenceContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlackParser#emoji}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitEmoji(SlackParser.EmojiContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link SlackParser#time}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitTime(SlackParser.TimeContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link SlackParser#amORpm}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitAmORpm(SlackParser.AmORpmContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SlackParser#emoji}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEmoji(SlackParser.EmojiContext ctx);
 }

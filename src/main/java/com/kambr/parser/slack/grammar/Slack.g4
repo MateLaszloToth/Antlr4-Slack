@@ -1,31 +1,31 @@
 grammar Slack;
 
-@header {
+@header{
 package com.kambr.parser.slack.generated;
 }
 
-conversation: message+ ;
+conversation: message+;
 
-message: sender     time NL  text; // spacing between rules don't matter
+message: sender time NL text;
 
-sender: WORD (' ' WORD '  ')+ ;
+sender: WORD (' ' WORD  ' ')+  ' ';
+
+time: CLOCK (' '  amORpm)?;
 
 text: ((time NL) | sentence)+ NL;
 
-sentence: ( WORD | ' ' | emoji |  time)+ NL;
-
-emoji: ':' ((WORD ':') | ')') ;
-
-time: CLOCK (' ' amORpm)?;
+sentence: ( WORD | ' ' | emoji | time)+ NL;
 
 amORpm: WORD;
 
+emoji: ':' ((WORD ':') | ')');
+
 CLOCK: DIGIT+ ':' DIGIT+;
+
+fragment DIGIT: [0-9];
 
 WORD: ~[ \t\n:]+;
 
-fragment DIGIT: [0-9]; // can be used in lexer rules only
-
-WHITE_SPACE: [\t] -> skip;
+W_S: [\t] -> skip;
 
 NL: '\n' ;

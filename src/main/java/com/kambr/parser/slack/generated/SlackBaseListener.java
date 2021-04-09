@@ -54,6 +54,18 @@ public class SlackBaseListener implements SlackListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterTime(SlackParser.TimeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTime(SlackParser.TimeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterText(SlackParser.TextContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -78,30 +90,6 @@ public class SlackBaseListener implements SlackListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterEmoji(SlackParser.EmojiContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitEmoji(SlackParser.EmojiContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterTime(SlackParser.TimeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitTime(SlackParser.TimeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterAmORpm(SlackParser.AmORpmContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -109,6 +97,18 @@ public class SlackBaseListener implements SlackListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitAmORpm(SlackParser.AmORpmContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterEmoji(SlackParser.EmojiContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitEmoji(SlackParser.EmojiContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

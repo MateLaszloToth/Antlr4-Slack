@@ -38,7 +38,7 @@ fun main() {
                 "\n"
 
 
-    val conversationWithVisitor = parseSlackConversationWithVisitor(rawConversation)
+    val conversationWithVisitor = parseSlackConversationWithVisitor(rawConversation)[0].sender.firstName
 
     val conversationWithListener = parseSlackConversationWithListener(rawConversation)
 

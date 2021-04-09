@@ -40,6 +40,16 @@ public interface SlackListener extends ParseTreeListener {
 	 */
 	void exitSender(SlackParser.SenderContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link SlackParser#time}.
+	 * @param ctx the parse tree
+	 */
+	void enterTime(SlackParser.TimeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SlackParser#time}.
+	 * @param ctx the parse tree
+	 */
+	void exitTime(SlackParser.TimeContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link SlackParser#text}.
 	 * @param ctx the parse tree
 	 */
@@ -60,26 +70,6 @@ public interface SlackListener extends ParseTreeListener {
 	 */
 	void exitSentence(SlackParser.SentenceContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlackParser#emoji}.
-	 * @param ctx the parse tree
-	 */
-	void enterEmoji(SlackParser.EmojiContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SlackParser#emoji}.
-	 * @param ctx the parse tree
-	 */
-	void exitEmoji(SlackParser.EmojiContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SlackParser#time}.
-	 * @param ctx the parse tree
-	 */
-	void enterTime(SlackParser.TimeContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SlackParser#time}.
-	 * @param ctx the parse tree
-	 */
-	void exitTime(SlackParser.TimeContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link SlackParser#amORpm}.
 	 * @param ctx the parse tree
 	 */
@@ -89,4 +79,14 @@ public interface SlackListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAmORpm(SlackParser.AmORpmContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SlackParser#emoji}.
+	 * @param ctx the parse tree
+	 */
+	void enterEmoji(SlackParser.EmojiContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SlackParser#emoji}.
+	 * @param ctx the parse tree
+	 */
+	void exitEmoji(SlackParser.EmojiContext ctx);
 }

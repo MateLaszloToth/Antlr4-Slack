@@ -13,6 +13,8 @@ class MySlackVisitor : SlackBaseVisitor<Any>() {
 
     override fun visitConversation(ctx: SlackParser.ConversationContext): List<Message> {
         val messages = mutableListOf<Message>()
+
+
         ctx.message().forEach { child ->
             messages.add(visitMessage(child))
         }
