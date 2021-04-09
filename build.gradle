@@ -20,36 +20,14 @@ java {
     withSourcesJar()
 }
 
-publishing {
-    publications {
-        myPublication(MavenPublication) {
-            artifactId = "parser"
 
-            from components.java
-        }
-    }
-    // Repositories *to* which Gradle can publish artifacts
-    repositories {
-        maven {
-            url = uri("https://pkgs.dev.azure.com/kambr/_packaging/mvn/maven/v1")
-            credentials {
-                username "$mavenUser"
-                password "$mavenPassword"
-            }
-        }
-    }
-}
 
 
 repositories {
     // Use jcenter for resolving dependencies.
     jcenter()
     maven {
-        url "https://pkgs.dev.azure.com/kambr/_packaging/mvn/maven/v1"
-        credentials {
-            username "$mavenUser"
-            password "$mavenPassword"
-        }
+
     }
 }
 
@@ -79,8 +57,6 @@ dependencies {
 }
 
 application {
-    // Define the main class for the application.
-    mainClass.set("com.kambr.parser.onex.sync.GeniusSyncParser")
 }
 
 test {
